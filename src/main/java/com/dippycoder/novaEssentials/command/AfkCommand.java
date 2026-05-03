@@ -1,7 +1,6 @@
 package com.dippycoder.novaEssentials.command;
 
 import com.dippycoder.novaEssentials.NovaEssentials;
-import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -26,16 +25,14 @@ public class AfkCommand extends BaseCommand {
 
         if (nowAfk) {
             msg.send(sender, "afk.enabled");
-            Component broadcast = afkMessage != null
-                    ? msg.get(sender, "afk.broadcast-on-msg",
-                        "player", player.getName(), "message", afkMessage)
-                    : msg.get(sender, "afk.broadcast-on",
-                        "player", player.getName());
-            plugin.getServer().broadcast(broadcast);
+            if (afkMessage != null) {
+                msg.broadcastAll("afk.broadcast-on-msg", "player", player.getName(), "message", afkMessage);
+            } else {
+                msg.broadcastAll("afk.broadcast-on", "player", player.getName());
+            }
         } else {
             msg.send(sender, "afk.disabled");
-            plugin.getServer().broadcast(msg.get(sender, "afk.broadcast-off",
-                    "player", player.getName()));
+            msg.broadcastAll("afk.broadcast-off", "player", player.getName());
         }
     }
 

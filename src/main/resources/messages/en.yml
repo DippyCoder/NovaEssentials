@@ -22,7 +22,7 @@ prefix:
   broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
   chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
   kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
-  error:     "<dark_gray>[<red>✗</red><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
 
 # ── General ───────────────────────────────────────────────
 general:
@@ -317,6 +317,11 @@ repair:
   no-item:        "<prefix_error> <gray>You must be holding a damageable item."
   notify:         "<prefix_general> <gray>Your held item was repaired by <green><bold><sender></bold></green><gray>."
   notify-all:     "<prefix_general> <gray>Your inventory was repaired by <green><bold><sender></bold></green><gray>."
+
+# ── NovaEssentials Admin ─────────────────────────────────
+novaess:
+  check-enabled:  "<prefix_general> <gray>Automatic update checking <green><bold>enabled</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Automatic update checking <green><bold>disabled</bold></green><gray>."
 
 # ── Size ─────────────────────────────────────────────────
 size:

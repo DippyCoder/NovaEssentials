@@ -9,7 +9,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class DiscordWebhookManager {
@@ -25,6 +27,13 @@ public class DiscordWebhookManager {
     private boolean eventCaptchaCreated;
     private boolean eventCaptchaFailed;
 
+    private EmbedConfig embedBan;
+    private EmbedConfig embedUnban;
+    private EmbedConfig embedKick;
+    private EmbedConfig embedCaptchaCreated;
+    private EmbedConfig embedCaptchaFailed;
+    private EmbedConfig embedCaptchaDodge;
+
     public DiscordWebhookManager(NovaEssentials plugin) {
         this.plugin = plugin;
         reload();
@@ -35,98 +44,114 @@ public class DiscordWebhookManager {
         if (!file.exists()) plugin.saveResource("webhooks.yml", false);
 
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-        enabled          = cfg.getBoolean("enabled", false);
-        webhookUrl       = cfg.getString("webhook-url", "");
+        enabled             = cfg.getBoolean("enabled", false);
+        webhookUrl          = cfg.getString("webhook-url", "");
         eventBan            = cfg.getBoolean("events.ban", true);
         eventUnban          = cfg.getBoolean("events.unban", true);
         eventKick           = cfg.getBoolean("events.kick", true);
         eventCaptchaCreated = cfg.getBoolean("events.captcha-created", true);
         eventCaptchaFailed  = cfg.getBoolean("events.captcha-failed", true);
+
+        embedBan            = loadEmbedConfig(cfg, "ban");
+        embedUnban          = loadEmbedConfig(cfg, "unban");
+        embedKick           = loadEmbedConfig(cfg, "kick");
+        embedCaptchaCreated = loadEmbedConfig(cfg, "captcha-created");
+        embedCaptchaFailed  = loadEmbedConfig(cfg, "captcha-failed");
+        embedCaptchaDodge   = loadEmbedConfig(cfg, "captcha-dodge");
     }
 
     // ── Public event methods ──────────────────────────────────
 
     public void onBan(String player, String reason, String duration, String bannedBy) {
         if (!enabled || !eventBan) return;
-        sendEmbed("🔨 Player Banned", 0xFF4444,
-                List.of(
-                        field("Player",    player,    true),
-                        field("Reason",    reason,    true),
-                        field("Duration",  duration,  true),
-                        field("Banned by", bannedBy,  true)
-                ));
+        sendEmbedFromConfig(embedBan, Map.of(
+                "player", player, "reason", reason,
+                "duration", duration, "banned_by", bannedBy));
     }
 
     public void onUnban(String player, String unbannedBy) {
         if (!enabled || !eventUnban) return;
-        sendEmbed("✅ Player Unbanned", 0x44FF88,
-                List.of(
-                        field("Player",      player,     true),
-                        field("Unbanned by", unbannedBy, true)
-                ));
+        sendEmbedFromConfig(embedUnban, Map.of(
+                "player", player, "unbanned_by", unbannedBy));
     }
 
     public void onKick(String player, String reason, String kickedBy) {
         if (!enabled || !eventKick) return;
-        sendEmbed("👢 Player Kicked", 0xFF9900,
-                List.of(
-                        field("Player",    player,   true),
-                        field("Reason",    reason,   true),
-                        field("Kicked by", kickedBy, true)
-                ));
+        sendEmbedFromConfig(embedKick, Map.of(
+                "player", player, "reason", reason, "kicked_by", kickedBy));
     }
 
     public void onCaptchaCreated(String player, String issuedBy) {
         if (!enabled || !eventCaptchaCreated) return;
-        sendEmbed("🔒 Captcha Issued", 0x4499FF,
-                List.of(
-                        field("Player",    player,   true),
-                        field("Issued by", issuedBy, true)
-                ));
+        sendEmbedFromConfig(embedCaptchaCreated, Map.of(
+                "player", player, "issued_by", issuedBy));
     }
 
     public void onCaptchaFailed(String player, String actualCode, List<String> failedAttempts) {
         if (!enabled || !eventCaptchaFailed) return;
         String attempts = failedAttempts.isEmpty() ? "none" : String.join(", ", failedAttempts);
-        sendEmbed("🚫 Captcha Failed — Player Banned", 0xCC2222,
-                List.of(
-                        field("Player",          player,     false),
-                        field("Actual code",     actualCode, true),
-                        field("Failed attempts", attempts,   true)
-                ));
+        sendEmbedFromConfig(embedCaptchaFailed, Map.of(
+                "player", player, "actual_code", actualCode, "failed_attempts", attempts));
     }
 
     public void onCaptchaDodge(String player, String actualCode) {
         if (!enabled || !eventCaptchaFailed) return;
-        sendEmbed("🚪 Captcha Dodged — Player Banned", 0xAA0000,
-                List.of(
-                        field("Player",      player,     true),
-                        field("Actual code", actualCode, true),
-                        field("Reason",      "Disconnected to avoid captcha", false)
-                ));
+        sendEmbedFromConfig(embedCaptchaDodge, Map.of(
+                "player", player, "actual_code", actualCode));
     }
 
-    // ── Internals ─────────────────────────────────────────────
+    // ── Config loading ────────────────────────────────────────
 
-    private record Field(String name, String value, boolean inline) {}
+    private record FieldTemplate(String name, String value, boolean inline) {}
+    private record EmbedConfig(String title, int color, List<FieldTemplate> fields) {}
 
-    private Field field(String name, String value, boolean inline) {
-        return new Field(name, value, inline);
+    private EmbedConfig loadEmbedConfig(YamlConfiguration cfg, String key) {
+        String path   = "embeds." + key;
+        String title  = cfg.getString(path + ".title", key);
+        int    color  = parseColor(cfg.getString(path + ".color", "FFFFFF"));
+
+        List<FieldTemplate> fields = new ArrayList<>();
+        List<?> raw = cfg.getList(path + ".fields", List.of());
+        for (Object obj : raw) {
+            if (!(obj instanceof Map<?, ?> raw2)) continue;
+            @SuppressWarnings("unchecked")
+            Map<String, Object> map = (Map<String, Object>) raw2;
+            String name    = String.valueOf(map.getOrDefault("name",   ""));
+            String value   = String.valueOf(map.getOrDefault("value",  ""));
+            boolean inline = Boolean.parseBoolean(String.valueOf(map.getOrDefault("inline", "true")));
+            fields.add(new FieldTemplate(name, value, inline));
+        }
+        return new EmbedConfig(title, color, fields);
     }
 
-    private void sendEmbed(String title, int color, List<Field> fields) {
+    private static int parseColor(String hex) {
+        if (hex == null || hex.isBlank()) return 0xFFFFFF;
+        try {
+            return (int) Long.parseLong(hex.replace("#", ""), 16);
+        } catch (NumberFormatException e) {
+            return 0xFFFFFF;
+        }
+    }
+
+    // ── Sending ───────────────────────────────────────────────
+
+    private void sendEmbedFromConfig(EmbedConfig cfg, Map<String, String> vars) {
         if (webhookUrl == null || webhookUrl.isBlank()) return;
+
+        String title = substitute(cfg.title(), vars);
 
         StringBuilder json = new StringBuilder();
         json.append("{\"embeds\":[{");
         json.append("\"title\":\"").append(escape(title)).append("\",");
-        json.append("\"color\":").append(color).append(",");
+        json.append("\"color\":").append(cfg.color()).append(",");
         json.append("\"timestamp\":\"").append(Instant.now()).append("\",");
         json.append("\"fields\":[");
+
+        List<FieldTemplate> fields = cfg.fields();
         for (int i = 0; i < fields.size(); i++) {
-            Field f = fields.get(i);
-            json.append("{\"name\":\"").append(escape(f.name())).append("\",");
-            json.append("\"value\":\"").append(escape(f.value())).append("\",");
+            FieldTemplate f = fields.get(i);
+            json.append("{\"name\":\"").append(escape(substitute(f.name(), vars))).append("\",");
+            json.append("\"value\":\"").append(escape(substitute(f.value(), vars))).append("\",");
             json.append("\"inline\":").append(f.inline()).append("}");
             if (i < fields.size() - 1) json.append(",");
         }
@@ -145,6 +170,14 @@ public class DiscordWebhookManager {
                 plugin.getLogger().log(Level.WARNING, "Discord webhook failed: " + e.getMessage());
             }
         });
+    }
+
+    private static String substitute(String template, Map<String, String> vars) {
+        String result = template;
+        for (Map.Entry<String, String> entry : vars.entrySet()) {
+            result = result.replace("{" + entry.getKey() + "}", entry.getValue());
+        }
+        return result;
     }
 
     private static String escape(String s) {

@@ -205,5 +205,21 @@ public class MessageManager {
         return sender.hasPermission(plugin.getConfigManager().getPermission("chat.smallcaps"));
     }
 
+    /** Send a keyed message to every online player individually (each in their own locale). */
+    public void broadcastAll(String key, Object... kvPairs) {
+        for (Player p : plugin.getServer().getOnlinePlayers()) send(p, key, kvPairs);
+    }
+
+    /**
+     * Send a keyed message to every online player who has {@code permission},
+     * each in their own locale, and also to the console.
+     */
+    public void broadcastToPermission(String permission, String key, Object... kvPairs) {
+        for (Player p : plugin.getServer().getOnlinePlayers()) {
+            if (p.hasPermission(permission)) send(p, key, kvPairs);
+        }
+        send(plugin.getServer().getConsoleSender(), key, kvPairs);
+    }
+
     public boolean isPapiLoaded() { return papiLoaded; }
 }

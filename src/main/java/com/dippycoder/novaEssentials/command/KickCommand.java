@@ -36,15 +36,10 @@ public class KickCommand extends BaseCommand {
 
         msg.send(sender, "kick.kicked", "player", target.getName());
 
-        // Notify staff
-        Component staffMsg = msg.get(sender, "kick.staff-broadcast",
+        // Notify staff — each recipient gets the message in their own locale
+        msg.broadcastToPermission(plugin.getConfigManager().getPermission("cmd.kick"),
+                "kick.staff-broadcast",
                 "player", target.getName(), "sender", sender.getName(), "reason", reason);
-        for (Player online : plugin.getServer().getOnlinePlayers()) {
-            if (online.hasPermission(plugin.getConfigManager().getPermission("cmd.kick"))) {
-                online.sendMessage(staffMsg);
-            }
-        }
-        plugin.getServer().getConsoleSender().sendMessage(staffMsg);
         plugin.getDiscordWebhookManager().onKick(target.getName(), reason, sender.getName());
     }
 

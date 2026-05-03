@@ -42,17 +42,16 @@ public class ChatCommand extends BaseCommand {
                     }
                     if (durationMs > 0) {
                         String formatted = DurationUtil.format(durationMs);
-                        plugin.getServer().broadcast(msg.get(sender, "chat.paused-timed",
-                                "duration", formatted));
+                        msg.broadcastAll("chat.paused-timed", "duration", formatted);
                         unpauseTask = plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                             paused = false;
                             unpauseTask = null;
-                            plugin.getServer().broadcast(msg.get(sender, "chat.resumed"));
+                            msg.broadcastAll("chat.resumed");
                         }, durationMs / 50);
                         return;
                     }
                 }
-                plugin.getServer().broadcast(msg.get(sender, "chat.paused"));
+                msg.broadcastAll("chat.paused");
             }
             case "unpause", "resume" -> {
                 paused = false;
@@ -60,7 +59,7 @@ public class ChatCommand extends BaseCommand {
                     unpauseTask.cancel();
                     unpauseTask = null;
                 }
-                plugin.getServer().broadcast(msg.get(sender, "chat.resumed"));
+                msg.broadcastAll("chat.resumed");
             }
             default -> msg.send(sender, "general.invalid-args",
                     "usage", "/" + label + " <pause|unpause> [duration]");

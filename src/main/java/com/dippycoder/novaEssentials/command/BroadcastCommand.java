@@ -35,10 +35,7 @@ public class BroadcastCommand extends BaseCommand {
             messageComponent = Component.text(rawMessage);
         }
 
-        Component broadcast = msg.get(sender, "broadcast.format",
-                "message", messageComponent);
-
-        plugin.getServer().broadcast(broadcast);
+        msg.broadcastAll("broadcast.format", "message", messageComponent);
     }
 
     @Override

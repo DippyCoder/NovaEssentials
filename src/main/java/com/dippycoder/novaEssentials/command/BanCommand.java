@@ -74,16 +74,11 @@ public class BanCommand extends BaseCommand {
             msg.send(sender, "ban.banned", "player", targetName, "duration", durationStr);
         }
 
-        // Staff notification
-        Component staffMsg = msg.get(sender, "ban.staff-broadcast",
+        // Staff notification — each recipient gets the message in their own locale
+        msg.broadcastToPermission(plugin.getConfigManager().getPermission("cmd.ban"),
+                "ban.staff-broadcast",
                 "player", targetName, "sender", sender.getName(),
                 "duration", durationStr, "reason", reason);
-        for (Player online : plugin.getServer().getOnlinePlayers()) {
-            if (online.hasPermission(plugin.getConfigManager().getPermission("cmd.ban"))) {
-                online.sendMessage(staffMsg);
-            }
-        }
-        plugin.getServer().getConsoleSender().sendMessage(staffMsg);
         plugin.getDiscordWebhookManager().onBan(targetName, reason, durationStr, sender.getName());
     }
 

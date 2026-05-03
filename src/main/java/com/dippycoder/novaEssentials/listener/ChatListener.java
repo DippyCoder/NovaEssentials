@@ -64,17 +64,15 @@ public class ChatListener implements Listener {
         if (!player.hasPermission(plugin.getConfigManager().getPermission("chat.bypass-filter"))) {
             if (plugin.getChatFilterManager().contains(rawText)) {
                 if (plugin.getConfigManager().isFilterNotifyStaff()) {
-                    // Notify staff async safely — build component here
-                    String filteredText = plugin.getChatFilterManager().filter(rawText);
-                    Component staffNotice = plugin.getMessageManager().get(player, "chat.staff-filter-notify",
-                            "player", player.getName(), "message", rawText);
-                    plugin.getServer().getScheduler().runTask(plugin, () -> {
-                        for (Player online : plugin.getServer().getOnlinePlayers()) {
-                            if (online.hasPermission(plugin.getConfigManager().getPermission("cmd.mute"))) {
-                                online.sendMessage(staffNotice);
-                            }
-                        }
-                    });
+                    final String capturedRaw = rawText;
+                    final String capturedName = player.getName();
+                    // Run on main thread; each recipient gets the message in their own locale
+                    plugin.getServer().getScheduler().runTask(plugin, () ->
+                        plugin.getMessageManager().broadcastToPermission(
+                                plugin.getConfigManager().getPermission("cmd.mute"),
+                                "chat.staff-filter-notify",
+                                "player", capturedName, "message", capturedRaw)
+                    );
                 }
                 rawText = plugin.getChatFilterManager().filter(rawText);
             }

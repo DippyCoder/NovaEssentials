@@ -72,9 +72,7 @@ public class NovaessCommand extends BaseCommand {
     private void toggleCheckForUpdates(CommandSender sender) {
         boolean next = !plugin.getConfigManager().isCheckForUpdates();
         plugin.getConfigManager().setCheckForUpdates(next);
-        send(sender, PREFIX + " <gray>Automatic update checking "
-                + (next ? "<green><bold>enabled</bold></green>" : "<red><bold>disabled</bold></red>")
-                + "<gray>.");
+        msg.send(sender, next ? "novaess.check-enabled" : "novaess.check-disabled");
     }
 
     @SuppressWarnings({"unchecked", "deprecation"})

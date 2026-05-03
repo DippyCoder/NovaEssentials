@@ -134,19 +134,14 @@ public class CaptchaManager {
                 Component banScreen = plugin.getMessageManager().get(player, "captcha.ban-screen");
                 player.kick(banScreen);
 
-                // Send full summary to staff: actual code + all failed attempts
+                // Send full summary to staff — each recipient in their own locale
                 String attemptsStr = String.join(", ", updated.failedCodes());
-                Component summary = plugin.getMessageManager().get(
-                        plugin.getServer().getConsoleSender(), "captcha.fail-summary",
+                plugin.getMessageManager().broadcastToPermission(
+                        plugin.getConfigManager().getPermission("cmd.freeze"),
+                        "captcha.fail-summary",
                         "player", player.getName(),
                         "code", data.code(),
                         "attempts", attemptsStr);
-                for (Player online : plugin.getServer().getOnlinePlayers()) {
-                    if (online.hasPermission(plugin.getConfigManager().getPermission("cmd.freeze"))) {
-                        online.sendMessage(summary);
-                    }
-                }
-                plugin.getServer().getConsoleSender().sendMessage(summary);
                 plugin.getDiscordWebhookManager().onCaptchaFailed(
                         player.getName(), data.code(), updated.failedCodes());
             } else {
