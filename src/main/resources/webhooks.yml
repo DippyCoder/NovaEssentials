@@ -1,0 +1,17 @@
+# ============================================================
+#   NovaEssentials — Discord Webhooks
+#   Set enabled: true and fill in webhook-url to activate.
+# ============================================================
+
+enabled: false
+
+# Paste your Discord webhook URL here
+webhook-url: ""
+
+# Toggle individual event types
+events:
+  ban: true
+  unban: true
+  kick: true
+  captcha-created: true
+  captcha-failed: true
