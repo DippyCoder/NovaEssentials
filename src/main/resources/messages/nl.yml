@@ -1,0 +1,345 @@
+# ============================================================
+#   NovaEssentials — Dutch Messages  (nl.yml)
+#
+#   All values support full MiniMessage formatting.
+#   Tag replacements use <tagname> syntax defined per command.
+#   Language translated with Claude
+#
+#   Prefix tags available in every message:
+#     <prefix_general>  <prefix_msg>    <prefix_staff>
+#     <prefix_home>     <prefix_warp>   <prefix_tp>
+#     <prefix_broadcast><prefix_chat>   <prefix_kit>
+#     <prefix_error>
+# ============================================================
+
+# ── Prefixes ──────────────────────────────────────────────
+prefix:
+  general:   "<dark_gray>[<gold>⚡</gold><dark_gray>]"
+  msg:       "<dark_gray>[<aqua>✉</aqua><dark_gray>]"
+  staff:     "<dark_gray>[<red>🔨</red><dark_gray>]"
+  home:      "<dark_gray>[<green>🏠</green><dark_gray>]"
+  warp:      "<dark_gray>[<light_purple>🌀</light_purple><dark_gray>]"
+  tp:        "<dark_gray>[<yellow>📍</yellow><dark_gray>]"
+  broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
+  chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
+  kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
+
+# ── General ───────────────────────────────────────────────
+general:
+  no-permission:    "<prefix_error> <gray>Je hebt geen toestemming om dit te doen."
+  player-only:      "<prefix_error> <gray>Alleen spelers kunnen dit commando gebruiken."
+  console-only:     "<prefix_error> <gray>Dit commando kan alleen vanuit de console worden gebruikt."
+  player-not-found: "<prefix_error> <gray>Speler <green><bold><player></bold></green> <gray>werd niet gevonden."
+  invalid-args:     "<prefix_error> <gray>Gebruik: <green><bold><usage></bold></green>"
+  command-disabled: "<prefix_error> <gray>Dit commando is momenteel uitgeschakeld."
+  invalid-number:   "<prefix_error> <gray><green><bold><value></bold></green> <gray>is geen geldig getal."
+  reload-success:   "<prefix_general> <gray>Configuratie herladen."
+
+# ── Gamemode ──────────────────────────────────────────────
+gamemode:
+  changed-self:  "<prefix_staff> <gray>Jouw gamemodus is nu <green><bold><mode></bold></green><gray>."
+  changed-other: "<prefix_staff> <gray>Gamemodus van <green><bold><player></bold></green><gray> ingesteld op <green><bold><mode></bold></green><gray>."
+  notify:        "<prefix_staff> <gray>Jouw gamemodus is gewijzigd naar <green><bold><mode></bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  invalid-mode:  "<prefix_error> <gray>Ongeldige gamemodus <green><bold><mode></bold></green><gray>. Geldig: <green><bold>survival, creative, adventure, spectator</bold></green>"
+
+# ── Private Messages ──────────────────────────────────────
+msg:
+  sent:           "<prefix_msg> <gray>Jij <dark_gray>→ <green><bold><player></bold></green><gray>: <white><italic><message></italic></white>"
+  received:       "<prefix_msg> <green><bold><player></bold></green> <dark_gray>→ <gray>Jij<gray>: <white><italic><message></italic></white>"
+  spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
+  player-blocked: "<prefix_error> <gray>Je kunt geen bericht sturen naar <green><bold><player></bold></green><gray>."
+  blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>accepteert geen berichten."
+  no-reply:       "<prefix_error> <gray>Je hebt niemand om op te antwoorden."
+  player-offline: "<prefix_error> <gray>Die speler is niet meer online."
+
+# ── Vanish ────────────────────────────────────────────────
+vanish:
+  enabled:        "<prefix_staff> <gray>Je bent nu <green><bold>onzichtbaar</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Je bent niet meer onzichtbaar."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> onzichtbaar gemaakt."
+  other-disabled: "<prefix_staff> <gray><green><bold><player></bold></green><gray> weer zichtbaar gemaakt."
+  notify-on:      "<prefix_staff> <gray>Je bent onzichtbaar gemaakt door <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_staff> <gray>Je bent weer zichtbaar gemaakt door <green><bold><sender></bold></green><gray>."
+
+# ── Fly ──────────────────────────────────────────────────
+fly:
+  enabled:        "<prefix_general> <gray>Vliegen <green><bold>ingeschakeld</bold></green><gray>."
+  disabled:       "<prefix_general> <gray>Vliegen <green><bold>uitgeschakeld</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Vliegen ingeschakeld voor <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Vliegen uitgeschakeld voor <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Vliegen is <green><bold>ingeschakeld</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Vliegen is <green><bold>uitgeschakeld</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+
+# ── Speed ─────────────────────────────────────────────────
+speed:
+  set-self:   "<prefix_general> <gray>Snelheid ingesteld op <green><bold><speed></bold></green><gray>."
+  set-other:  "<prefix_staff> <gray>Snelheid van <green><bold><player></bold></green><gray> ingesteld op <green><bold><speed></bold></green><gray>."
+  notify:     "<prefix_general> <gray>Jouw snelheid is ingesteld op <green><bold><speed></bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  invalid:    "<prefix_error> <gray>Snelheid moet tussen <green><bold>0</bold></green> <gray>en <green><bold>10</bold></green><gray> liggen."
+
+# ── Enchant ───────────────────────────────────────────────
+enchant:
+  success:       "<prefix_staff> <gray><green><bold><enchantment> <level></bold></green> <gray>toegepast op jouw item."
+  success-other: "<prefix_staff> <gray><green><bold><enchantment> <level></bold></green> <gray>toegepast op het item van <green><bold><player></bold></green><gray>."
+  invalid:       "<prefix_error> <gray>Onbekend enchantment: <green><bold><enchantment></bold></green>"
+  no-item:       "<prefix_error> <gray>Je moet een item vasthouden."
+  invalid-level: "<prefix_error> <gray>Niveau moet minimaal <green><bold>1</bold></green><gray> zijn."
+
+# ── Heal ─────────────────────────────────────────────────
+heal:
+  self:   "<prefix_general> <gray>Je bent <green><bold>genezen</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> genezen."
+  notify: "<prefix_general> <gray>Je bent genezen door <green><bold><sender></bold></green><gray>."
+
+# ── Feed ─────────────────────────────────────────────────
+feed:
+  self:   "<prefix_general> <gray>Je bent <green><bold>gevoed</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> gevoed."
+  notify: "<prefix_general> <gray>Je bent gevoed door <green><bold><sender></bold></green><gray>."
+
+# ── God ──────────────────────────────────────────────────
+god:
+  enabled:        "<prefix_staff> <gray>God-modus <green><bold>ingeschakeld</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>God-modus <green><bold>uitgeschakeld</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>God-modus ingeschakeld voor <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>God-modus uitgeschakeld voor <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>God-modus <green><bold>ingeschakeld</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>God-modus <green><bold>uitgeschakeld</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+
+# ── InvSee ───────────────────────────────────────────────
+invsee:
+  opened: "<prefix_staff> <gray>Inventaris van <green><bold><player></bold></green><gray> wordt bekeken."
+
+# ── EnderChest ───────────────────────────────────────────
+ec:
+  opened-self:  "<prefix_general> <gray>Jouw enderborst geopend."
+  opened-other: "<prefix_staff> <gray>Enderborst van <green><bold><player></bold></green><gray> wordt bekeken."
+
+# ── Workbench ─────────────────────────────────────────────
+workbench:
+  opened-self:  "<prefix_general> <gray>Een werkbank geopend."
+  opened-other: "<prefix_staff> <gray>Een werkbank geopend voor <green><bold><player></bold></green><gray>."
+
+# ── Anvil ─────────────────────────────────────────────────
+anvil:
+  opened-self:  "<prefix_general> <gray>Een aambeeld geopend."
+  opened-other: "<prefix_staff> <gray>Een aambeeld geopend voor <green><bold><player></bold></green><gray>."
+
+# ── TPA ──────────────────────────────────────────────────
+tpa:
+  sent:              "<prefix_tp> <gray>Teleportatieverzoek verstuurd naar <green><bold><player></bold></green><gray>."
+  received:          "<prefix_tp> <green><bold><player></bold></green> <gray>wil naar jou teleporteren.\n<prefix_tp> <gray>Gebruik <green><bold>/tpaccept</bold></green> <gray>of <green><bold>/tpdeny</bold></green><gray>."
+  here-sent:         "<prefix_tp> <gray><green><bold><player></bold></green> <gray>gevraagd om naar jou te teleporteren."
+  here-received:     "<prefix_tp> <green><bold><player></bold></green> <gray>wil dat jij naar hen teleporteert.\n<prefix_tp> <gray>Gebruik <green><bold>/tpaccept</bold></green> <gray>of <green><bold>/tpdeny</bold></green><gray>."
+  accepted-sender:   "<prefix_tp> <green><bold><player></bold></green> <gray>heeft jouw verzoek geaccepteerd. Teleporteren over <green><bold><delay>s</bold></green><gray>."
+  accepted-receiver: "<prefix_tp> <gray>Teleportatieverzoek van <green><bold><player></bold></green><gray> geaccepteerd."
+  accepted-instant:  "<prefix_tp> <green><bold><player></bold></green> <gray>heeft jouw verzoek geaccepteerd."
+  denied-sender:     "<prefix_tp> <green><bold><player></bold></green> <gray>heeft jouw verzoek geweigerd."
+  denied-receiver:   "<prefix_tp> <gray>Teleportatieverzoek van <green><bold><player></bold></green><gray> geweigerd."
+  expired-sender:    "<prefix_tp> <gray>Jouw verzoek aan <green><bold><player></bold></green> <gray>is verlopen."
+  expired-receiver:  "<prefix_tp> <gray>Verzoek van <green><bold><player></bold></green> <gray>is verlopen."
+  no-request:        "<prefix_error> <gray>Je hebt geen openstaande teleportatieverzoeken."
+  already-pending:   "<prefix_error> <gray>Je hebt al een openstaand verzoek bij <green><bold><player></bold></green><gray>."
+  blocked:           "<prefix_error> <gray>Je kunt geen verzoek sturen naar <green><bold><player></bold></green><gray>."
+  cancelled-move:    "<prefix_tp> <gray>Teleportatie geannuleerd omdat je bewoog."
+  teleporting:       "<prefix_tp> <gray>Teleporteren over <green><bold><delay>s</bold></green><gray>. Niet bewegen."
+
+# ── TpAll ─────────────────────────────────────────────────
+tpall:
+  teleported:       "<prefix_staff> <gray><green><bold><count></bold></green> <gray>speler(s) naar jou geteleporteerd."
+  notify:           "<prefix_tp> <gray>Je bent geteleporteerd naar <green><bold><sender></bold></green><gray>."
+
+# ── Block ─────────────────────────────────────────────────
+block:
+  blocked:         "<prefix_general> <gray><green><bold><player></bold></green><gray> geblokkeerd."
+  unblocked:       "<prefix_general> <gray><green><bold><player></bold></green><gray> gedeblokkeerd."
+  already-blocked: "<prefix_error> <gray><green><bold><player></bold></green> <gray>is al geblokkeerd."
+  not-blocked:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>is niet geblokkeerd."
+  cannot-self:     "<prefix_error> <gray>Je kunt jezelf niet blokkeren."
+
+# ── Home ─────────────────────────────────────────────────
+home:
+  teleported:    "<prefix_home> <gray>Geteleporteerd naar huis <green><bold><home></bold></green><gray>."
+  set:           "<prefix_home> <gray>Huis <green><bold><home></bold></green> <gray>ingesteld."
+  deleted:       "<prefix_home> <gray>Huis <green><bold><home></bold></green> <gray>verwijderd."
+  not-found:     "<prefix_error> <gray>Huis <green><bold><home></bold></green> <gray>bestaat niet."
+  limit-reached: "<prefix_error> <gray>Je hebt je huislimiet bereikt (<green><bold><limit></bold></green><gray>)."
+  list:          "<prefix_home> <gray>Jouw huizen: <green><bold><homes></bold></green>"
+  no-homes:      "<prefix_home> <gray>Je hebt geen huizen ingesteld."
+
+# ── Spawn ─────────────────────────────────────────────────
+spawn:
+  teleported: "<prefix_tp> <gray>Geteleporteerd naar <green><bold>spawn</bold></green><gray>."
+  set:        "<prefix_staff> <gray>Spawnlocatie is ingesteld."
+  not-set:    "<prefix_error> <gray>De spawnlocatie is nog niet ingesteld."
+
+# ── Warp ─────────────────────────────────────────────────
+warp:
+  teleported: "<prefix_warp> <gray>Gewarpt naar <green><bold><warp></bold></green><gray>."
+  set:        "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>aangemaakt."
+  deleted:    "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>verwijderd."
+  not-found:  "<prefix_error> <gray>Warp <green><bold><warp></bold></green> <gray>bestaat niet."
+  list:       "<prefix_warp> <gray>Warps: <green><bold><warps></bold></green>"
+  no-warps:   "<prefix_warp> <gray>Er zijn geen warps ingesteld."
+
+# ── Time ─────────────────────────────────────────────────
+time:
+  set:         "<prefix_staff> <gray>Tijd ingesteld op <green><bold><time></bold></green><gray>."
+  invalid:     "<prefix_error> <gray>Ongeldige tijd: <green><bold><value></bold></green><gray>. Gebruik een getal, of: day, night, noon, midnight."
+
+# ── Kit ──────────────────────────────────────────────────
+kit:
+  given:      "<prefix_kit> <gray>Je hebt kit <green><bold><kit></bold></green><gray> ontvangen."
+  cooldown:   "<prefix_error> <gray>Kit <green><bold><kit></bold></green> <gray>heeft een cooldown. Beschikbaar over <green><bold><time></bold></green><gray>."
+  one-time:   "<prefix_error> <gray>Je hebt kit <green><bold><kit></bold></green><gray> al geclaimd."
+  not-found:  "<prefix_error> <gray>Kit <green><bold><kit></bold></green> <gray>bestaat niet."
+  no-perm:    "<prefix_error> <gray>Je hebt geen toestemming om kit <green><bold><kit></bold></green><gray> te gebruiken."
+  list:       "<prefix_kit> <gray>Beschikbare kits: <green><bold><kits></bold></green>"
+  no-kits:    "<prefix_kit> <gray>Er zijn geen kits beschikbaar voor jou."
+  no-money:   "<prefix_error> <gray>Je hebt <green><bold><price></bold></green> <gray>nodig voor kit <green><bold><kit></bold></green><gray>."
+  charged:    "<prefix_kit> <gray><green><bold><price></bold></green> <gray>in rekening gebracht voor kit <green><bold><kit></bold></green><gray>."
+  no-economy: "<prefix_error> <gray>Economie is niet beschikbaar op deze server."
+
+# ── Broadcast ─────────────────────────────────────────────
+broadcast:
+  format: "<prefix_broadcast> <white><message></white>"
+
+# ── Chat ─────────────────────────────────────────────────
+chat:
+  paused:                  "<prefix_chat> <gray>Chat is <green><bold>gepauzeerd</bold></green><gray>."
+  paused-timed:            "<prefix_chat> <gray>Chat is gepauzeerd voor <green><bold><duration></bold></green><gray>."
+  resumed:                 "<prefix_chat> <gray>Chat is <green><bold>hervat</bold></green><gray>."
+  blocked-pause:           "<prefix_error> <gray>Chat is momenteel gepauzeerd."
+  filter-blocked:          "<prefix_error> <gray>Jouw bericht bevat geblokkeerde inhoud."
+  muted:                   "<prefix_error> <gray>Je bent gedempt voor <green><bold><time></bold></green><gray>."
+  muted-permanent:         "<prefix_error> <gray>Je bent permanent gedempt."
+  muted-player:            "<prefix_staff> <gray><green><bold><player></bold></green> <gray>gedempt voor <green><bold><duration></bold></green><gray>."
+  muted-permanent-player:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> permanent gedempt."
+  unmuted-player:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> gedemptstatus opgeheven."
+  already-muted:           "<prefix_error> <gray><green><bold><player></bold></green> <gray>is al gedempt."
+  not-muted:               "<prefix_error> <gray><green><bold><player></bold></green> <gray>is niet gedempt."
+  notify-muted:            "<prefix_staff> <gray>Je bent gedempt voor <green><bold><duration></bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  notify-muted-permanent:  "<prefix_staff> <gray>Je bent permanent gedempt door <green><bold><sender></bold></green><gray>."
+  notify-unmuted:          "<prefix_staff> <gray>Je demptstatus is opgeheven door <green><bold><sender></bold></green><gray>."
+  staff-filter-notify:     "<prefix_staff> <gray>Bericht van <green><bold><player></bold></green><gray> gefilterd: <italic><message></italic>"
+
+# ── Sudo ─────────────────────────────────────────────────
+sudo:
+  executed: "<prefix_staff> <gray>Uitgevoerd als <green><bold><player></bold></green><gray>: <italic><action></italic>"
+
+# ── Kick ─────────────────────────────────────────────────
+kick:
+  kicked:           "<prefix_staff> <gray><green><bold><player></bold></green><gray> gekickt."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>is gekickt door <green><bold><sender></bold></green> <gray>— <italic><reason></italic>"
+  kick-screen:      "<red><bold>Je bent gekickt</bold></red>\n<gray>Reden: <white><reason></white>\n<gray>Gekickt door: <green><bold><sender></bold></green>"
+
+# ── Ban ───────────────────────────────────────────────────
+ban:
+  banned:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray>verbannen voor <green><bold><duration></bold></green><gray>."
+  banned-permanent: "<prefix_staff> <gray><green><bold><player></bold></green><gray> permanent verbannen."
+  unbanned:         "<prefix_staff> <gray><green><bold><player></bold></green><gray> ban opgeheven."
+  already-banned:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>is al verbannen."
+  not-banned:       "<prefix_error> <gray><green><bold><player></bold></green> <gray>is niet verbannen."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>is verbannen door <green><bold><sender></bold></green> <gray>voor <green><bold><duration></bold></green> <gray>— <italic><reason></italic>"
+  staff-unban:      "<prefix_staff> <green><bold><player></bold></green> <gray>is gedebanned door <green><bold><sender></bold></green><gray>."
+  ban-screen:       "<red><bold>Je bent verbannen</bold></red>\n<gray>Reden: <white><reason></white>\n<gray>Duur: <green><bold><duration></bold></green>\n<gray>Verbannen door: <green><bold><sender></bold></green>"
+
+# ── Back ─────────────────────────────────────────────────
+back:
+  teleported:  "<prefix_tp> <gray>Geteleporteerd naar jouw laatste sterflocatie."
+  no-location: "<prefix_error> <gray>Geen vorige locatie om naar terug te keren."
+
+# ── AFK ──────────────────────────────────────────────────
+afk:
+  enabled:         "<prefix_general> <gray>Je bent nu <green><bold>AFK</bold></green><gray>."
+  disabled:        "<prefix_general> <gray>Je bent niet meer AFK."
+  broadcast-on:    "<prefix_general> <green><bold><player></bold></green> <gray>is nu AFK."
+  broadcast-off:   "<prefix_general> <green><bold><player></bold></green> <gray>is niet meer AFK."
+  broadcast-on-msg: "<prefix_general> <green><bold><player></bold></green> <gray>is nu AFK: <italic><message></italic>"
+  message-reply:   "<prefix_general> <green><bold><player></bold></green> <gray>is AFK: <italic><message></italic>"
+  message-no-msg:  "<prefix_general> <green><bold><player></bold></green> <gray>is momenteel AFK."
+
+# ── Rename ────────────────────────────────────────────────
+rename:
+  renamed: "<prefix_staff> <gray>Item hernoemd."
+  no-item:  "<prefix_error> <gray>Je moet een item vasthouden."
+
+# ── Lore ─────────────────────────────────────────────────
+lore:
+  added:         "<prefix_staff> <gray>Lore-regel toegevoegd."
+  removed:       "<prefix_staff> <gray>Lore-regel <green><bold><index></bold></green><gray> verwijderd."
+  cleared:       "<prefix_staff> <gray>Lore gewist."
+  set:           "<prefix_staff> <gray>Lore-regel <green><bold><index></bold></green><gray> ingesteld."
+  inserted:      "<prefix_staff> <gray>Ingevoegd op lore-regel <green><bold><index></bold></green><gray>."
+  invalid-index: "<prefix_error> <gray>Ongeldig regelindex <green><bold><index></bold></green><gray>."
+  no-item:       "<prefix_error> <gray>Je moet een item vasthouden."
+  no-lore:       "<prefix_error> <gray>Dit item heeft geen lore."
+
+# ── Effect ────────────────────────────────────────────────
+effect:
+  applied:      "<prefix_staff> <gray><green><bold><effect> <level></bold></green> <gray>voor <green><bold><duration>s</bold></green> <gray>toegepast op <green><bold><player></bold></green><gray>."
+  applied-self: "<prefix_general> <gray><green><bold><effect> <level></bold></green> <gray>voor <green><bold><duration>s</bold></green><gray> toegepast."
+  cleared:      "<prefix_staff> <gray>Alle effecten van <green><bold><player></bold></green><gray> verwijderd."
+  cleared-self: "<prefix_general> <gray>Al jouw effecten zijn verwijderd."
+  invalid:      "<prefix_error> <gray>Onbekend effect: <green><bold><effect></bold></green>"
+
+# ── Freeze ────────────────────────────────────────────────
+freeze:
+  frozen:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> bevroren."
+  unfrozen:        "<prefix_staff> <gray><green><bold><player></bold></green><gray> ontdooid."
+  already-frozen:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>is al bevroren."
+  not-frozen:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>is niet bevroren."
+  notify-frozen:   "<prefix_staff> <gray>Je bent <green><bold>bevroren</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  notify-unfrozen: "<prefix_staff> <gray>Je bent <green><bold>ontdooid</bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  blocked:         "<prefix_error> <gray>Je bent bevroren en kunt dat niet doen."
+  still-frozen:    "<prefix_staff> <gray>Je bent nog steeds <green><bold>bevroren</bold></green><gray>."
+
+# ── Captcha ───────────────────────────────────────────────
+captcha:
+  given:            "<prefix_general> <gray>Los de captcha op die op jouw kaart wordt weergegeven. Typ de code in de chat."
+  issued:           "<prefix_staff> <gray>Een captcha uitgegeven aan <green><bold><player></bold></green><gray>."
+  solved:           "<prefix_general> <gray>Captcha opgelost! Je bent nu ontdooid."
+  wrong:            "<prefix_error> <gray>Verkeerde code. <green><bold><tries></bold></green> <gray>poging(en) resterend."
+  fail-summary:     "<prefix_staff> <green><bold><player></bold></green> <gray>heeft de captcha gefaald. Code was: <green><bold><code></bold></green><gray>. Mislukte pogingen: <red><bold><attempts></bold></red>"
+  ban-screen:       "<red><bold>Captcha Mislukt</bold></red>\n<gray>Reden: <white>Captchaverificatie mislukt</white>\n<gray>Verbannen door: <green><bold>NovaEssentials</bold></green>"
+  dodge-ban-screen: "<red><bold>Je bent verbannen</bold></red>\n<gray>Reden: <white>Verbroken om captcha te ontwijken</white>\n<gray>Verbannen door: <green><bold>NovaEssentials</bold></green>"
+  no-captcha:       "<prefix_error> <gray>Je hebt geen actieve captcha."
+  already:          "<prefix_error> <gray><green><bold><player></bold></green> <gray>heeft al een actieve captcha."
+  recaptcha-given:  "<prefix_general> <gray>Nieuwe captchacode uitgegeven. Je hebt nog <green><bold><tries></bold></green> <gray>poging(en) resterend."
+  recaptcha-none:   "<prefix_error> <gray>Je hebt geen actieve captcha om te vernieuwen."
+
+# ── Repair ────────────────────────────────────────────────
+repair:
+  repaired:       "<prefix_general> <gray>Jouw item is <green><bold>gerepareerd</bold></green><gray>."
+  repaired-other: "<prefix_staff> <gray>Vastgehouden item van <green><bold><player></bold></green><gray> gerepareerd."
+  all:            "<prefix_general> <gray>Alle items in jouw inventaris zijn <green><bold>gerepareerd</bold></green><gray>."
+  all-other:      "<prefix_staff> <gray>Alle items in de inventaris van <green><bold><player></bold></green><gray> gerepareerd."
+  no-item:        "<prefix_error> <gray>Je moet een beschadigd item vasthouden."
+  notify:         "<prefix_general> <gray>Jouw vastgehouden item is gerepareerd door <green><bold><sender></bold></green><gray>."
+  notify-all:     "<prefix_general> <gray>Jouw inventaris is gerepareerd door <green><bold><sender></bold></green><gray>."
+
+# ── NovaEssentials Admin ─────────────────────────────────
+novaess:
+  check-enabled:  "<prefix_general> <gray>Automatisch controleren op updates <green><bold>ingeschakeld</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Automatisch controleren op updates <green><bold>uitgeschakeld</bold></green><gray>."
+
+# ── Size ─────────────────────────────────────────────────
+size:
+  tiny:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray>gekrompen naar grootte <green><bold><size></bold></green><gray>."
+  giant:          "<prefix_staff> <gray><green><bold><player></bold></green> <gray>vergroot naar grootte <green><bold><size></bold></green><gray>."
+  reset:          "<prefix_staff> <gray>Grootte van <green><bold><player></bold></green><gray> teruggezet naar normaal."
+  notify:         "<prefix_general> <gray>Jouw grootte is ingesteld op <green><bold><size></bold></green> <gray>door <green><bold><sender></bold></green><gray>."
+  notify-reset:   "<prefix_general> <gray>Jouw grootte is teruggezet naar normaal door <green><bold><sender></bold></green><gray>."
+  not-supported:  "<prefix_error> <gray>Groottewijziging wordt niet ondersteund op deze serverversie."
+  invalid:        "<prefix_error> <gray>Grootte moet tussen <green><bold>0.0625</bold></green> <gray>en <green><bold>16</bold></green><gray> liggen."
+
+# ── GUI ───────────────────────────────────────────────────
+gui:
+  kit-title:    "<dark_gray>Kits"
+  warp-title:   "<dark_gray>Warps"
+  home-title:   "<dark_gray>Mijn Huizen"
+  invsee-title: "<dark_gray><player>'s Inventaris"
+  prev-page:    "<gray>← Vorige"
+  next-page:    "<gray>Volgende →"
+  close:        "<red>✗ Sluiten"

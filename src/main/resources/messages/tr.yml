@@ -1,0 +1,345 @@
+# ============================================================
+#   NovaEssentials — Turkish Messages  (tr.yml)
+#
+#   All values support full MiniMessage formatting.
+#   Tag replacements use <tagname> syntax defined per command.
+#   Language translated with Claude
+#
+#   Prefix tags available in every message:
+#     <prefix_general>  <prefix_msg>    <prefix_staff>
+#     <prefix_home>     <prefix_warp>   <prefix_tp>
+#     <prefix_broadcast><prefix_chat>   <prefix_kit>
+#     <prefix_error>
+# ============================================================
+
+# ── Prefixes ──────────────────────────────────────────────
+prefix:
+  general:   "<dark_gray>[<gold>⚡</gold><dark_gray>]"
+  msg:       "<dark_gray>[<aqua>✉</aqua><dark_gray>]"
+  staff:     "<dark_gray>[<red>🔨</red><dark_gray>]"
+  home:      "<dark_gray>[<green>🏠</green><dark_gray>]"
+  warp:      "<dark_gray>[<light_purple>🌀</light_purple><dark_gray>]"
+  tp:        "<dark_gray>[<yellow>📍</yellow><dark_gray>]"
+  broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
+  chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
+  kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
+
+# ── General ───────────────────────────────────────────────
+general:
+  no-permission:    "<prefix_error> <gray>Bunu yapmak için yetkin yok."
+  player-only:      "<prefix_error> <gray>Bu komutu yalnızca oyuncular kullanabilir."
+  console-only:     "<prefix_error> <gray>Bu komut yalnızca konsoldan kullanılabilir."
+  player-not-found: "<prefix_error> <gray><green><bold><player></bold></green> <gray>adlı oyuncu bulunamadı."
+  invalid-args:     "<prefix_error> <gray>Kullanım: <green><bold><usage></bold></green>"
+  command-disabled: "<prefix_error> <gray>Bu komut şu anda devre dışı."
+  invalid-number:   "<prefix_error> <gray><green><bold><value></bold></green> <gray>geçerli bir sayı değil."
+  reload-success:   "<prefix_general> <gray>Yapılandırma yeniden yüklendi."
+
+# ── Gamemode ──────────────────────────────────────────────
+gamemode:
+  changed-self:  "<prefix_staff> <gray>Oyun modun artık <green><bold><mode></bold></green><gray>."
+  changed-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun modu <green><bold><mode></bold></green><gray> olarak ayarlandı."
+  notify:        "<prefix_staff> <gray>Oyun modun <green><bold><mode></bold></green> <gray>olarak <green><bold><sender></bold></green><gray> tarafından değiştirildi."
+  invalid-mode:  "<prefix_error> <gray>Geçersiz oyun modu <green><bold><mode></bold></green><gray>. Geçerliler: <green><bold>survival, creative, adventure, spectator</bold></green>"
+
+# ── Private Messages ──────────────────────────────────────
+msg:
+  sent:           "<prefix_msg> <gray>Sen <dark_gray>→ <green><bold><player></bold></green><gray>: <white><italic><message></italic></white>"
+  received:       "<prefix_msg> <green><bold><player></bold></green> <dark_gray>→ <gray>Sana<gray>: <white><italic><message></italic></white>"
+  spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
+  player-blocked: "<prefix_error> <gray><green><bold><player></bold></green><gray> adlı oyuncuya mesaj gönderemezsin."
+  blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>mesaj kabul etmiyor."
+  no-reply:       "<prefix_error> <gray>Yanıtlayacak kimsen yok."
+  player-offline: "<prefix_error> <gray>O oyuncu artık çevrimiçi değil."
+
+# ── Vanish ────────────────────────────────────────────────
+vanish:
+  enabled:        "<prefix_staff> <gray>Artık <green><bold>görünmezsin</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Artık görünürsün."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> görünmez yapıldı."
+  other-disabled: "<prefix_staff> <gray><green><bold><player></bold></green><gray> tekrar görünür yapıldı."
+  notify-on:      "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından görünmez yapıldın."
+  notify-off:     "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından tekrar görünür yapıldın."
+
+# ── Fly ──────────────────────────────────────────────────
+fly:
+  enabled:        "<prefix_general> <gray>Uçuş <green><bold>etkinleştirildi</bold></green><gray>."
+  disabled:       "<prefix_general> <gray>Uçuş <green><bold>devre dışı bırakıldı</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> için uçuş etkinleştirildi."
+  other-disabled: "<prefix_staff> <gray><green><bold><player></bold></green><gray> için uçuş devre dışı bırakıldı."
+  notify-on:      "<prefix_general> <gray>Uçuş <green><bold><sender></bold></green><gray> tarafından <green><bold>etkinleştirildi</bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Uçuş <green><bold><sender></bold></green><gray> tarafından <green><bold>devre dışı bırakıldı</bold></green><gray>."
+
+# ── Speed ─────────────────────────────────────────────────
+speed:
+  set-self:   "<prefix_general> <gray>Hız <green><bold><speed></bold></green><gray> olarak ayarlandı."
+  set-other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun hızı <green><bold><speed></bold></green><gray> olarak ayarlandı."
+  notify:     "<prefix_general> <gray>Hızın <green><bold><sender></bold></green><gray> tarafından <green><bold><speed></bold></green><gray> olarak ayarlandı."
+  invalid:    "<prefix_error> <gray>Hız <green><bold>0</bold></green> <gray>ile <green><bold>10</bold></green><gray> arasında olmalıdır."
+
+# ── Enchant ───────────────────────────────────────────────
+enchant:
+  success:       "<prefix_staff> <gray>Eşyanıza <green><bold><enchantment> <level></bold></green> <gray>uygulandı."
+  success-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun eşyasına <green><bold><enchantment> <level></bold></green> <gray>uygulandı."
+  invalid:       "<prefix_error> <gray>Bilinmeyen büyü: <green><bold><enchantment></bold></green>"
+  no-item:       "<prefix_error> <gray>Elinde bir eşya tutmalısın."
+  invalid-level: "<prefix_error> <gray>Seviye en az <green><bold>1</bold></green><gray> olmalıdır."
+
+# ── Heal ─────────────────────────────────────────────────
+heal:
+  self:   "<prefix_general> <gray><green><bold>İyileştirildin</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> iyileştirildi."
+  notify: "<prefix_general> <gray><green><bold><sender></bold></green><gray> tarafından iyileştirildin."
+
+# ── Feed ─────────────────────────────────────────────────
+feed:
+  self:   "<prefix_general> <gray><green><bold>Doyuruldun</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> doyuruldu."
+  notify: "<prefix_general> <gray><green><bold><sender></bold></green><gray> tarafından doyuruldun."
+
+# ── God ──────────────────────────────────────────────────
+god:
+  enabled:        "<prefix_staff> <gray>Tanrı modu <green><bold>etkinleştirildi</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Tanrı modu <green><bold>devre dışı bırakıldı</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> için tanrı modu etkinleştirildi."
+  other-disabled: "<prefix_staff> <gray><green><bold><player></bold></green><gray> için tanrı modu devre dışı bırakıldı."
+  notify-on:      "<prefix_general> <gray>Tanrı modu <green><bold><sender></bold></green><gray> tarafından <green><bold>etkinleştirildi</bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Tanrı modu <green><bold><sender></bold></green><gray> tarafından <green><bold>devre dışı bırakıldı</bold></green><gray>."
+
+# ── InvSee ───────────────────────────────────────────────
+invsee:
+  opened: "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun envanteri görüntüleniyor."
+
+# ── EnderChest ───────────────────────────────────────────
+ec:
+  opened-self:  "<prefix_general> <gray>Kendi ender sandığın açıldı."
+  opened-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun ender sandığı görüntüleniyor."
+
+# ── Workbench ─────────────────────────────────────────────
+workbench:
+  opened-self:  "<prefix_general> <gray>Bir tezgah açıldı."
+  opened-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> için bir tezgah açıldı."
+
+# ── Anvil ─────────────────────────────────────────────────
+anvil:
+  opened-self:  "<prefix_general> <gray>Bir örs açıldı."
+  opened-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> için bir örs açıldı."
+
+# ── TPA ──────────────────────────────────────────────────
+tpa:
+  sent:              "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncuya ışınlanma isteği gönderildi."
+  received:          "<prefix_tp> <green><bold><player></bold></green> <gray>sana ışınlanmak istiyor.\n<prefix_tp> <gray><green><bold>/tpaccept</bold></green> <gray>veya <green><bold>/tpdeny</bold></green><gray> kullan."
+  here-sent:         "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncudan sana ışınlanması istendi."
+  here-received:     "<prefix_tp> <green><bold><player></bold></green> <gray>onlara ışınlanmanı istiyor.\n<prefix_tp> <gray><green><bold>/tpaccept</bold></green> <gray>veya <green><bold>/tpdeny</bold></green><gray> kullan."
+  accepted-sender:   "<prefix_tp> <green><bold><player></bold></green> <gray>isteğini kabul etti. <green><bold><delay>s</bold></green><gray> içinde ışınlanıyorsun."
+  accepted-receiver: "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncunun ışınlanma isteği kabul edildi."
+  accepted-instant:  "<prefix_tp> <green><bold><player></bold></green> <gray>isteğini kabul etti."
+  denied-sender:     "<prefix_tp> <green><bold><player></bold></green> <gray>isteğini reddetti."
+  denied-receiver:   "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncunun ışınlanma isteği reddedildi."
+  expired-sender:    "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncuya gönderilen isteğin süresi doldu."
+  expired-receiver:  "<prefix_tp> <gray><green><bold><player></bold></green><gray> adlı oyuncunun isteğinin süresi doldu."
+  no-request:        "<prefix_error> <gray>Bekleyen ışınlanma isteğin yok."
+  already-pending:   "<prefix_error> <gray><green><bold><player></bold></green><gray> ile zaten bekleyen bir isteğin var."
+  blocked:           "<prefix_error> <gray><green><bold><player></bold></green><gray> adlı oyuncuya istek gönderemezsin."
+  cancelled-move:    "<prefix_tp> <gray>Hareket ettiğin için ışınlanma iptal edildi."
+  teleporting:       "<prefix_tp> <gray><green><bold><delay>s</bold></green><gray> içinde ışınlanıyorsun. Hareket etme."
+
+# ── TpAll ─────────────────────────────────────────────────
+tpall:
+  teleported:       "<prefix_staff> <gray><green><bold><count></bold></green> <gray>oyuncu sana ışınlandı."
+  notify:           "<prefix_tp> <gray><green><bold><sender></bold></green><gray> adlı oyuncuya ışınlandın."
+
+# ── Block ─────────────────────────────────────────────────
+block:
+  blocked:         "<prefix_general> <gray><green><bold><player></bold></green><gray> engellendi."
+  unblocked:       "<prefix_general> <gray><green><bold><player></bold></green><gray> engeli kaldırıldı."
+  already-blocked: "<prefix_error> <gray><green><bold><player></bold></green> <gray>zaten engellenmiş."
+  not-blocked:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>engellenmiş değil."
+  cannot-self:     "<prefix_error> <gray>Kendini engelleyemezsin."
+
+# ── Home ─────────────────────────────────────────────────
+home:
+  teleported:    "<prefix_home> <gray><green><bold><home></bold></green><gray> adlı eve ışınlandın."
+  set:           "<prefix_home> <gray><green><bold><home></bold></green> <gray>adlı ev ayarlandı."
+  deleted:       "<prefix_home> <gray><green><bold><home></bold></green> <gray>adlı ev silindi."
+  not-found:     "<prefix_error> <gray><green><bold><home></bold></green> <gray>adlı ev mevcut değil."
+  limit-reached: "<prefix_error> <gray>Ev limitine ulaştın (<green><bold><limit></bold></green><gray>)."
+  list:          "<prefix_home> <gray>Evlerin: <green><bold><homes></bold></green>"
+  no-homes:      "<prefix_home> <gray>Kayıtlı evin yok."
+
+# ── Spawn ─────────────────────────────────────────────────
+spawn:
+  teleported: "<prefix_tp> <gray><green><bold>Doğuş noktasına</bold></green><gray> ışınlandın."
+  set:        "<prefix_staff> <gray>Doğuş noktası konumu ayarlandı."
+  not-set:    "<prefix_error> <gray>Doğuş noktası henüz ayarlanmadı."
+
+# ── Warp ─────────────────────────────────────────────────
+warp:
+  teleported: "<prefix_warp> <gray><green><bold><warp></bold></green><gray> adlı warp'a ışınlandın."
+  set:        "<prefix_warp> <gray><green><bold><warp></bold></green> <gray>adlı warp oluşturuldu."
+  deleted:    "<prefix_warp> <gray><green><bold><warp></bold></green> <gray>adlı warp silindi."
+  not-found:  "<prefix_error> <gray><green><bold><warp></bold></green> <gray>adlı warp mevcut değil."
+  list:       "<prefix_warp> <gray>Warp'lar: <green><bold><warps></bold></green>"
+  no-warps:   "<prefix_warp> <gray>Henüz hiç warp ayarlanmadı."
+
+# ── Time ─────────────────────────────────────────────────
+time:
+  set:         "<prefix_staff> <gray>Zaman <green><bold><time></bold></green><gray> olarak ayarlandı."
+  invalid:     "<prefix_error> <gray>Geçersiz zaman: <green><bold><value></bold></green><gray>. Bir sayı ya da şunları kullan: day, night, noon, midnight."
+
+# ── Kit ──────────────────────────────────────────────────
+kit:
+  given:      "<prefix_kit> <gray><green><bold><kit></bold></green><gray> kitini aldın."
+  cooldown:   "<prefix_error> <gray><green><bold><kit></bold></green> <gray>kiti bekleme süresinde. <green><bold><time></bold></green><gray> sonra kullanılabilir."
+  one-time:   "<prefix_error> <gray><green><bold><kit></bold></green><gray> kitini zaten aldın."
+  not-found:  "<prefix_error> <gray><green><bold><kit></bold></green> <gray>adlı kit mevcut değil."
+  no-perm:    "<prefix_error> <gray><green><bold><kit></bold></green><gray> kitini kullanmak için yetkin yok."
+  list:       "<prefix_kit> <gray>Mevcut kitler: <green><bold><kits></bold></green>"
+  no-kits:    "<prefix_kit> <gray>Sana uygun kit yok."
+  no-money:   "<prefix_error> <gray><green><bold><kit></bold></green><gray> kitini kullanmak için <green><bold><price></bold></green><gray> paraya ihtiyacın var."
+  charged:    "<prefix_kit> <gray><green><bold><kit></bold></green><gray> kiti için <green><bold><price></bold></green><gray> ücret alındı."
+  no-economy: "<prefix_error> <gray>Bu sunucuda ekonomi mevcut değil."
+
+# ── Broadcast ─────────────────────────────────────────────
+broadcast:
+  format: "<prefix_broadcast> <white><message></white>"
+
+# ── Chat ─────────────────────────────────────────────────
+chat:
+  paused:                  "<prefix_chat> <gray>Sohbet <green><bold>duraklatıldı</bold></green><gray>."
+  paused-timed:            "<prefix_chat> <gray>Sohbet <green><bold><duration></bold></green><gray> süreliğine duraklatıldı."
+  resumed:                 "<prefix_chat> <gray>Sohbet <green><bold>devam ettirildi</bold></green><gray>."
+  blocked-pause:           "<prefix_error> <gray>Sohbet şu anda duraklatılmış."
+  filter-blocked:          "<prefix_error> <gray>Mesajın engellenmiş içerik barındırıyor."
+  muted:                   "<prefix_error> <gray><green><bold><time></bold></green><gray> süreliğine susturuldun."
+  muted-permanent:         "<prefix_error> <gray>Kalıcı olarak susturuldun."
+  muted-player:            "<prefix_staff> <gray><green><bold><player></bold></green> <gray><green><bold><duration></bold></green><gray> süreliğine susturuldu."
+  muted-permanent-player:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> kalıcı olarak susturuldu."
+  unmuted-player:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> susturması kaldırıldı."
+  already-muted:           "<prefix_error> <gray><green><bold><player></bold></green> <gray>zaten susturulmuş."
+  not-muted:               "<prefix_error> <gray><green><bold><player></bold></green> <gray>susturulmuş değil."
+  notify-muted:            "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından <green><bold><duration></bold></green><gray> süreliğine susturuldun."
+  notify-muted-permanent:  "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından kalıcı olarak susturuldun."
+  notify-unmuted:          "<prefix_staff> <gray>Susturman <green><bold><sender></bold></green><gray> tarafından kaldırıldı."
+  staff-filter-notify:     "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun mesajı filtrelendi: <italic><message></italic>"
+
+# ── Sudo ─────────────────────────────────────────────────
+sudo:
+  executed: "<prefix_staff> <gray><green><bold><player></bold></green><gray> olarak yürütüldü: <italic><action></italic>"
+
+# ── Kick ─────────────────────────────────────────────────
+kick:
+  kicked:           "<prefix_staff> <gray><green><bold><player></bold></green><gray> sunucudan atıldı."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray><green><bold><sender></bold></green><gray> tarafından atıldı — <italic><reason></italic>"
+  kick-screen:      "<red><bold>Sunucudan atıldın</bold></red>\n<gray>Sebep: <white><reason></white>\n<gray>Atan: <green><bold><sender></bold></green>"
+
+# ── Ban ───────────────────────────────────────────────────
+ban:
+  banned:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray><green><bold><duration></bold></green><gray> süreliğine yasaklandı."
+  banned-permanent: "<prefix_staff> <gray><green><bold><player></bold></green><gray> kalıcı olarak yasaklandı."
+  unbanned:         "<prefix_staff> <gray><green><bold><player></bold></green><gray> yasağı kaldırıldı."
+  already-banned:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>zaten yasaklı."
+  not-banned:       "<prefix_error> <gray><green><bold><player></bold></green> <gray>yasaklı değil."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray><green><bold><sender></bold></green><gray> tarafından <green><bold><duration></bold></green><gray> süreliğine yasaklandı — <italic><reason></italic>"
+  staff-unban:      "<prefix_staff> <green><bold><player></bold></green><gray> adlı oyuncunun yasağı <green><bold><sender></bold></green><gray> tarafından kaldırıldı."
+  ban-screen:       "<red><bold>Yasaklandın</bold></red>\n<gray>Sebep: <white><reason></white>\n<gray>Süre: <green><bold><duration></bold></green>\n<gray>Yasaklayan: <green><bold><sender></bold></green>"
+
+# ── Back ─────────────────────────────────────────────────
+back:
+  teleported:  "<prefix_tp> <gray>Son ölüm konumuna ışınlandın."
+  no-location: "<prefix_error> <gray>Geri dönülecek önceki konum yok."
+
+# ── AFK ──────────────────────────────────────────────────
+afk:
+  enabled:         "<prefix_general> <gray>Artık <green><bold>AFK</bold></green><gray> durumundasın."
+  disabled:        "<prefix_general> <gray>Artık AFK değilsin."
+  broadcast-on:    "<prefix_general> <green><bold><player></bold></green> <gray>AFK oldu."
+  broadcast-off:   "<prefix_general> <green><bold><player></bold></green> <gray>AFK durumundan çıktı."
+  broadcast-on-msg: "<prefix_general> <green><bold><player></bold></green> <gray>AFK oldu: <italic><message></italic>"
+  message-reply:   "<prefix_general> <green><bold><player></bold></green> <gray>AFK: <italic><message></italic>"
+  message-no-msg:  "<prefix_general> <green><bold><player></bold></green> <gray>şu an AFK."
+
+# ── Rename ────────────────────────────────────────────────
+rename:
+  renamed: "<prefix_staff> <gray>Eşya yeniden adlandırıldı."
+  no-item:  "<prefix_error> <gray>Elinde bir eşya tutmalısın."
+
+# ── Lore ─────────────────────────────────────────────────
+lore:
+  added:         "<prefix_staff> <gray>Lore satırı eklendi."
+  removed:       "<prefix_staff> <gray><green><bold><index></bold></green><gray>. lore satırı silindi."
+  cleared:       "<prefix_staff> <gray>Lore temizlendi."
+  set:           "<prefix_staff> <gray><green><bold><index></bold></green><gray>. lore satırı ayarlandı."
+  inserted:      "<prefix_staff> <gray><green><bold><index></bold></green><gray>. lore satırına eklendi."
+  invalid-index: "<prefix_error> <gray>Geçersiz satır dizini <green><bold><index></bold></green><gray>."
+  no-item:       "<prefix_error> <gray>Elinde bir eşya tutmalısın."
+  no-lore:       "<prefix_error> <gray>Bu eşyanın loresi yok."
+
+# ── Effect ────────────────────────────────────────────────
+effect:
+  applied:      "<prefix_staff> <gray><green><bold><player></bold></green><gray> üzerine <green><bold><duration>s</bold></green><gray> süreliğine <green><bold><effect> <level></bold></green> <gray>uygulandı."
+  applied-self: "<prefix_general> <gray><green><bold><duration>s</bold></green><gray> süreliğine <green><bold><effect> <level></bold></green> <gray>uygulandı."
+  cleared:      "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun tüm efektleri temizlendi."
+  cleared-self: "<prefix_general> <gray>Tüm efektlerin temizlendi."
+  invalid:      "<prefix_error> <gray>Bilinmeyen efekt: <green><bold><effect></bold></green>"
+
+# ── Freeze ────────────────────────────────────────────────
+freeze:
+  frozen:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> donduruldu."
+  unfrozen:        "<prefix_staff> <gray><green><bold><player></bold></green><gray> çözüldü."
+  already-frozen:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>zaten dondurulmuş."
+  not-frozen:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>dondurulmuş değil."
+  notify-frozen:   "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından <green><bold>donduruldun</bold></green><gray>."
+  notify-unfrozen: "<prefix_staff> <gray><green><bold><sender></bold></green><gray> tarafından <green><bold>çözüldün</bold></green><gray>."
+  blocked:         "<prefix_error> <gray>Donduruldun ve bunu yapamazsın."
+  still-frozen:    "<prefix_staff> <gray>Hâlâ <green><bold>dondurulmuş</bold></green><gray> durumdasın."
+
+# ── Captcha ───────────────────────────────────────────────
+captcha:
+  given:            "<prefix_general> <gray>Haritanda gösterilen captcha'yı çöz. Kodu sohbete yaz."
+  issued:           "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncuya captcha gönderildi."
+  solved:           "<prefix_general> <gray>Captcha çözüldü! Artık serbest bırakıldın."
+  wrong:            "<prefix_error> <gray>Yanlış kod. <green><bold><tries></bold></green><gray> deneme hakkın kaldı."
+  fail-summary:     "<prefix_staff> <green><bold><player></bold></green> <gray>captcha'yı başaramadı. Kod: <green><bold><code></bold></green><gray>. Başarısız denemeler: <red><bold><attempts></bold></red>"
+  ban-screen:       "<red><bold>Captcha Başarısız</bold></red>\n<gray>Sebep: <white>Captcha doğrulaması başarısız oldu</white>\n<gray>Yasaklayan: <green><bold>NovaEssentials</bold></green>"
+  dodge-ban-screen: "<red><bold>Yasaklandın</bold></red>\n<gray>Sebep: <white>Captcha'dan kaçmak için bağlantı kesildi</white>\n<gray>Yasaklayan: <green><bold>NovaEssentials</bold></green>"
+  no-captcha:       "<prefix_error> <gray>Aktif bir captcha'n yok."
+  already:          "<prefix_error> <gray><green><bold><player></bold></green><gray> adlı oyuncunun zaten aktif bir captcha'sı var."
+  recaptcha-given:  "<prefix_general> <gray>Yeni captcha kodu verildi. <green><bold><tries></bold></green><gray> deneme hakkın kaldı."
+  recaptcha-none:   "<prefix_error> <gray>Yenilenecek aktif bir captcha'n yok."
+
+# ── Repair ────────────────────────────────────────────────
+repair:
+  repaired:       "<prefix_general> <gray>Eşyan <green><bold>onarıldı</bold></green><gray>."
+  repaired-other: "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun elindeki eşya onarıldı."
+  all:            "<prefix_general> <gray>Envanterindeki tüm eşyalar <green><bold>onarıldı</bold></green><gray>."
+  all-other:      "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun envanterindeki tüm eşyalar onarıldı."
+  no-item:        "<prefix_error> <gray>Elinde hasarlı bir eşya tutmalısın."
+  notify:         "<prefix_general> <gray>Elindeki eşya <green><bold><sender></bold></green><gray> tarafından onarıldı."
+  notify-all:     "<prefix_general> <gray>Envanterin <green><bold><sender></bold></green><gray> tarafından onarıldı."
+
+# ── NovaEssentials Admin ─────────────────────────────────
+novaess:
+  check-enabled:  "<prefix_general> <gray>Otomatik güncelleme kontrolü <green><bold>etkinleştirildi</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Otomatik güncelleme kontrolü <green><bold>devre dışı bırakıldı</bold></green><gray>."
+
+# ── Size ─────────────────────────────────────────────────
+size:
+  tiny:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray><green><bold><size></bold></green><gray> boyutuna küçültüldü."
+  giant:          "<prefix_staff> <gray><green><bold><player></bold></green> <gray><green><bold><size></bold></green><gray> boyutuna büyütüldü."
+  reset:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> adlı oyuncunun boyutu normale döndürüldü."
+  notify:         "<prefix_general> <gray>Boyutun <green><bold><sender></bold></green><gray> tarafından <green><bold><size></bold></green><gray> olarak ayarlandı."
+  notify-reset:   "<prefix_general> <gray>Boyutun <green><bold><sender></bold></green><gray> tarafından normale döndürüldü."
+  not-supported:  "<prefix_error> <gray>Boyut değiştirme bu sunucu sürümünde desteklenmiyor."
+  invalid:        "<prefix_error> <gray>Boyut <green><bold>0.0625</bold></green> <gray>ile <green><bold>16</bold></green><gray> arasında olmalıdır."
+
+# ── GUI ───────────────────────────────────────────────────
+gui:
+  kit-title:    "<dark_gray>Kitler"
+  warp-title:   "<dark_gray>Warp'lar"
+  home-title:   "<dark_gray>Evlerim"
+  invsee-title: "<dark_gray><player> Envanteri"
+  prev-page:    "<gray>← Önceki"
+  next-page:    "<gray>Sonraki →"
+  close:        "<red>✗ Kapat"
