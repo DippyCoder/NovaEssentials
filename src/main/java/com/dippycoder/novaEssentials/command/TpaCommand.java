@@ -1,6 +1,7 @@
 package com.dippycoder.novaEssentials.command;
 
 import com.dippycoder.novaEssentials.NovaEssentials;
+import com.dippycoder.novaEssentials.manager.PlayerSettingsManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,16 +32,39 @@ public class TpaCommand extends BaseCommand {
             return;
         }
 
-        // Check if sender is blocked
         if (plugin.getBlockManager().isBlockedBy(player, target)) {
             msg.send(sender, "tpa.blocked", "player", target.getName());
             return;
         }
 
-        // Check for existing pending request
         if (plugin.getTpaManager().hasSentRequest(player, target)) {
             msg.send(sender, "tpa.already-pending", "player", target.getName());
             return;
+        }
+
+        // Check if target is accepting TPA requests
+        PlayerSettingsManager sm = plugin.getPlayerSettingsManager();
+        if (sm != null) {
+            PlayerSettingsManager.PlayerSettings ts = sm.getSettings(target.getUniqueId());
+            if (!ts.allowTpa) {
+                msg.send(sender, "tpa.not-accepting", "player", target.getName());
+                return;
+            }
+            // TPAUTO: auto-accept TPA (but NOT tpahere)
+            if (ts.tpauto) {
+                long remaining = plugin.getTeleportDelayManager()
+                        .getRemainingCooldownSec(player, "tpa");
+                if (remaining > 0) {
+                    msg.send(sender, "tp.cooldown", "time", remaining);
+                    return;
+                }
+                msg.send(sender, "tpa.sent", "player", target.getName());
+                msg.send(target, "tpa.received", "player", player.getName());
+                msg.send(player, "tpa.auto-accepted", "player", target.getName());
+                plugin.getTeleportDelayManager()
+                        .startDelayedTeleport(player, target.getLocation(), "tpa", false);
+                return;
+            }
         }
 
         plugin.getTpaManager().sendRequest(player, target);

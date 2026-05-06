@@ -2,6 +2,7 @@ package com.dippycoder.novaEssentials.command;
 
 import com.dippycoder.novaEssentials.NovaEssentials;
 import com.dippycoder.novaEssentials.util.DurationUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitTask;
@@ -26,6 +27,13 @@ public class ChatCommand extends BaseCommand {
         }
 
         switch (args[0].toLowerCase()) {
+            case "clear" -> {
+                int lines = plugin.getConfigManager().getChatClearLines();
+                for (int i = 0; i < lines; i++) {
+                    plugin.getServer().broadcast(Component.empty());
+                }
+                msg.broadcastAll("chat.cleared");
+            }
             case "pause" -> {
                 paused = true;
                 if (unpauseTask != null) {
@@ -62,7 +70,7 @@ public class ChatCommand extends BaseCommand {
                 msg.broadcastAll("chat.resumed");
             }
             default -> msg.send(sender, "general.invalid-args",
-                    "usage", "/" + label + " <pause|unpause> [duration]");
+                    "usage", "/" + label + " <clear|pause|unpause> [duration]");
         }
     }
 
@@ -70,7 +78,7 @@ public class ChatCommand extends BaseCommand {
 
     @Override
     protected List<String> tabComplete(CommandSender sender, String[] args) {
-        if (args.length == 1) return filterPrefix(List.of("pause", "unpause"), args[0]);
+        if (args.length == 1) return filterPrefix(List.of("clear", "pause", "unpause"), args[0]);
         return List.of();
     }
 }

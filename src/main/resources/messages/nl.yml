@@ -50,6 +50,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Je kunt geen bericht sturen naar <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>accepteert geen berichten."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>accepteert geen berichten."
   no-reply:       "<prefix_error> <gray>Je hebt niemand om op te antwoorden."
   player-offline: "<prefix_error> <gray>Die speler is niet meer online."
 
@@ -144,6 +145,9 @@ tpa:
   blocked:           "<prefix_error> <gray>Je kunt geen verzoek sturen naar <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Teleportatie geannuleerd omdat je bewoog."
   teleporting:       "<prefix_tp> <gray>Teleporteren over <green><bold><delay>s</bold></green><gray>. Niet bewegen."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>accepteert geen teleportatieverzoeken."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>accepteert geen TPA-Hier-verzoeken."
+  auto-accepted:      "<prefix_tp> <gray>Je verzoek werd automatisch geaccepteerd door <green><bold><player></bold></green><gray>."
 
 # ── TpAll ─────────────────────────────────────────────────
 tpall:
@@ -203,13 +207,15 @@ kit:
 
 # ── Broadcast ─────────────────────────────────────────────
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 # ── Chat ─────────────────────────────────────────────────
 chat:
   paused:                  "<prefix_chat> <gray>Chat is <green><bold>gepauzeerd</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Chat is gepauzeerd voor <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Chat is <green><bold>hervat</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Chat is <green><bold>gewist</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Chat is momenteel gepauzeerd."
   filter-blocked:          "<prefix_error> <gray>Jouw bericht bevat geblokkeerde inhoud."
   muted:                   "<prefix_error> <gray>Je bent gedempt voor <green><bold><time></bold></green><gray>."
@@ -343,3 +349,65 @@ gui:
   prev-page:    "<gray>← Vorige"
   next-page:    "<gray>Volgende →"
   close:        "<red>✗ Sluiten"
+
+tp:
+  teleporting:    "<prefix_tp> <gray>Teleporteren over <green><bold><delay>s</bold></green><gray>. Niet bewegen."
+  countdown:      "<yellow>Teleporteren over <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Je moet <green><bold><time>s</bold></green> <gray>wachten voor je opnieuw kunt teleporteren."
+  cancelled-move: "<prefix_tp> <gray>Teleportatie geannuleerd omdat je bewoog."
+
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>is de server gejoind."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>heeft de server verlaten."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> is gestorven."
+    - "<gray><bold><player></bold></gray><gray> heeft zijn/haar einde gevonden."
+    - "<gray><bold><player></bold></gray><gray> beet in het stof."
+    - "<gray><bold><player></bold></gray><gray> heeft het niet overleefd."
+    - "<gray><bold><player></bold></gray><gray> werd verslagen."
+    - "<gray><bold><player></bold></gray><gray> is omgekomen."
+    - "<gray><bold><player></bold></gray><gray> heeft opgehouden te bestaan."
+    - "<gray><bold><player></bold></gray><gray> werd geëlimineerd."
+
+settings:
+  title: "<dark_gray>⚙ Jouw Instellingen"
+  allow-tpa:
+    name: "<white>TPA Verzoeken"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>Spelers kunnen je TP-verzoeken sturen."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Spelers kunnen je geen TP-verzoeken sturen."
+  allow-tpahere:
+    name: "<white>TPA-Hier Verzoeken"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>Spelers kunnen je oproepen met /tpahere."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Spelers kunnen je niet oproepen met /tpahere."
+  tpauto:
+    name: "<white>TPA Auto-Accepteren"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>TPA-verzoeken worden automatisch geaccepteerd."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Je accepteert TPA-verzoeken handmatig."
+  language:
+    name: "<white>Taal"
+    lore:      "<gray>Huidig: <green><bold><language></bold></green> <dark_gray>— Klik om te wijzigen."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Klik om te wijzigen."
+  sounds:
+    name: "<white>GUI-Geluiden"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>Geluiden spelen in menu's."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Geen geluiden in menu's."
+  hide-chat:
+    name: "<white>Chat Verbergen"
+    lore-on:  "<red>✔ Verborgen <dark_gray>— <gray>Chatberichten van spelers zijn verborgen."
+    lore-off: "<green>✘ Zichtbaar <dark_gray>— <gray>Chatberichten van spelers zijn zichtbaar."
+  allow-msg:
+    name: "<white>Privéberichten"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>Spelers kunnen je berichten sturen."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Spelers kunnen je geen berichten sturen."
+  allow-payments:
+    name: "<white>Betalingen"
+    lore-on:  "<green>✔ Ingeschakeld <dark_gray>— <gray>Spelers kunnen je betalen."
+    lore-off: "<red>✘ Uitgeschakeld <dark_gray>— <gray>Spelers kunnen je niet betalen."
+  allow-balance:
+    name: "<white>Saldo Zichtbaarheid"
+    lore-on:  "<green>✔ Zichtbaar <dark_gray>— <gray>Spelers kunnen jouw saldo bekijken."
+    lore-off: "<red>✘ Verborgen <dark_gray>— <gray>Spelers kunnen jouw saldo niet bekijken."

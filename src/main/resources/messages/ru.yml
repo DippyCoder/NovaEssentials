@@ -50,6 +50,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Вы не можете написать <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>не принимает сообщения."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>не принимает сообщения."
   no-reply:       "<prefix_error> <gray>Вам некому отвечать."
   player-offline: "<prefix_error> <gray>Этот игрок больше не в сети."
 
@@ -144,6 +145,9 @@ tpa:
   blocked:           "<prefix_error> <gray>Вы не можете отправить запрос игроку <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Телепортация отменена из-за движения."
   teleporting:       "<prefix_tp> <gray>Телепортация через <green><bold><delay>с</bold></green><gray>. Не двигайтесь."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>не принимает запросы телепортации."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>не принимает запросы TPA-сюда."
+  auto-accepted:      "<prefix_tp> <gray>Ваш запрос был автоматически принят игроком <green><bold><player></bold></green><gray>."
 
 # ── TpAll ─────────────────────────────────────────────────
 tpall:
@@ -203,13 +207,15 @@ kit:
 
 # ── Broadcast ─────────────────────────────────────────────
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 # ── Chat ─────────────────────────────────────────────────
 chat:
   paused:                  "<prefix_chat> <gray>Чат <green><bold>приостановлен</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Чат приостановлен на <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Чат <green><bold>возобновлён</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Чат <green><bold>очищен</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Чат в данный момент приостановлен."
   filter-blocked:          "<prefix_error> <gray>Ваше сообщение содержит запрещённый контент."
   muted:                   "<prefix_error> <gray>Вы заглушены на <green><bold><time></bold></green><gray>."
@@ -343,3 +349,65 @@ gui:
   prev-page:    "<gray>← Назад"
   next-page:    "<gray>Вперёд →"
   close:        "<red>✗ Закрыть"
+
+tp:
+  teleporting:    "<prefix_tp> <gray>Телепортация через <green><bold><delay>с</bold></green><gray>. Не двигайтесь."
+  countdown:      "<yellow>Телепортация через <bold><seconds>с</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Вы должны подождать <green><bold><time>с</bold></green> <gray>перед следующей телепортацией."
+  cancelled-move: "<prefix_tp> <gray>Телепортация отменена из-за движения."
+
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>присоединился(ась) к серверу."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>покинул(а) сервер."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> погиб(ла)."
+    - "<gray><bold><player></bold></gray><gray> нашёл(ла) свой конец."
+    - "<gray><bold><player></bold></gray><gray> упал(а) в прах."
+    - "<gray><bold><player></bold></gray><gray> не выжил(а)."
+    - "<gray><bold><player></bold></gray><gray> был(а) повержен(а)."
+    - "<gray><bold><player></bold></gray><gray> сгинул(а)."
+    - "<gray><bold><player></bold></gray><gray> перестал(а) существовать."
+    - "<gray><bold><player></bold></gray><gray> был(а) уничтожен(а)."
+
+settings:
+  title: "<dark_gray>⚙ Ваши Настройки"
+  allow-tpa:
+    name: "<white>TPA Запросы"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Игроки могут отправлять вам запросы TP."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Игроки не могут отправлять вам запросы TP."
+  allow-tpahere:
+    name: "<white>TPA-Here Запросы"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Игроки могут звать вас через /tpahere."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Игроки не могут звать вас через /tpahere."
+  tpauto:
+    name: "<white>TPA Авто-Принятие"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Запросы TPA принимаются автоматически."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Вы принимаете запросы TPA вручную."
+  language:
+    name: "<white>Язык"
+    lore:      "<gray>Текущий: <green><bold><language></bold></green> <dark_gray>— Нажмите для смены."
+    lore-auto: "<gray>Авто <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Нажмите для смены."
+  sounds:
+    name: "<white>GUI Звуки"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Звуки играют в меню."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Нет звуков в меню."
+  hide-chat:
+    name: "<white>Скрыть Чат"
+    lore-on:  "<red>✔ Скрыто <dark_gray>— <gray>Сообщения чата игроков скрыты."
+    lore-off: "<green>✘ Видимо <dark_gray>— <gray>Сообщения чата игроков видимы."
+  allow-msg:
+    name: "<white>Личные Сообщения"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Игроки могут писать вам сообщения."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Игроки не могут писать вам сообщения."
+  allow-payments:
+    name: "<white>Платежи"
+    lore-on:  "<green>✔ Включено <dark_gray>— <gray>Игроки могут вам платить."
+    lore-off: "<red>✘ Выключено <dark_gray>— <gray>Игроки не могут вам платить."
+  allow-balance:
+    name: "<white>Видимость Баланса"
+    lore-on:  "<green>✔ Видимо <dark_gray>— <gray>Игроки могут проверить ваш баланс."
+    lore-off: "<red>✘ Скрыто <dark_gray>— <gray>Игроки не могут проверить ваш баланс."

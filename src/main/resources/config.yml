@@ -10,6 +10,26 @@ general:
   debug: false
 
 # ============================================================
+#   Database
+# ============================================================
+database:
+  # Storage backend to use: sqlite, mysql, redis
+  type: sqlite
+
+  mysql:
+    host: localhost
+    port: 3306
+    database: novaessentials
+    username: root
+    password: ""
+    pool-size: 10
+  redis:
+    host: localhost
+    port: 6379
+    password: ""
+    database: 0
+
+# ============================================================
 #   Commands
 # ============================================================
 commands:
@@ -30,6 +50,8 @@ permissions: {}
 #   Chat
 # ============================================================
 chat:
+  # Number of blank lines sent to all players by /chat clear
+  clear-lines: 100
   # Enable the custom chat formatter
   formatter:
     enabled: true
@@ -68,9 +90,18 @@ teleport:
   # Seconds before a TPA request expires
   tpa-timeout: 60
   # Delay in seconds before teleporting (0 to disable)
+  # Applies to: /tpa, /tpahere, /home, /warp, /spawn, /back
   teleport-delay: 3
   # Cancel teleport if player moves during delay
   cancel-on-move: true
+  # Cooldowns per command in seconds (0 = no cooldown)
+  cooldowns:
+    tpa: 0
+    tpahere: 0
+    home: 0
+    warp: 0
+    spawn: 0
+    back: 0
 
 # ============================================================
 #   Homes
@@ -103,6 +134,36 @@ spawn:
 afk:
   # Clear AFK status when the player moves
   cancel-on-move: true
+
+# ============================================================
+#   Join / Leave Messages
+# ============================================================
+join-leave:
+  join:
+    # Set to false to use the vanilla Minecraft join message
+    enabled: true
+  leave:
+    # Set to false to use the vanilla Minecraft leave message
+    enabled: true
+
+# ============================================================
+#   Death Messages
+# ============================================================
+death:
+  # Replace vanilla death messages with custom ones from messages/<lang>.yml
+  enabled: true
+
+# ============================================================
+#   Player Settings  (/settings command)
+# ============================================================
+settings:
+  # Permission node granted to a player when "Allow Payments" is enabled.
+  # Other plugins/commands check this permission to know if the player accepts payments.
+  # Leave empty to disable the permission attachment feature.
+  payments-permission: ""
+  # Permission node granted when "Allow Balance" is enabled.
+  balance-permission: ""
+  # This feature will soon be available for NovaEconomy! -> https://github.com/DippyCoder/NovaEconomy
 
 # ============================================================
 #   Economy  (requires Vault)

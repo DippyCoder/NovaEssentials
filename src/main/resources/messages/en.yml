@@ -49,6 +49,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>You cannot message <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>is not accepting messages."
+  not-accepting:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>is not accepting messages."
   no-reply:       "<prefix_error> <gray>You have no one to reply to."
   player-offline: "<prefix_error> <gray>That player is no longer online."
 
@@ -141,8 +142,18 @@ tpa:
   no-request:        "<prefix_error> <gray>You have no pending teleport requests."
   already-pending:   "<prefix_error> <gray>You already have a pending request with <green><bold><player></bold></green><gray>."
   blocked:           "<prefix_error> <gray>You cannot send a request to <green><bold><player></bold></green><gray>."
+  not-accepting:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>is not accepting teleport requests."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>is not accepting TPA-Here requests."
+  auto-accepted:     "<prefix_tp> <gray>Your request was auto-accepted by <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Teleportation cancelled because you moved."
   teleporting:       "<prefix_tp> <gray>Teleporting in <green><bold><delay>s</bold></green><gray>. Don't move."
+
+# ── Generic teleport ──────────────────────────────────────
+tp:
+  teleporting:    "<prefix_tp> <gray>Teleporting in <green><bold><delay>s</bold></green><gray>. Don't move."
+  countdown:      "<yellow>Teleporting in <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>You must wait <green><bold><time>s</bold></green> <gray>before teleporting again."
+  cancelled-move: "<prefix_tp> <gray>Teleportation cancelled because you moved."
 
 # ── TpAll ─────────────────────────────────────────────────
 tpall:
@@ -202,13 +213,15 @@ kit:
 
 # ── Broadcast ─────────────────────────────────────────────
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 # ── Chat ─────────────────────────────────────────────────
 chat:
   paused:                  "<prefix_chat> <gray>Chat has been <green><bold>paused</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Chat has been paused for <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Chat has been <green><bold>resumed</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Chat has been <green><bold>cleared</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Chat is currently paused."
   filter-blocked:          "<prefix_error> <gray>Your message contains blocked content."
   muted:                   "<prefix_error> <gray>You are muted for <green><bold><time></bold></green><gray>."
@@ -337,12 +350,80 @@ size:
 # (kit section is above — these keys are appended inline)
 # Use in KitCommand: kit.no-money, kit.charged, kit.no-economy
 
+# ── Join / Leave ─────────────────────────────────────────
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>joined the server."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>left the server."
+
+# ── Death Messages ────────────────────────────────────────
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> has died."
+    - "<gray><bold><player></bold></gray><gray> met their end."
+    - "<gray><bold><player></bold></gray><gray> bit the dust."
+    - "<gray><bold><player></bold></gray><gray> didn't survive."
+    - "<gray><bold><player></bold></gray><gray> was slain."
+    - "<gray><bold><player></bold></gray><gray> perished."
+    - "<gray><bold><player></bold></gray><gray> ceased to exist."
+    - "<gray><bold><player></bold></gray><gray> was eliminated."
+
+# ── Settings GUI ─────────────────────────────────────────
+settings:
+  title: "<dark_gray>⚙ Your Settings"
+
+  allow-tpa:
+    name: "<white>TPA Requests"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>Players can send you TP requests."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>Players cannot send you TP requests."
+
+  allow-tpahere:
+    name: "<white>TPA-Here Requests"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>Players can /tpahere you."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>Players cannot /tpahere you."
+
+  tpauto:
+    name: "<white>TPA Auto-Accept"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>TPA requests are auto-accepted."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>You manually accept TPA requests."
+
+  language:
+    name: "<white>Language"
+    lore:      "<gray>Current: <green><bold><language></bold></green> <dark_gray>— Click to change."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Click to change."
+
+  sounds:
+    name: "<white>GUI Sounds"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>Sounds play in menus."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>No sounds in menus."
+
+  hide-chat:
+    name: "<white>Hide Player Chat"
+    lore-on:  "<red>✔ Hidden <dark_gray>— <gray>Player chat messages are hidden."
+    lore-off: "<green>✘ Visible <dark_gray>— <gray>Player chat messages are visible."
+
+  allow-msg:
+    name: "<white>Private Messages"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>Players can message you."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>Players cannot message you."
+
+  allow-payments:
+    name: "<white>Payments"
+    lore-on:  "<green>✔ Enabled <dark_gray>— <gray>Players can pay you."
+    lore-off: "<red>✘ Disabled <dark_gray>— <gray>Players cannot pay you."
+
+  allow-balance:
+    name: "<white>Balance Visibility"
+    lore-on:  "<green>✔ Visible <dark_gray>— <gray>Players can check your balance."
+    lore-off: "<red>✘ Hidden <dark_gray>— <gray>Players cannot check your balance."
+
 # ── GUI ───────────────────────────────────────────────────
 gui:
-  kit-title:    "<dark_gray>Kits"
-  warp-title:   "<dark_gray>Warps"
-  home-title:   "<dark_gray>My Homes"
-  invsee-title: "<dark_gray><player>'s Inventory"
-  prev-page:    "<gray>← Previous"
-  next-page:    "<gray>Next →"
-  close:        "<red>✗ Close"
+  kit-title:      "<dark_gray>Kits"
+  warp-title:     "<dark_gray>Warps"
+  home-title:     "<dark_gray>My Homes"
+  invsee-title:   "<dark_gray><player>'s Inventory"
+  prev-page:      "<gray>← Previous"
+  next-page:      "<gray>Next →"
+  close:          "<red>✗ Close"

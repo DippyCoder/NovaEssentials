@@ -46,6 +46,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray> : <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Vous ne pouvez pas envoyer de message à <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>n'accepte pas les messages."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>n'accepte pas les messages."
   no-reply:       "<prefix_error> <gray>Vous n'avez personne à qui répondre."
   player-offline: "<prefix_error> <gray>Ce joueur n'est plus en ligne."
 
@@ -128,6 +129,9 @@ tpa:
   blocked:           "<prefix_error> <gray>Vous ne pouvez pas envoyer de demande à <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Téléportation annulée car vous avez bougé."
   teleporting:       "<prefix_tp> <gray>Téléportation dans <green><bold><delay>s</bold></green><gray>. Ne bougez pas."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>n'accepte pas les demandes de téléportation."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>n'accepte pas les demandes TPA-Ici."
+  auto-accepted:      "<prefix_tp> <gray>Votre demande a été auto-acceptée par <green><bold><player></bold></green><gray>."
 
 tpall:
   teleported: "<prefix_staff> <gray><green><bold><count></bold></green> <gray>joueur(s) téléporté(s) vers vous."
@@ -179,12 +183,14 @@ kit:
   no-economy: "<prefix_error> <gray>L'économie n'est pas disponible sur ce serveur."
 
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 chat:
   paused:                  "<prefix_chat> <gray>Le chat a été <green><bold>mis en pause</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Le chat a été mis en pause pendant <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Le chat a été <green><bold>repris</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Le chat a été <green><bold>effacé</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Le chat est actuellement en pause."
   filter-blocked:          "<prefix_error> <gray>Votre message contient du contenu bloqué."
   muted:                   "<prefix_error> <gray>Vous êtes muet pendant <green><bold><time></bold></green><gray>."
@@ -304,3 +310,65 @@ gui:
   prev-page:    "<gray>← Précédent"
   next-page:    "<gray>Suivant →"
   close:        "<red>✗ Fermer"
+
+tp:
+  teleporting:    "<prefix_tp> <gray>Téléportation dans <green><bold><delay>s</bold></green><gray>. Ne bougez pas."
+  countdown:      "<yellow>Téléportation dans <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Vous devez attendre <green><bold><time>s</bold></green> <gray>avant de vous téléporter à nouveau."
+  cancelled-move: "<prefix_tp> <gray>Téléportation annulée car vous avez bougé."
+
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>a rejoint le serveur."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>a quitté le serveur."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> est mort(e)."
+    - "<gray><bold><player></bold></gray><gray> a trouvé la mort."
+    - "<gray><bold><player></bold></gray><gray> a mordu la poussière."
+    - "<gray><bold><player></bold></gray><gray> n'a pas survécu."
+    - "<gray><bold><player></bold></gray><gray> a été vaincu(e)."
+    - "<gray><bold><player></bold></gray><gray> a péri."
+    - "<gray><bold><player></bold></gray><gray> a cessé d'exister."
+    - "<gray><bold><player></bold></gray><gray> a été éliminé(e)."
+
+settings:
+  title: "<dark_gray>⚙ Vos Paramètres"
+  allow-tpa:
+    name: "<white>Demandes TPA"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les joueurs peuvent vous envoyer des demandes de TP."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Les joueurs ne peuvent pas vous envoyer des demandes de TP."
+  allow-tpahere:
+    name: "<white>Demandes TPA-Ici"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les joueurs peuvent vous appeler avec /tpahere."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Les joueurs ne peuvent pas vous appeler avec /tpahere."
+  tpauto:
+    name: "<white>TPA Auto-Accepter"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les demandes TPA sont auto-acceptées."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Vous acceptez manuellement les demandes TPA."
+  language:
+    name: "<white>Langue"
+    lore:      "<gray>Actuelle : <green><bold><language></bold></green> <dark_gray>— Cliquez pour changer."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Cliquez pour changer."
+  sounds:
+    name: "<white>Sons GUI"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les sons se jouent dans les menus."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Pas de sons dans les menus."
+  hide-chat:
+    name: "<white>Masquer le Chat"
+    lore-on:  "<red>✔ Masqué <dark_gray>— <gray>Les messages de chat des joueurs sont masqués."
+    lore-off: "<green>✘ Visible <dark_gray>— <gray>Les messages de chat des joueurs sont visibles."
+  allow-msg:
+    name: "<white>Messages Privés"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les joueurs peuvent vous envoyer des messages."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Les joueurs ne peuvent pas vous envoyer des messages."
+  allow-payments:
+    name: "<white>Paiements"
+    lore-on:  "<green>✔ Activé <dark_gray>— <gray>Les joueurs peuvent vous payer."
+    lore-off: "<red>✘ Désactivé <dark_gray>— <gray>Les joueurs ne peuvent pas vous payer."
+  allow-balance:
+    name: "<white>Visibilité du Solde"
+    lore-on:  "<green>✔ Visible <dark_gray>— <gray>Les joueurs peuvent voir votre solde."
+    lore-off: "<red>✘ Caché <dark_gray>— <gray>Les joueurs ne peuvent pas voir votre solde."

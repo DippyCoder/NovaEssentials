@@ -24,8 +24,10 @@ public class SpawnCommand extends BaseCommand {
             msg.send(sender, "spawn.not-set");
             return;
         }
-        ((Player) sender).teleport(spawn);
-        msg.send(sender, "spawn.teleported");
+        Player player = (Player) sender;
+        if (plugin.getTeleportDelayManager().startDelayedTeleport(player, spawn, "spawn")) {
+            msg.send(sender, "spawn.teleported");
+        }
     }
 
     @Override

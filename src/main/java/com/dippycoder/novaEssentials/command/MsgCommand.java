@@ -1,6 +1,7 @@
 package com.dippycoder.novaEssentials.command;
 
 import com.dippycoder.novaEssentials.NovaEssentials;
+import com.dippycoder.novaEssentials.manager.PlayerSettingsManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -33,6 +34,13 @@ public class MsgCommand extends BaseCommand {
                 msg.send(sender, "msg.player-blocked", "player", target.getName());
                 return;
             }
+        }
+
+        // Check if target is accepting messages
+        PlayerSettingsManager sm = plugin.getPlayerSettingsManager();
+        if (sm != null && !sm.getSettings(target.getUniqueId()).allowMsg) {
+            msg.send(sender, "msg.not-accepting", "player", target.getName());
+            return;
         }
 
         String message = String.join(" ", java.util.Arrays.copyOfRange(args, 1, args.length));

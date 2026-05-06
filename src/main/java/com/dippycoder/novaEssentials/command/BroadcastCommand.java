@@ -3,10 +3,8 @@ package com.dippycoder.novaEssentials.command;
 import com.dippycoder.novaEssentials.NovaEssentials;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.List;
 
@@ -35,7 +33,19 @@ public class BroadcastCommand extends BaseCommand {
             messageComponent = Component.text(rawMessage);
         }
 
-        msg.broadcastAll("broadcast.format", "message", messageComponent);
+        // Broadcast: divider → formatted message → divider
+        for (var online : plugin.getServer().getOnlinePlayers()) {
+            online.sendMessage(msg.get(online, "broadcast.divider"));
+            online.sendMessage(msg.get(online, "broadcast.format", "message", messageComponent));
+            online.sendMessage(msg.get(online, "broadcast.divider"));
+        }
+        plugin.getServer().getConsoleSender().sendMessage(
+                msg.get(plugin.getServer().getConsoleSender(), "broadcast.divider"));
+        plugin.getServer().getConsoleSender().sendMessage(
+                msg.get(plugin.getServer().getConsoleSender(), "broadcast.format",
+                        "message", messageComponent));
+        plugin.getServer().getConsoleSender().sendMessage(
+                msg.get(plugin.getServer().getConsoleSender(), "broadcast.divider"));
     }
 
     @Override

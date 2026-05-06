@@ -42,8 +42,9 @@ public class HomeCommand extends BaseCommand {
             msg.send(sender, "home.not-found", "home", name);
             return;
         }
-        player.teleport(home);
-        msg.send(sender, "home.teleported", "home", name);
+        if (plugin.getTeleportDelayManager().startDelayedTeleport(player, home, "home")) {
+            msg.send(sender, "home.teleported", "home", name);
+        }
     }
 
     private void listHomes(Player player) {

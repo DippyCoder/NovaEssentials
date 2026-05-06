@@ -46,6 +46,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Você não pode enviar mensagens para <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está aceitando mensagens."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está aceitando mensagens."
   no-reply:       "<prefix_error> <gray>Você não tem ninguém para responder."
   player-offline: "<prefix_error> <gray>Esse jogador não está mais online."
 
@@ -128,6 +129,9 @@ tpa:
   blocked:           "<prefix_error> <gray>Você não pode enviar um pedido para <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Teleporte cancelado porque você se moveu."
   teleporting:       "<prefix_tp> <gray>Teleportando em <green><bold><delay>s</bold></green><gray>. Não se mova."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está aceitando pedidos de teleporte."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está aceitando pedidos TPA-Aqui."
+  auto-accepted:      "<prefix_tp> <gray>Seu pedido foi automaticamente aceito por <green><bold><player></bold></green><gray>."
 
 tpall:
   teleported: "<prefix_staff> <gray><green><bold><count></bold></green> <gray>jogador(es) teleportado(s) para você."
@@ -179,12 +183,14 @@ kit:
   no-economy: "<prefix_error> <gray>A economia não está disponível neste servidor."
 
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 chat:
   paused:                  "<prefix_chat> <gray>O chat foi <green><bold>pausado</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>O chat foi pausado por <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>O chat foi <green><bold>retomado</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>O chat foi <green><bold>limpo</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>O chat está pausado no momento."
   filter-blocked:          "<prefix_error> <gray>Sua mensagem contém conteúdo bloqueado."
   muted:                   "<prefix_error> <gray>Você está silenciado por <green><bold><time></bold></green><gray>."
@@ -304,3 +310,65 @@ gui:
   prev-page:    "<gray>← Anterior"
   next-page:    "<gray>Próximo →"
   close:        "<red>✗ Fechar"
+
+tp:
+  teleporting:    "<prefix_tp> <gray>Teleportando em <green><bold><delay>s</bold></green><gray>. Não se mova."
+  countdown:      "<yellow>Teleportando em <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Você deve aguardar <green><bold><time>s</bold></green> <gray>antes de se teleportar novamente."
+  cancelled-move: "<prefix_tp> <gray>Teleporte cancelado porque você se moveu."
+
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>entrou no servidor."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>saiu do servidor."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> morreu."
+    - "<gray><bold><player></bold></gray><gray> encontrou seu fim."
+    - "<gray><bold><player></bold></gray><gray> mordeu o pó."
+    - "<gray><bold><player></bold></gray><gray> não sobreviveu."
+    - "<gray><bold><player></bold></gray><gray> foi derrotado(a)."
+    - "<gray><bold><player></bold></gray><gray> pereceu."
+    - "<gray><bold><player></bold></gray><gray> deixou de existir."
+    - "<gray><bold><player></bold></gray><gray> foi eliminado(a)."
+
+settings:
+  title: "<dark_gray>⚙ Suas Configurações"
+  allow-tpa:
+    name: "<white>Pedidos TPA"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Jogadores podem te enviar pedidos de TP."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Jogadores não podem te enviar pedidos de TP."
+  allow-tpahere:
+    name: "<white>Pedidos TPA-Aqui"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Jogadores podem te chamar com /tpahere."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Jogadores não podem te chamar com /tpahere."
+  tpauto:
+    name: "<white>TPA Auto-Aceitar"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Pedidos TPA são aceitos automaticamente."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Você aceita pedidos TPA manualmente."
+  language:
+    name: "<white>Idioma"
+    lore:      "<gray>Atual: <green><bold><language></bold></green> <dark_gray>— Clique para mudar."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Clique para mudar."
+  sounds:
+    name: "<white>Sons da GUI"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Sons tocam nos menus."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Sem sons nos menus."
+  hide-chat:
+    name: "<white>Ocultar Chat"
+    lore-on:  "<red>✔ Oculto <dark_gray>— <gray>Mensagens de chat de jogadores estão ocultas."
+    lore-off: "<green>✘ Visível <dark_gray>— <gray>Mensagens de chat de jogadores são visíveis."
+  allow-msg:
+    name: "<white>Mensagens Privadas"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Jogadores podem te enviar mensagens."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Jogadores não podem te enviar mensagens."
+  allow-payments:
+    name: "<white>Pagamentos"
+    lore-on:  "<green>✔ Ativado <dark_gray>— <gray>Jogadores podem te pagar."
+    lore-off: "<red>✘ Desativado <dark_gray>— <gray>Jogadores não podem te pagar."
+  allow-balance:
+    name: "<white>Visibilidade do Saldo"
+    lore-on:  "<green>✔ Visível <dark_gray>— <gray>Jogadores podem ver seu saldo."
+    lore-off: "<red>✘ Oculto <dark_gray>— <gray>Jogadores não podem ver seu saldo."

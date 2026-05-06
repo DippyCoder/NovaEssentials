@@ -149,7 +149,9 @@ commands:
   broadcast:
     description: Broadcast a message to all players.
     usage: /broadcast <message>
-    aliases: [ bc ]
+    aliases:
+        - bc
+        - announce
     permission: novaess.cmd.broadcast
   chat:
     description: Pause or unpause the chat.
@@ -215,6 +217,11 @@ commands:
     description: Request a new captcha code without resetting failed attempts.
     usage: /recaptcha
     permission: novaess.cmd.recaptcha
+  settings:
+    description: Open your personal settings GUI.
+    usage: /settings
+    aliases: [ mysettings, prefs ]
+    permission: novaess.cmd.settings
   novaess:
     description: NovaEssentials management — version, reload, updates, and help.
     usage: /novaess [version|reload|update|check-for-updates|help] [page]
@@ -306,6 +313,7 @@ permissions:
       novaess.cmd.recaptcha: true
       novaess.cmd.repair: true
       novaess.cmd.repair.other: true
+      novaess.cmd.settings: true
       novaess.cmd.novaess: true
 
   # Individual permission nodes
@@ -500,6 +508,9 @@ permissions:
     default: op
   novaess.cmd.recaptcha:
     description: Request a new captcha code (does not reset failed attempts)
+    default: true
+  novaess.cmd.settings:
+    description: Open personal settings GUI
     default: true
   novaess.cmd.repair:
     description: Repair held item
