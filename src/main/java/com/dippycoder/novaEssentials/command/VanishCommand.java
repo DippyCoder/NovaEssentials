@@ -1,0 +1,46 @@
+package com.dippycoder.novaEssentials.command;
+
+import com.dippycoder.novaEssentials.NovaEssentials;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.List;
+
+public class VanishCommand extends BaseCommand {
+
+    public VanishCommand(NovaEssentials plugin) {
+        super(plugin, "vanish");
+    }
+
+    @Override
+    protected void execute(CommandSender sender, Command command, String label, String[] args) {
+        if (!requirePermission(sender, "cmd.vanish")) return;
+
+        if (args.length == 0) {
+            if (!requirePlayer(sender)) return;
+            Player player = (Player) sender;
+            boolean nowVanished = plugin.getVanishManager().toggle(player);
+            msg.send(sender, nowVanished ? "vanish.enabled" : "vanish.disabled");
+        } else {
+            if (!requirePermission(sender, "cmd.vanish.other")) return;
+            Player target = findPlayer(sender, args[0]);
+            if (target == null) return;
+            boolean nowVanished = plugin.getVanishManager().toggle(target);
+            msg.send(sender, nowVanished ? "vanish.other-enabled" : "vanish.other-disabled",
+                    "player", target.getName());
+            if (!target.equals(sender)) {
+                msg.send(target, nowVanished ? "vanish.notify-on" : "vanish.notify-off",
+                        "sender", sender.getName());
+            }
+        }
+    }
+
+    @Override
+    protected List<String> tabComplete(CommandSender sender, String[] args) {
+        if (args.length == 1 && sender.hasPermission(plugin.getConfigManager().getPermission("cmd.vanish.other"))) {
+            return filterPrefix(onlinePlayerNames(sender), args[0]);
+        }
+        return List.of();
+    }
+}

@@ -1,0 +1,398 @@
+# ============================================================
+#   NovaEssentials — Russian Messages  (ru.yml)
+#
+#   All values support full MiniMessage formatting.
+#   Tag replacements use <tagname> syntax defined per command.
+#   Language translated with Claude
+#
+#   Prefix tags available in every message:
+#     <prefix_general>  <prefix_msg>    <prefix_staff>
+#     <prefix_home>     <prefix_warp>   <prefix_tp>
+#     <prefix_broadcast><prefix_chat>   <prefix_kit>
+#     <prefix_error>
+# =============================================================
+
+# ── Prefixes ──────────────────────────────────────────────
+prefix:
+  general:   "<dark_gray>[<gold>⚡</gold><dark_gray>]"
+  msg:       "<dark_gray>[<aqua>✉</aqua><dark_gray>]"
+  staff:     "<dark_gray>[<red>🔨</red><dark_gray>]"
+  home:      "<dark_gray>[<green>🏠</green><dark_gray>]"
+  warp:      "<dark_gray>[<light_purple>🌀</light_purple><dark_gray>]"
+  tp:        "<dark_gray>[<yellow>📍</yellow><dark_gray>]"
+  broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
+  chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
+  kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
+
+# ── General ───────────────────────────────────────────────
+general:
+  no-permission:    "<prefix_error> <gray>У вас нет прав для выполнения этого действия."
+  player-only:      "<prefix_error> <gray>Эта команда доступна только для игроков."
+  console-only:     "<prefix_error> <gray>Эта команда доступна только из консоли."
+  player-not-found: "<prefix_error> <gray>Игрок <green><bold><player></bold></green> <gray>не найден."
+  invalid-args:     "<prefix_error> <gray>Использование: <green><bold><usage></bold></green>"
+  command-disabled: "<prefix_error> <gray>Эта команда в данный момент отключена."
+  invalid-number:   "<prefix_error> <gray><green><bold><value></bold></green> <gray>не является допустимым числом."
+  reload-success:   "<prefix_general> <gray>Конфигурация перезагружена."
+
+# ── Gamemode ──────────────────────────────────────────────
+gamemode:
+  changed-self:  "<prefix_staff> <gray>Ваш режим игры изменён на <green><bold><mode></bold></green><gray>."
+  changed-other: "<prefix_staff> <gray>Режим игры <green><bold><player></bold></green><gray> изменён на <green><bold><mode></bold></green><gray>."
+  notify:        "<prefix_staff> <gray>Ваш режим игры изменён на <green><bold><mode></bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  invalid-mode:  "<prefix_error> <gray>Недопустимый режим <green><bold><mode></bold></green><gray>. Допустимые: <green><bold>survival, creative, adventure, spectator</bold></green>"
+
+# ── Private Messages ──────────────────────────────────────
+msg:
+  sent:           "<prefix_msg> <gray>Вы <dark_gray>→ <green><bold><player></bold></green><gray>: <white><italic><message></italic></white>"
+  received:       "<prefix_msg> <green><bold><player></bold></green> <dark_gray>→ <gray>Вам<gray>: <white><italic><message></italic></white>"
+  spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
+  player-blocked: "<prefix_error> <gray>Вы не можете написать <green><bold><player></bold></green><gray>."
+  blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>не принимает сообщения."
+  no-reply:       "<prefix_error> <gray>Вам некому отвечать."
+  player-offline: "<prefix_error> <gray>Этот игрок больше не в сети."
+
+# ── Vanish ────────────────────────────────────────────────
+vanish:
+  enabled:        "<prefix_staff> <gray>Вы стали <green><bold>невидимым</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Вы больше не невидимы."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> скрыт."
+  other-disabled: "<prefix_staff> <gray><green><bold><player></bold></green><gray> снова виден."
+  notify-on:      "<prefix_staff> <gray>Вас скрыл игрок <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_staff> <gray>Вас сделал видимым игрок <green><bold><sender></bold></green><gray>."
+
+# ── Fly ──────────────────────────────────────────────────
+fly:
+  enabled:        "<prefix_general> <gray>Полёт <green><bold>включён</bold></green><gray>."
+  disabled:       "<prefix_general> <gray>Полёт <green><bold>выключен</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Полёт включён для <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Полёт выключен для <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Полёт <green><bold>включён</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Полёт <green><bold>выключен</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+
+# ── Speed ─────────────────────────────────────────────────
+speed:
+  set-self:   "<prefix_general> <gray>Скорость установлена на <green><bold><speed></bold></green><gray>."
+  set-other:  "<prefix_staff> <gray>Скорость <green><bold><player></bold></green><gray> установлена на <green><bold><speed></bold></green><gray>."
+  notify:     "<prefix_general> <gray>Ваша скорость установлена на <green><bold><speed></bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  invalid:    "<prefix_error> <gray>Скорость должна быть от <green><bold>0</bold></green> <gray>до <green><bold>10</bold></green><gray>."
+
+# ── Enchant ───────────────────────────────────────────────
+enchant:
+  success:       "<prefix_staff> <gray>Наложено <green><bold><enchantment> <level></bold></green> <gray>на ваш предмет."
+  success-other: "<prefix_staff> <gray>Наложено <green><bold><enchantment> <level></bold></green> <gray>на предмет <green><bold><player></bold></green><gray>."
+  invalid:       "<prefix_error> <gray>Неизвестное зачарование: <green><bold><enchantment></bold></green>"
+  no-item:       "<prefix_error> <gray>Вы должны держать предмет в руках."
+  invalid-level: "<prefix_error> <gray>Уровень должен быть не меньше <green><bold>1</bold></green><gray>."
+
+# ── Heal ─────────────────────────────────────────────────
+heal:
+  self:   "<prefix_general> <gray>Вы <green><bold>исцелены</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> исцелён."
+  notify: "<prefix_general> <gray>Вас исцелил игрок <green><bold><sender></bold></green><gray>."
+
+# ── Feed ─────────────────────────────────────────────────
+feed:
+  self:   "<prefix_general> <gray>Вы <green><bold>накормлены</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> накормлен."
+  notify: "<prefix_general> <gray>Вас накормил игрок <green><bold><sender></bold></green><gray>."
+
+# ── God ──────────────────────────────────────────────────
+god:
+  enabled:        "<prefix_staff> <gray>Режим бога <green><bold>включён</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Режим бога <green><bold>выключен</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Режим бога включён для <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Режим бога выключен для <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Режим бога <green><bold>включён</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Режим бога <green><bold>выключен</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+
+# ── InvSee ───────────────────────────────────────────────
+invsee:
+  opened: "<prefix_staff> <gray>Просмотр инвентаря <green><bold><player></bold></green><gray>."
+
+# ── EnderChest ───────────────────────────────────────────
+ec:
+  opened-self:  "<prefix_general> <gray>Ваш сундук Края открыт."
+  opened-other: "<prefix_staff> <gray>Просмотр сундука Края <green><bold><player></bold></green><gray>."
+
+# ── Workbench ─────────────────────────────────────────────
+workbench:
+  opened-self:  "<prefix_general> <gray>Верстак открыт."
+  opened-other: "<prefix_staff> <gray>Верстак открыт для <green><bold><player></bold></green><gray>."
+
+# ── Anvil ─────────────────────────────────────────────────
+anvil:
+  opened-self:  "<prefix_general> <gray>Наковальня открыта."
+  opened-other: "<prefix_staff> <gray>Наковальня открыта для <green><bold><player></bold></green><gray>."
+
+# ── TPA ──────────────────────────────────────────────────
+tpa:
+  sent:              "<prefix_tp> <gray>Запрос телепортации отправлен игроку <green><bold><player></bold></green><gray>."
+  received:          "<prefix_tp> <green><bold><player></bold></green> <gray>хочет телепортироваться к вам.\n<prefix_tp> <gray>Используйте <green><bold>/tpaccept</bold></green> <gray>или <green><bold>/tpdeny</bold></green><gray>."
+  here-sent:         "<prefix_tp> <gray>Запрошено у <green><bold><player></bold></green> <gray>телепортироваться к вам."
+  here-received:     "<prefix_tp> <green><bold><player></bold></green> <gray>хочет, чтобы вы телепортировались к ним.\n<prefix_tp> <gray>Используйте <green><bold>/tpaccept</bold></green> <gray>или <green><bold>/tpdeny</bold></green><gray>."
+  accepted-sender:   "<prefix_tp> <green><bold><player></bold></green> <gray>принял ваш запрос. Телепортация через <green><bold><delay>с</bold></green><gray>."
+  accepted-receiver: "<prefix_tp> <gray>Запрос телепортации от <green><bold><player></bold></green><gray> принят."
+  accepted-instant:  "<prefix_tp> <green><bold><player></bold></green> <gray>принял ваш запрос."
+  denied-sender:     "<prefix_tp> <green><bold><player></bold></green> <gray>отклонил ваш запрос."
+  denied-receiver:   "<prefix_tp> <gray>Запрос телепортации от <green><bold><player></bold></green><gray> отклонён."
+  expired-sender:    "<prefix_tp> <gray>Ваш запрос к <green><bold><player></bold></green> <gray>истёк."
+  expired-receiver:  "<prefix_tp> <gray>Запрос от <green><bold><player></bold></green> <gray>истёк."
+  no-request:        "<prefix_error> <gray>У вас нет ожидающих запросов телепортации."
+  already-pending:   "<prefix_error> <gray>У вас уже есть ожидающий запрос к <green><bold><player></bold></green><gray>."
+  blocked:           "<prefix_error> <gray>Вы не можете отправить запрос игроку <green><bold><player></bold></green><gray>."
+  cancelled-move:    "<prefix_tp> <gray>Телепортация отменена из-за движения."
+  teleporting:       "<prefix_tp> <gray>Телепортация через <green><bold><delay>с</bold></green><gray>. Не двигайтесь."
+
+# ── TpAll ─────────────────────────────────────────────────
+tpall:
+  teleported:       "<prefix_staff> <gray>Телепортировано <green><bold><count></bold></green> <gray>игрок(ов) к вам."
+  notify:           "<prefix_tp> <gray>Вы телепортированы к <green><bold><sender></bold></green><gray>."
+
+# ── Block ─────────────────────────────────────────────────
+block:
+  blocked:         "<prefix_general> <gray><green><bold><player></bold></green><gray> заблокирован."
+  unblocked:       "<prefix_general> <gray><green><bold><player></bold></green><gray> разблокирован."
+  already-blocked: "<prefix_error> <gray><green><bold><player></bold></green> <gray>уже заблокирован."
+  not-blocked:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>не заблокирован."
+  cannot-self:     "<prefix_error> <gray>Вы не можете заблокировать самого себя."
+
+# ── Home ─────────────────────────────────────────────────
+home:
+  teleported:    "<prefix_home> <gray>Телепортация к дому <green><bold><home></bold></green><gray>."
+  set:           "<prefix_home> <gray>Дом <green><bold><home></bold></green> <gray>установлен."
+  deleted:       "<prefix_home> <gray>Дом <green><bold><home></bold></green> <gray>удалён."
+  not-found:     "<prefix_error> <gray>Дом <green><bold><home></bold></green> <gray>не существует."
+  limit-reached: "<prefix_error> <gray>Вы достигли лимита домов (<green><bold><limit></bold></green><gray>)."
+  list:          "<prefix_home> <gray>Ваши дома: <green><bold><homes></bold></green>"
+  no-homes:      "<prefix_home> <gray>У вас нет установленных домов."
+
+# ── Spawn ─────────────────────────────────────────────────
+spawn:
+  teleported: "<prefix_tp> <gray>Телепортация к <green><bold>спавну</bold></green><gray>."
+  set:        "<prefix_staff> <gray>Точка спавна установлена."
+  not-set:    "<prefix_error> <gray>Точка спавна ещё не установлена."
+
+# ── Warp ─────────────────────────────────────────────────
+warp:
+  teleported: "<prefix_warp> <gray>Телепортация к варпу <green><bold><warp></bold></green><gray>."
+  set:        "<prefix_warp> <gray>Варп <green><bold><warp></bold></green> <gray>создан."
+  deleted:    "<prefix_warp> <gray>Варп <green><bold><warp></bold></green> <gray>удалён."
+  not-found:  "<prefix_error> <gray>Варп <green><bold><warp></bold></green> <gray>не существует."
+  list:       "<prefix_warp> <gray>Варпы: <green><bold><warps></bold></green>"
+  no-warps:   "<prefix_warp> <gray>Варпы не установлены."
+
+# ── Time ─────────────────────────────────────────────────
+time:
+  set:         "<prefix_staff> <gray>Время установлено на <green><bold><time></bold></green><gray>."
+  invalid:     "<prefix_error> <gray>Недопустимое время: <green><bold><value></bold></green><gray>. Используйте число или: day, night, noon, midnight."
+
+# ── Kit ──────────────────────────────────────────────────
+kit:
+  given:      "<prefix_kit> <gray>Вы получили набор <green><bold><kit></bold></green><gray>."
+  cooldown:   "<prefix_error> <gray>Набор <green><bold><kit></bold></green> <gray>на перезарядке. Доступен через <green><bold><time></bold></green><gray>."
+  one-time:   "<prefix_error> <gray>Вы уже получали набор <green><bold><kit></bold></green><gray>."
+  not-found:  "<prefix_error> <gray>Набор <green><bold><kit></bold></green> <gray>не существует."
+  no-perm:    "<prefix_error> <gray>У вас нет прав для использования набора <green><bold><kit></bold></green><gray>."
+  list:       "<prefix_kit> <gray>Доступные наборы: <green><bold><kits></bold></green>"
+  no-kits:    "<prefix_kit> <gray>Для вас нет доступных наборов."
+  no-money:   "<prefix_error> <gray>Вам нужно <green><bold><price></bold></green> <gray>для набора <green><bold><kit></bold></green><gray>."
+  charged:    "<prefix_kit> <gray>Списано <green><bold><price></bold></green> <gray>за набор <green><bold><kit></bold></green><gray>."
+  no-economy: "<prefix_error> <gray>Экономика недоступна на этом сервере."
+
+# ── Broadcast ─────────────────────────────────────────────
+broadcast:
+  format: "<prefix_broadcast> <white><message></white>"
+
+# ── Chat ─────────────────────────────────────────────────
+chat:
+  paused:                  "<prefix_chat> <gray>Чат <green><bold>приостановлен</bold></green><gray>."
+  paused-timed:            "<prefix_chat> <gray>Чат приостановлен на <green><bold><duration></bold></green><gray>."
+  resumed:                 "<prefix_chat> <gray>Чат <green><bold>возобновлён</bold></green><gray>."
+  blocked-pause:           "<prefix_error> <gray>Чат в данный момент приостановлен."
+  filter-blocked:          "<prefix_error> <gray>Ваше сообщение содержит запрещённый контент."
+  muted:                   "<prefix_error> <gray>Вы заглушены на <green><bold><time></bold></green><gray>."
+  muted-permanent:         "<prefix_error> <gray>Вы заглушены навсегда."
+  muted-player:            "<prefix_staff> <gray><green><bold><player></bold></green> <gray>заглушён на <green><bold><duration></bold></green><gray>."
+  muted-permanent-player:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> заглушён навсегда."
+  unmuted-player:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> разглушён."
+  already-muted:           "<prefix_error> <gray><green><bold><player></bold></green> <gray>уже заглушён."
+  not-muted:               "<prefix_error> <gray><green><bold><player></bold></green> <gray>не заглушён."
+  notify-muted:            "<prefix_staff> <gray>Вы заглушены на <green><bold><duration></bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  notify-muted-permanent:  "<prefix_staff> <gray>Вы заглушены навсегда игроком <green><bold><sender></bold></green><gray>."
+  notify-unmuted:          "<prefix_staff> <gray>Вас разглушил игрок <green><bold><sender></bold></green><gray>."
+  staff-filter-notify:     "<prefix_staff> <gray>Сообщение <green><bold><player></bold></green><gray> было отфильтровано: <italic><message></italic>"
+
+# ── Sudo ─────────────────────────────────────────────────
+sudo:
+  executed: "<prefix_staff> <gray>Выполнено от имени <green><bold><player></bold></green><gray>: <italic><action></italic>"
+
+# ── Kick ─────────────────────────────────────────────────
+kick:
+  kicked:           "<prefix_staff> <gray><green><bold><player></bold></green><gray> кикнут."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>кикнут игроком <green><bold><sender></bold></green> <gray>— <italic><reason></italic>"
+  kick-screen:      "<red><bold>Вы были кикнуты</bold></red>\n<gray>Причина: <white><reason></white>\n<gray>Кикнул: <green><bold><sender></bold></green>"
+
+# ── Ban ───────────────────────────────────────────────────
+ban:
+  banned:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray>забанен на <green><bold><duration></bold></green><gray>."
+  banned-permanent: "<prefix_staff> <gray><green><bold><player></bold></green><gray> забанен навсегда."
+  unbanned:         "<prefix_staff> <gray>Бан <green><bold><player></bold></green><gray> снят."
+  already-banned:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>уже забанен."
+  not-banned:       "<prefix_error> <gray><green><bold><player></bold></green> <gray>не забанен."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>забанен игроком <green><bold><sender></bold></green> <gray>на <green><bold><duration></bold></green> <gray>— <italic><reason></italic>"
+  staff-unban:      "<prefix_staff> <green><bold><player></bold></green> <gray>разбанен игроком <green><bold><sender></bold></green><gray>."
+  ban-screen:       "<red><bold>Вы забанены</bold></red>\n<gray>Причина: <white><reason></white>\n<gray>Срок: <green><bold><duration></bold></green>\n<gray>Забанил: <green><bold><sender></bold></green>"
+
+# ── Back ─────────────────────────────────────────────────
+back:
+  teleported:  "<prefix_tp> <gray>Телепортация к последнему месту смерти."
+  no-location: "<prefix_error> <gray>Нет предыдущей точки для возврата."
+
+# ── AFK ──────────────────────────────────────────────────
+afk:
+  enabled:         "<prefix_general> <gray>Вы теперь <green><bold>AFK</bold></green><gray>."
+  disabled:        "<prefix_general> <gray>Вы больше не AFK."
+  broadcast-on:    "<prefix_general> <green><bold><player></bold></green> <gray>теперь AFK."
+  broadcast-off:   "<prefix_general> <green><bold><player></bold></green> <gray>больше не AFK."
+  broadcast-on-msg: "<prefix_general> <green><bold><player></bold></green> <gray>теперь AFK: <italic><message></italic>"
+  message-reply:   "<prefix_general> <green><bold><player></bold></green> <gray>AFK: <italic><message></italic>"
+  message-no-msg:  "<prefix_general> <green><bold><player></bold></green> <gray>в данный момент AFK."
+
+# ── Rename ────────────────────────────────────────────────
+rename:
+  renamed: "<prefix_staff> <gray>Предмет переименован."
+  no-item:  "<prefix_error> <gray>Вы должны держать предмет в руках."
+
+# ── Lore ─────────────────────────────────────────────────
+lore:
+  added:         "<prefix_staff> <gray>Строка лора добавлена."
+  removed:       "<prefix_staff> <gray>Строка лора <green><bold><index></bold></green><gray> удалена."
+  cleared:       "<prefix_staff> <gray>Лор очищен."
+  set:           "<prefix_staff> <gray>Строка лора <green><bold><index></bold></green><gray> установлена."
+  inserted:      "<prefix_staff> <gray>Вставлено в строку лора <green><bold><index></bold></green><gray>."
+  invalid-index: "<prefix_error> <gray>Недопустимый индекс строки <green><bold><index></bold></green><gray>."
+  no-item:       "<prefix_error> <gray>Вы должны держать предмет в руках."
+  no-lore:       "<prefix_error> <gray>У этого предмета нет лора."
+
+# ── Effect ────────────────────────────────────────────────
+effect:
+  applied:      "<prefix_staff> <gray>Наложен эффект <green><bold><effect> <level></bold></green> <gray>на <green><bold><duration>с</bold></green> <gray>игроку <green><bold><player></bold></green><gray>."
+  applied-self: "<prefix_general> <gray>Наложен эффект <green><bold><effect> <level></bold></green> <gray>на <green><bold><duration>с</bold></green><gray>."
+  cleared:      "<prefix_staff> <gray>Все эффекты <green><bold><player></bold></green><gray> удалены."
+  cleared-self: "<prefix_general> <gray>Все ваши эффекты удалены."
+  invalid:      "<prefix_error> <gray>Неизвестный эффект: <green><bold><effect></bold></green>"
+
+# ── Freeze ────────────────────────────────────────────────
+freeze:
+  frozen:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> заморожен."
+  unfrozen:        "<prefix_staff> <gray><green><bold><player></bold></green><gray> разморожен."
+  already-frozen:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>уже заморожен."
+  not-frozen:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>не заморожен."
+  notify-frozen:   "<prefix_staff> <gray>Вы <green><bold>заморожены</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  notify-unfrozen: "<prefix_staff> <gray>Вы <green><bold>разморожены</bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  blocked:         "<prefix_error> <gray>Вы заморожены и не можете этого сделать."
+  still-frozen:    "<prefix_staff> <gray>Вы всё ещё <green><bold>заморожены</bold></green><gray>."
+
+# ── Captcha ───────────────────────────────────────────────
+captcha:
+  given:            "<prefix_general> <gray>Решите капчу, показанную на вашей карте. Введите код в чат."
+  issued:           "<prefix_staff> <gray>Капча выдана игроку <green><bold><player></bold></green><gray>."
+  solved:           "<prefix_general> <gray>Капча решена! Вы разморожены."
+  wrong:            "<prefix_error> <gray>Неверный код. Осталось попыток: <green><bold><tries></bold></green><gray>."
+  fail-summary:     "<prefix_staff> <green><bold><player></bold></green> <gray>провалил капчу. Код был: <green><bold><code></bold></green><gray>. Неудачных попыток: <red><bold><attempts></bold></red>"
+  ban-screen:       "<red><bold>Капча не пройдена</bold></red>\n<gray>Причина: <white>Не прошли проверку капчей</white>\n<gray>Забанил: <green><bold>NovaEssentials</bold></green>"
+  dodge-ban-screen: "<red><bold>Вы забанены</bold></red>\n<gray>Причина: <white>Отключение для обхода капчи</white>\n<gray>Забанил: <green><bold>NovaEssentials</bold></green>"
+  no-captcha:       "<prefix_error> <gray>У вас нет активной капчи."
+  already:          "<prefix_error> <gray>У <green><bold><player></bold></green> <gray>уже есть активная капча."
+  recaptcha-given:  "<prefix_general> <gray>Выдан новый код капчи. У вас осталось <green><bold><tries></bold></green> <gray>попытки(а)."
+  recaptcha-none:   "<prefix_error> <gray>У вас нет активной капчи для обновления."
+
+# ── Repair ────────────────────────────────────────────────
+repair:
+  repaired:       "<prefix_general> <gray>Ваш предмет <green><bold>починен</bold></green><gray>."
+  repaired-other: "<prefix_staff> <gray>Предмет в руках <green><bold><player></bold></green><gray> починен."
+  all:            "<prefix_general> <gray>Все предметы в вашем инвентаре <green><bold>починены</bold></green><gray>."
+  all-other:      "<prefix_staff> <gray>Все предметы в инвентаре <green><bold><player></bold></green><gray> починены."
+  no-item:        "<prefix_error> <gray>Вы должны держать повреждённый предмет."
+  notify:         "<prefix_general> <gray>Ваш предмет починен игроком <green><bold><sender></bold></green><gray>."
+  notify-all:     "<prefix_general> <gray>Ваш инвентарь починен игроком <green><bold><sender></bold></green><gray>."
+
+# ── NovaEssentials Admin ─────────────────────────────────
+novaess:
+  check-enabled:  "<prefix_general> <gray>Автоматическая проверка обновлений <green><bold>включена</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Автоматическая проверка обновлений <green><bold>выключена</bold></green><gray>."
+
+# ── Size ─────────────────────────────────────────────────
+size:
+  tiny:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray>уменьшен до размера <green><bold><size></bold></green><gray>."
+  giant:          "<prefix_staff> <gray><green><bold><player></bold></green> <gray>увеличен до размера <green><bold><size></bold></green><gray>."
+  reset:          "<prefix_staff> <gray>Размер <green><bold><player></bold></green><gray> сброшен до нормального."
+  notify:         "<prefix_general> <gray>Ваш размер установлен на <green><bold><size></bold></green> <gray>игроком <green><bold><sender></bold></green><gray>."
+  notify-reset:   "<prefix_general> <gray>Ваш размер сброшен до нормального игроком <green><bold><sender></bold></green><gray>."
+  not-supported:  "<prefix_error> <gray>Изменение размера не поддерживается в этой версии сервера."
+  invalid:        "<prefix_error> <gray>Размер должен быть от <green><bold>0.0625</bold></green> <gray>до <green><bold>16</bold></green><gray>."
+
+# ── Summon ────────────────────────────────────────────────
+summon:
+  summoned:       "<prefix_general> <gray>Призвано: <green><bold><amount>x <entity></bold></green><gray>."
+  invalid-entity: "<prefix_error> <gray>Неизвестный тип существа: <green><bold><entity></bold></green>"
+
+# ── Strike ────────────────────────────────────────────────
+strike:
+  self:   "<prefix_general> <gray>⚡ Вы были поражены молнией."
+  struck: "<prefix_staff> <gray>⚡ <green><bold><player></bold></green> <gray>поражён молнией."
+
+# ── IpBan ─────────────────────────────────────────────────
+ipban:
+  banned:            "<prefix_staff> <gray>IP забанен: <green><bold><ip></bold></green> <gray>на <green><bold><duration></bold></green><gray>."
+  banned-permanent:  "<prefix_staff> <gray>IP забанен навсегда: <green><bold><ip></bold></green><gray>."
+  player-not-online: "<prefix_error> <gray>Игрок <green><bold><player></bold></green> <gray>должен быть в сети для поиска IP."
+
+# ── Book ──────────────────────────────────────────────────
+book:
+  converted:        "<prefix_general> <gray>Книга преобразована в редактируемую."
+  not-written-book: "<prefix_error> <gray>Вы должны держать подписанную книгу."
+
+# ── Find ──────────────────────────────────────────────────
+find:
+  location: "<prefix_staff> <gray>Местоположение <green><bold><player></bold></green><gray>: <green><bold><x>, <y>, <z></bold></green> <gray>(<world>)"
+
+# ── GiveHead ──────────────────────────────────────────────
+givehead:
+  given: "<prefix_general> <gray>Вы получили голову <green><bold><player></bold></green><gray>."
+
+# ── Playtime ──────────────────────────────────────────────
+playtime:
+  display: "<prefix_general> <gray>Ваше время в игре: <green><bold><time></bold></green><gray>."
+
+# ── Weather ───────────────────────────────────────────────
+weather:
+  sun:     "<prefix_general> <gray>Погода установлена на <green><bold>ясно</bold></green><gray>."
+  rain:    "<prefix_general> <gray>Погода установлена на <green><bold>дождь</bold></green><gray>."
+  thunder: "<prefix_general> <gray>Погода установлена на <green><bold>грозу</bold></green><gray>."
+
+# ── Nuke ──────────────────────────────────────────────────
+nuke:
+  launched: "<prefix_general> <gray>💥 Нюк запущен!"
+
+# ── FNuke ─────────────────────────────────────────────────
+fnuke:
+  launched: "<prefix_general> <gray>💥 Тихий нюк запущен!"
+
+# ── Burn ──────────────────────────────────────────────────
+burn:
+  self:   "<prefix_general> <gray>Вы подожгли себя на <green><bold><duration></bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green> <gray>подожжён на <green><bold><duration></bold></green><gray>."
+  notify: "<prefix_general> <gray>Вас поджёг игрок <green><bold><sender></bold></green> <gray>на <green><bold><duration></bold></green><gray>."
+
+# ── GUI ───────────────────────────────────────────────────
+gui:
+  kit-title:    "<dark_gray>Наборы"
+  warp-title:   "<dark_gray>Варпы"
+  home-title:   "<dark_gray>Мои дома"
+  invsee-title: "<dark_gray>Инвентарь <player>"
+  prev-page:    "<gray>← Назад"
+  next-page:    "<gray>Вперёд →"
+  close:        "<red>✗ Закрыть"

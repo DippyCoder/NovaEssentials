@@ -1,0 +1,652 @@
+name: NovaEssentials
+version: '${version}'
+main: com.dippycoder.novaEssentials.NovaEssentials
+api-version: '1.21'
+load: POSTWORLD
+authors: [ DippyCoder ]
+description: A feature-rich essentials plugin for Paper servers.
+softdepend: [ PlaceholderAPI, Vault ]
+
+commands:
+  gm:
+    description: Change your or another player's gamemode.
+    usage: /gm <mode> [player]
+    aliases: [ gamemode ]
+    permission: novaess.cmd.gm
+  msg:
+    description: Send a private message to a player.
+    usage: /msg <player> <message>
+    aliases: [ tell, whisper, w ]
+    permission: novaess.cmd.msg
+  r:
+    description: Reply to the last private message.
+    usage: /r <message>
+    aliases: [ reply ]
+    permission: novaess.cmd.msg
+  vanish:
+    description: Toggle vanish mode.
+    usage: /vanish [player]
+    aliases: [ v ]
+    permission: novaess.cmd.vanish
+  fly:
+    description: Toggle flight mode.
+    usage: /fly [player]
+    permission: novaess.cmd.fly
+  speed:
+    description: Set movement or fly speed.
+    usage: /speed <0-10> [player]
+    permission: novaess.cmd.speed
+  enchant:
+    description: Enchant the item in your hand.
+    usage: /enchant <enchantment> [level]
+    aliases: [ ench ]
+    permission: novaess.cmd.enchant
+  heal:
+    description: Restore health to full.
+    usage: /heal [player]
+    permission: novaess.cmd.heal
+  feed:
+    description: Restore hunger to full.
+    usage: /feed [player]
+    permission: novaess.cmd.feed
+  god:
+    description: Toggle god mode.
+    usage: /god [player]
+    permission: novaess.cmd.god
+  invsee:
+    description: View another player's inventory.
+    usage: /invsee <player>
+    permission: novaess.cmd.invsee
+  ec:
+    description: Open an ender chest.
+    usage: /ec [player]
+    aliases: [ enderchest ]
+    permission: novaess.cmd.ec
+  workbench:
+    description: Open a crafting table.
+    usage: /workbench [player]
+    aliases: [ craft, wb ]
+    permission: novaess.cmd.workbench
+  anvil:
+    description: Open an anvil.
+    usage: /anvil [player]
+    aliases: [ anv ]
+    permission: novaess.cmd.anvil
+  sudo:
+    description: Execute a command or message as another player.
+    usage: /sudo <player> <message|/command>
+    permission: novaess.cmd.sudo
+  tpa:
+    description: Send a teleport request to a player.
+    usage: /tpa <player>
+    permission: novaess.cmd.tpa
+  tpaccept:
+    description: Accept a pending teleport request.
+    usage: /tpaccept
+    permission: novaess.cmd.tpaccept
+  tpdeny:
+    description: Deny a pending teleport request.
+    usage: /tpdeny
+    permission: novaess.cmd.tpdeny
+  tpahere:
+    description: Request a player to teleport to you.
+    usage: /tpahere <player>
+    aliases: [ tphere ]
+    permission: novaess.cmd.tpahere
+  tpall:
+    description: Teleport all players to your location.
+    usage: /tpall
+    permission: novaess.cmd.tpall
+  back:
+    description: Teleport to your last death location.
+    usage: /back
+    permission: novaess.cmd.back
+  block:
+    description: Block or unblock a player.
+    usage: /block <player>
+    permission: novaess.cmd.block
+  home:
+    description: Teleport to your home.
+    usage: /home [name|list]
+    permission: novaess.cmd.home
+  sethome:
+    description: Set your home location.
+    usage: /sethome [name]
+    permission: novaess.cmd.sethome
+  delhome:
+    description: Delete a home.
+    usage: /delhome <name>
+    permission: novaess.cmd.delhome
+  spawn:
+    description: Teleport to spawn.
+    usage: /spawn
+    permission: novaess.cmd.spawn
+  setspawn:
+    description: Set the spawn location.
+    usage: /setspawn
+    permission: novaess.cmd.setspawn
+  warp:
+    description: Teleport to a warp or list all warps.
+    usage: /warp <name|list>
+    permission: novaess.cmd.warp
+  setwarp:
+    description: Set a warp location.
+    usage: /setwarp <name>
+    permission: novaess.cmd.setwarp
+  delwarp:
+    description: Delete a warp.
+    usage: /delwarp <name>
+    permission: novaess.cmd.delwarp
+  time:
+    description: Set the world time.
+    usage: /time <day|night|noon|midnight|value>
+    aliases: [ day, night, noon, midnight ]
+    permission: novaess.cmd.time
+  kit:
+    description: Receive a kit or list available kits.
+    usage: /kit [name]
+    permission: novaess.cmd.kit
+  broadcast:
+    description: Broadcast a message to all players.
+    usage: /broadcast <message>
+    aliases: [ bc ]
+    permission: novaess.cmd.broadcast
+  chat:
+    description: Pause or unpause the chat.
+    usage: /chat <pause|unpause> [duration]
+    permission: novaess.cmd.chat
+  mute:
+    description: Mute a player.
+    usage: /mute <player> [duration] [reason]
+    permission: novaess.cmd.mute
+  unmute:
+    description: Unmute a player.
+    usage: /unmute <player>
+    permission: novaess.cmd.unmute
+  kick:
+    description: Kick a player from the server.
+    usage: /kick <player> [reason]
+    permission: novaess.cmd.kick
+  ban:
+    description: Ban a player from the server.
+    usage: /ban <player> <duration|perm> [reason]
+    permission: novaess.cmd.ban
+  unban:
+    description: Unban a player.
+    usage: /unban <player>
+    permission: novaess.cmd.unban
+  afk:
+    description: Toggle AFK mode.
+    usage: /afk [message]
+    permission: novaess.cmd.afk
+  rename:
+    description: Rename the item in your hand.
+    usage: /rename <name>
+    permission: novaess.cmd.rename
+  lore:
+    description: Edit the lore of the item in your hand.
+    usage: /lore <add|remove|clear|insert|set> [args]
+    permission: novaess.cmd.lore
+  effect:
+    description: Apply a potion effect to a player.
+    usage: /effect <player> <effect|clear> [duration] [amplifier]
+    permission: novaess.cmd.effect
+  freeze:
+    description: Freeze a player.
+    usage: /freeze <player>
+    permission: novaess.cmd.freeze
+  unfreeze:
+    description: Unfreeze a player.
+    usage: /unfreeze <player>
+    permission: novaess.cmd.unfreeze
+  tiny:
+    description: Shrink a player.
+    usage: /tiny <player> [size|reset]
+    permission: novaess.cmd.tiny
+  giant:
+    description: Enlarge a player.
+    usage: /giant <player> [size|reset]
+    permission: novaess.cmd.giant
+  captcha:
+    description: Give a player a captcha to solve.
+    usage: /captcha [player]
+    permission: novaess.cmd.captcha
+  recaptcha:
+    description: Request a new captcha code without resetting failed attempts.
+    usage: /recaptcha
+    permission: novaess.cmd.recaptcha
+  novaess:
+    description: NovaEssentials management — version, reload, updates, and help.
+    usage: /novaess [version|reload|update|check-for-updates|help] [page]
+    aliases: [ nova ]
+    permission: novaess.cmd.novaess
+  repair:
+    description: Repair items to full durability.
+    usage: /repair [all|player] [player]
+    aliases: [ fix ]
+    permission: novaess.cmd.repair
+  summon:
+    description: Summon entities at your position or a specific location.
+    usage: /summon <entity> [x y z] [amount]
+    permission: novaess.cmd.summon
+  strike:
+    description: Strike a player with lightning.
+    usage: /strike [player]
+    permission: novaess.cmd.strike
+  ipban:
+    description: IP ban a player or address.
+    usage: /ipban <player|ip> <duration|perm> [reason]
+    permission: novaess.cmd.ipban
+  book:
+    description: Convert a signed book to a writable book.
+    usage: /book
+    permission: novaess.cmd.book
+  find:
+    description: Find the location of a player.
+    usage: /find <player>
+    permission: novaess.cmd.find
+  givehead:
+    description: Give yourself a player head.
+    usage: /givehead [player]
+    permission: novaess.cmd.givehead
+  playtime:
+    description: View your total playtime.
+    usage: /playtime
+    permission: novaess.cmd.playtime
+  sun:
+    description: Set the weather to clear.
+    usage: /sun
+    aliases: [ sunny ]
+    permission: novaess.cmd.weather
+  rain:
+    description: Set the weather to rain.
+    usage: /rain
+    aliases: [ rainy ]
+    permission: novaess.cmd.weather
+  thunder:
+    description: Set the weather to thunderstorm.
+    usage: /thunder
+    permission: novaess.cmd.weather
+  nuke:
+    description: Spawn a large amount of TNT in the sky.
+    usage: /nuke
+    permission: novaess.cmd.nuke
+  fnuke:
+    description: Like /nuke but TNT does not destroy blocks.
+    usage: /fnuke
+    permission: novaess.cmd.fnuke
+  burn:
+    description: Set a player on fire with a fire trail.
+    usage: /burn [player] [duration]
+    permission: novaess.cmd.burn
+
+permissions:
+  novaess.*:
+    description: All NovaEssentials permissions
+    default: op
+    children:
+      novaess.cmd.*: true
+      novaess.chat.*: true
+      novaess.vanish.see: true
+      novaess.homes.unlimited: true
+      novaess.update-notify: true
+
+  novaess.cmd.*:
+    description: All command permissions
+    default: op
+    children:
+      novaess.cmd.gm: true
+      novaess.cmd.gm.other: true
+      novaess.cmd.msg: true
+      novaess.cmd.msg.spy: true
+      novaess.cmd.vanish: true
+      novaess.cmd.vanish.other: true
+      novaess.cmd.fly: true
+      novaess.cmd.fly.other: true
+      novaess.cmd.speed: true
+      novaess.cmd.speed.other: true
+      novaess.cmd.enchant: true
+      novaess.cmd.heal: true
+      novaess.cmd.heal.other: true
+      novaess.cmd.feed: true
+      novaess.cmd.feed.other: true
+      novaess.cmd.god: true
+      novaess.cmd.god.other: true
+      novaess.cmd.invsee: true
+      novaess.cmd.invsee.modify: true
+      novaess.cmd.ec: true
+      novaess.cmd.ec.other: true
+      novaess.cmd.ec.other.modify: true
+      novaess.cmd.workbench: true
+      novaess.cmd.workbench.other: true
+      novaess.cmd.anvil: true
+      novaess.cmd.anvil.other: true
+      novaess.cmd.sudo: true
+      novaess.cmd.tpa: true
+      novaess.cmd.tpaccept: true
+      novaess.cmd.tpdeny: true
+      novaess.cmd.tpahere: true
+      novaess.cmd.tpall: true
+      novaess.cmd.back: true
+      novaess.cmd.block: true
+      novaess.cmd.home: true
+      novaess.cmd.sethome: true
+      novaess.cmd.delhome: true
+      novaess.cmd.spawn: true
+      novaess.cmd.setspawn: true
+      novaess.cmd.warp: true
+      novaess.cmd.setwarp: true
+      novaess.cmd.delwarp: true
+      novaess.cmd.time: true
+      novaess.cmd.kit: true
+      novaess.cmd.broadcast: true
+      novaess.cmd.broadcast.minimessage: true
+      novaess.cmd.chat: true
+      novaess.cmd.mute: true
+      novaess.cmd.unmute: true
+      novaess.cmd.kick: true
+      novaess.cmd.ban: true
+      novaess.cmd.unban: true
+      novaess.cmd.afk: true
+      novaess.cmd.rename: true
+      novaess.cmd.lore: true
+      novaess.cmd.effect: true
+      novaess.cmd.freeze: true
+      novaess.cmd.unfreeze: true
+      novaess.cmd.tiny: true
+      novaess.cmd.giant: true
+      novaess.cmd.captcha: true
+      novaess.cmd.captcha.other: true
+      novaess.cmd.recaptcha: true
+      novaess.cmd.repair: true
+      novaess.cmd.repair.other: true
+      novaess.cmd.novaess: true
+      novaess.cmd.summon: true
+      novaess.cmd.strike: true
+      novaess.cmd.ipban: true
+      novaess.cmd.book: true
+      novaess.cmd.find: true
+      novaess.cmd.givehead: true
+      novaess.cmd.playtime: true
+      novaess.cmd.weather: true
+      novaess.cmd.nuke: true
+      novaess.cmd.fnuke: true
+      novaess.cmd.burn: true
+
+  # Individual permission nodes
+  novaess.cmd.gm:
+    description: Change own gamemode
+    default: op
+  novaess.cmd.gm.other:
+    description: Change other player's gamemode
+    default: op
+  novaess.cmd.msg:
+    description: Send private messages
+    default: true
+  novaess.cmd.msg.spy:
+    description: Spy on private messages
+    default: op
+  novaess.cmd.vanish:
+    description: Toggle own vanish
+    default: op
+  novaess.cmd.vanish.other:
+    description: Toggle vanish for others
+    default: op
+  novaess.vanish.see:
+    description: See vanished players
+    default: op
+  novaess.cmd.fly:
+    description: Toggle own flight
+    default: op
+  novaess.cmd.fly.other:
+    description: Toggle flight for others
+    default: op
+  novaess.cmd.speed:
+    description: Set own speed
+    default: op
+  novaess.cmd.speed.other:
+    description: Set other player's speed
+    default: op
+  novaess.cmd.enchant:
+    description: Enchant items without restrictions
+    default: op
+  novaess.cmd.heal:
+    description: Heal self
+    default: op
+  novaess.cmd.heal.other:
+    description: Heal others
+    default: op
+  novaess.cmd.feed:
+    description: Feed self
+    default: op
+  novaess.cmd.feed.other:
+    description: Feed others
+    default: op
+  novaess.cmd.god:
+    description: Toggle own god mode
+    default: op
+  novaess.cmd.god.other:
+    description: Toggle god mode for others
+    default: op
+  novaess.cmd.invsee:
+    description: View other inventories
+    default: op
+  novaess.cmd.invsee.modify:
+    description: Modify inventories via invsee
+    default: op
+  novaess.cmd.ec:
+    description: Open own ender chest
+    default: true
+  novaess.cmd.ec.other:
+    description: Open other player's ender chest
+    default: op
+  novaess.cmd.ec.other.modify:
+    description: Modify other player's ender chest
+    default: op
+  novaess.cmd.workbench:
+    description: Open a virtual crafting table
+    default: true
+  novaess.cmd.workbench.other:
+    description: Open crafting table for others
+    default: op
+  novaess.cmd.anvil:
+    description: Open a virtual anvil
+    default: true
+  novaess.cmd.anvil.other:
+    description: Open anvil for others
+    default: op
+  novaess.cmd.sudo:
+    description: Execute commands as other players
+    default: op
+  novaess.cmd.tpa:
+    description: Send TPA requests
+    default: true
+  novaess.cmd.tpaccept:
+    description: Accept TPA requests
+    default: true
+  novaess.cmd.tpdeny:
+    description: Deny TPA requests
+    default: true
+  novaess.cmd.tpahere:
+    description: Request player to teleport to you
+    default: true
+  novaess.cmd.tpall:
+    description: Teleport all players to you
+    default: op
+  novaess.cmd.back:
+    description: Teleport to last death location
+    default: true
+  novaess.cmd.block:
+    description: Block/unblock players
+    default: true
+  novaess.cmd.home:
+    description: Use /home
+    default: true
+  novaess.cmd.sethome:
+    description: Use /sethome
+    default: true
+  novaess.cmd.delhome:
+    description: Use /delhome
+    default: true
+  novaess.cmd.spawn:
+    description: Use /spawn
+    default: true
+  novaess.cmd.setspawn:
+    description: Use /setspawn
+    default: op
+  novaess.cmd.warp:
+    description: Use /warp
+    default: true
+  novaess.cmd.setwarp:
+    description: Use /setwarp
+    default: op
+  novaess.cmd.delwarp:
+    description: Use /delwarp
+    default: op
+  novaess.cmd.time:
+    description: Set world time
+    default: op
+  novaess.cmd.kit:
+    description: Use /kit
+    default: true
+  novaess.cmd.broadcast:
+    description: Use /broadcast
+    default: op
+  novaess.cmd.broadcast.minimessage:
+    description: Use MiniMessage formatting in /broadcast
+    default: op
+  novaess.cmd.chat:
+    description: Pause/unpause chat
+    default: op
+  novaess.cmd.mute:
+    description: Mute players
+    default: op
+  novaess.cmd.unmute:
+    description: Unmute players
+    default: op
+  novaess.cmd.kick:
+    description: Kick players
+    default: op
+  novaess.cmd.ban:
+    description: Ban players
+    default: op
+  novaess.cmd.unban:
+    description: Unban players
+    default: op
+  novaess.cmd.afk:
+    description: Toggle AFK mode
+    default: true
+  novaess.cmd.rename:
+    description: Rename held item
+    default: op
+  novaess.cmd.lore:
+    description: Edit lore of held item
+    default: op
+  novaess.cmd.effect:
+    description: Apply potion effects
+    default: op
+  novaess.cmd.freeze:
+    description: Freeze players
+    default: op
+  novaess.cmd.unfreeze:
+    description: Unfreeze players
+    default: op
+  novaess.cmd.tiny:
+    description: Shrink players
+    default: op
+  novaess.cmd.giant:
+    description: Enlarge players
+    default: op
+  novaess.cmd.captcha:
+    description: Give yourself a captcha
+    default: op
+  novaess.cmd.captcha.other:
+    description: Give another player a captcha
+    default: op
+  novaess.cmd.recaptcha:
+    description: Request a new captcha code (does not reset failed attempts)
+    default: true
+  novaess.cmd.repair:
+    description: Repair held item
+    default: op
+  novaess.cmd.repair.other:
+    description: Repair another player's items
+    default: op
+  novaess.cmd.novaess:
+    description: Access /novaess management commands
+    default: op
+  novaess.cmd.summon:
+    description: Summon entities
+    default: op
+  novaess.cmd.strike:
+    description: Strike players with lightning
+    default: op
+  novaess.cmd.ipban:
+    description: IP ban players or addresses
+    default: op
+  novaess.cmd.book:
+    description: Convert signed books to writable books
+    default: op
+  novaess.cmd.find:
+    description: Find player locations
+    default: op
+  novaess.cmd.givehead:
+    description: Give player heads
+    default: op
+  novaess.cmd.playtime:
+    description: View playtime
+    default: true
+  novaess.cmd.weather:
+    description: Change weather (sun, rain, thunder)
+    default: op
+  novaess.cmd.nuke:
+    description: Launch a TNT nuke
+    default: op
+  novaess.cmd.fnuke:
+    description: Launch a block-safe TNT nuke
+    default: op
+  novaess.cmd.burn:
+    description: Set players on fire
+    default: op
+
+  novaess.chat.*:
+    description: All chat permissions
+    default: op
+    children:
+      novaess.chat.color: true
+      novaess.chat.minimessage: true
+      novaess.chat.bypass-filter: true
+      novaess.chat.bypass-pause: true
+      novaess.chat.bypass-mute: true
+  novaess.chat.color:
+    description: Use legacy color codes in chat
+    default: op
+  novaess.chat.minimessage:
+    description: Use MiniMessage tags in chat
+    default: op
+  novaess.chat.bypass-filter:
+    description: Bypass the chat filter
+    default: op
+  novaess.chat.bypass-pause:
+    description: Chat during a chat pause
+    default: op
+  novaess.chat.bypass-mute:
+    description: Bypass mutes
+    default: op
+
+  novaess.update-notify:
+    description: Receive an in-game notification on join when a NovaEssentials update is available
+    default: op
+
+  novaess.homes.unlimited:
+    description: Unlimited homes
+    default: op
+  novaess.homes.10:
+    description: Up to 10 homes
+    default: false
+  novaess.homes.5:
+    description: Up to 5 homes
+    default: false
+  novaess.homes.2:
+    description: Up to 2 homes
+    default: false

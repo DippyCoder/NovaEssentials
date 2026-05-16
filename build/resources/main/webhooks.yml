@@ -1,0 +1,111 @@
+# ============================================================
+#   NovaEssentials — Discord Webhooks
+#   Set enabled: true and fill in webhook-url to activate.
+#
+#   Embed placeholders:
+#     Ban:             {player}  {reason}  {duration}  {banned_by}
+#     Unban:           {player}  {unbanned_by}
+#     Kick:            {player}  {reason}  {kicked_by}
+#     Captcha created: {player}  {issued_by}
+#     Captcha failed:  {player}  {actual_code}  {failed_attempts}
+#     Captcha dodge:   {player}  {actual_code}
+#
+#   Colors are hex RGB without the # sign.
+# ============================================================
+
+enabled: false
+
+# Paste your Discord webhook URL here
+webhook-url: ""
+
+# Toggle individual event types
+events:
+  ban: true
+  unban: true
+  kick: true
+  captcha-created: true
+  captcha-failed: true
+
+# ── Embed content ─────────────────────────────────────────
+embeds:
+
+  ban:
+    title: "🔨 Player Banned"
+    color: "FF4444"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: true
+      - name: "Reason"
+        value: "{reason}"
+        inline: true
+      - name: "Duration"
+        value: "{duration}"
+        inline: true
+      - name: "Banned by"
+        value: "{banned_by}"
+        inline: true
+
+  unban:
+    title: "✅ Player Unbanned"
+    color: "44FF88"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: true
+      - name: "Unbanned by"
+        value: "{unbanned_by}"
+        inline: true
+
+  kick:
+    title: "👢 Player Kicked"
+    color: "FF9900"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: true
+      - name: "Reason"
+        value: "{reason}"
+        inline: true
+      - name: "Kicked by"
+        value: "{kicked_by}"
+        inline: true
+
+  captcha-created:
+    title: "🔒 Captcha Issued"
+    color: "4499FF"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: true
+      - name: "Issued by"
+        value: "{issued_by}"
+        inline: true
+
+  captcha-failed:
+    title: "🚫 Captcha Failed — Player Banned"
+    color: "CC2222"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: false
+      - name: "Actual code"
+        value: "{actual_code}"
+        inline: true
+      - name: "Failed attempts"
+        value: "{failed_attempts}"
+        inline: true
+
+  captcha-dodge:
+    title: "🚪 Captcha Dodged — Player Banned"
+    color: "AA0000"
+    fields:
+      - name: "Player"
+        value: "{player}"
+        inline: true
+      - name: "Actual code"
+        value: "{actual_code}"
+        inline: true
+      - name: "Reason"
+        value: "Disconnected to avoid captcha"
+        inline: false

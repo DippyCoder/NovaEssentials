@@ -1,0 +1,359 @@
+# ============================================================
+#   NovaEssentials — Brazilian Portuguese Messages  (pt_br.yml)
+#
+#   All values support full MiniMessage formatting.
+#   Tag replacements use <tagname> syntax defined per command.
+#   Language translated with Claude
+#
+#   Prefix tags available in every message:
+#     <prefix_general>  <prefix_msg>    <prefix_staff>
+#     <prefix_home>     <prefix_warp>   <prefix_tp>
+#     <prefix_broadcast><prefix_chat>   <prefix_kit>
+#     <prefix_error>
+# ============================================================
+
+prefix:
+  general:   "<dark_gray>[<gold>⚡</gold><dark_gray>]"
+  msg:       "<dark_gray>[<aqua>✉</aqua><dark_gray>]"
+  staff:     "<dark_gray>[<red>🔨</red><dark_gray>]"
+  home:      "<dark_gray>[<green>🏠</green><dark_gray>]"
+  warp:      "<dark_gray>[<light_purple>🌀</light_purple><dark_gray>]"
+  tp:        "<dark_gray>[<yellow>📍</yellow><dark_gray>]"
+  broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
+  chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
+  kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
+
+general:
+  no-permission:    "<prefix_error> <gray>Você não tem permissão para fazer isso."
+  player-only:      "<prefix_error> <gray>Apenas jogadores podem usar este comando."
+  console-only:     "<prefix_error> <gray>Este comando só pode ser usado pelo console."
+  player-not-found: "<prefix_error> <gray>O jogador <green><bold><player></bold></green> <gray>não foi encontrado."
+  invalid-args:     "<prefix_error> <gray>Uso: <green><bold><usage></bold></green>"
+  command-disabled: "<prefix_error> <gray>Este comando está desativado no momento."
+  invalid-number:   "<prefix_error> <gray><green><bold><value></bold></green> <gray>não é um número válido."
+  reload-success:   "<prefix_general> <gray>Configuração recarregada."
+
+gamemode:
+  changed-self:  "<prefix_staff> <gray>Seu modo de jogo agora é <green><bold><mode></bold></green><gray>."
+  changed-other: "<prefix_staff> <gray>Modo de jogo de <green><bold><player></bold></green><gray> definido para <green><bold><mode></bold></green><gray>."
+  notify:        "<prefix_staff> <gray>Seu modo de jogo foi alterado para <green><bold><mode></bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  invalid-mode:  "<prefix_error> <gray>Modo de jogo inválido <green><bold><mode></bold></green><gray>. Válidos: <green><bold>survival, creative, adventure, spectator</bold></green>"
+
+msg:
+  sent:           "<prefix_msg> <gray>Você <dark_gray>→ <green><bold><player></bold></green><gray>: <white><italic><message></italic></white>"
+  received:       "<prefix_msg> <green><bold><player></bold></green> <dark_gray>→ <gray>Você<gray>: <white><italic><message></italic></white>"
+  spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
+  player-blocked: "<prefix_error> <gray>Você não pode enviar mensagens para <green><bold><player></bold></green><gray>."
+  blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está aceitando mensagens."
+  no-reply:       "<prefix_error> <gray>Você não tem ninguém para responder."
+  player-offline: "<prefix_error> <gray>Esse jogador não está mais online."
+
+vanish:
+  enabled:        "<prefix_staff> <gray>Você agora está <green><bold>invisível</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Você não está mais invisível."
+  other-enabled:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi ocultado."
+  other-disabled: "<prefix_staff> <gray>A visibilidade de <green><bold><player></bold></green><gray> foi restaurada."
+  notify-on:      "<prefix_staff> <gray>Você foi ocultado por <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_staff> <gray>Sua invisibilidade foi removida por <green><bold><sender></bold></green><gray>."
+
+fly:
+  enabled:        "<prefix_general> <gray>Voo <green><bold>ativado</bold></green><gray>."
+  disabled:       "<prefix_general> <gray>Voo <green><bold>desativado</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Voo ativado para <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Voo desativado para <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>O voo foi <green><bold>ativado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>O voo foi <green><bold>desativado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+
+speed:
+  set-self:   "<prefix_general> <gray>Velocidade definida para <green><bold><speed></bold></green><gray>."
+  set-other:  "<prefix_staff> <gray>Velocidade de <green><bold><player></bold></green><gray> definida para <green><bold><speed></bold></green><gray>."
+  notify:     "<prefix_general> <gray>Sua velocidade foi definida para <green><bold><speed></bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  invalid:    "<prefix_error> <gray>A velocidade deve estar entre <green><bold>0</bold></green> <gray>e <green><bold>10</bold></green><gray>."
+
+enchant:
+  success:       "<prefix_staff> <gray><green><bold><enchantment> <level></bold></green> <gray>aplicado ao seu item."
+  success-other: "<prefix_staff> <gray><green><bold><enchantment> <level></bold></green> <gray>aplicado ao item de <green><bold><player></bold></green><gray>."
+  invalid:       "<prefix_error> <gray>Encantamento desconhecido: <green><bold><enchantment></bold></green>"
+  no-item:       "<prefix_error> <gray>Você precisa estar segurando um item."
+  invalid-level: "<prefix_error> <gray>O nível deve ser pelo menos <green><bold>1</bold></green><gray>."
+
+heal:
+  self:   "<prefix_general> <gray>Você foi <green><bold>curado</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi curado."
+  notify: "<prefix_general> <gray>Você foi curado por <green><bold><sender></bold></green><gray>."
+
+feed:
+  self:   "<prefix_general> <gray>Você foi <green><bold>alimentado</bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi alimentado."
+  notify: "<prefix_general> <gray>Você foi alimentado por <green><bold><sender></bold></green><gray>."
+
+god:
+  enabled:        "<prefix_staff> <gray>Modo deus <green><bold>ativado</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Modo deus <green><bold>desativado</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Modo deus ativado para <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Modo deus desativado para <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Modo deus <green><bold>ativado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Modo deus <green><bold>desativado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+
+invsee:
+  opened: "<prefix_staff> <gray>Visualizando o inventário de <green><bold><player></bold></green><gray>."
+
+ec:
+  opened-self:  "<prefix_general> <gray>Seu baú do End foi aberto."
+  opened-other: "<prefix_staff> <gray>Visualizando o baú do End de <green><bold><player></bold></green><gray>."
+
+workbench:
+  opened-self:  "<prefix_general> <gray>Mesa de trabalho aberta."
+  opened-other: "<prefix_staff> <gray>Mesa de trabalho aberta para <green><bold><player></bold></green><gray>."
+
+anvil:
+  opened-self:  "<prefix_general> <gray>Bigorna aberta."
+  opened-other: "<prefix_staff> <gray>Bigorna aberta para <green><bold><player></bold></green><gray>."
+
+tpa:
+  sent:              "<prefix_tp> <gray>Pedido de teleporte enviado para <green><bold><player></bold></green><gray>."
+  received:          "<prefix_tp> <green><bold><player></bold></green> <gray>quer se teleportar para você.\n<prefix_tp> <gray>Use <green><bold>/tpaccept</bold></green> <gray>ou <green><bold>/tpdeny</bold></green><gray>."
+  here-sent:         "<prefix_tp> <gray>Foi pedido que <green><bold><player></bold></green> <gray>se teleporte até você."
+  here-received:     "<prefix_tp> <green><bold><player></bold></green> <gray>quer que você se teleporte até ele.\n<prefix_tp> <gray>Use <green><bold>/tpaccept</bold></green> <gray>ou <green><bold>/tpdeny</bold></green><gray>."
+  accepted-sender:   "<prefix_tp> <green><bold><player></bold></green> <gray>aceitou seu pedido. Teleportando em <green><bold><delay>s</bold></green><gray>."
+  accepted-receiver: "<prefix_tp> <gray>Pedido de teleporte de <green><bold><player></bold></green><gray> aceito."
+  accepted-instant:  "<prefix_tp> <green><bold><player></bold></green> <gray>aceitou seu pedido."
+  denied-sender:     "<prefix_tp> <green><bold><player></bold></green> <gray>recusou seu pedido."
+  denied-receiver:   "<prefix_tp> <gray>Pedido de teleporte de <green><bold><player></bold></green><gray> recusado."
+  expired-sender:    "<prefix_tp> <gray>Seu pedido para <green><bold><player></bold></green> <gray>expirou."
+  expired-receiver:  "<prefix_tp> <gray>O pedido de <green><bold><player></bold></green> <gray>expirou."
+  no-request:        "<prefix_error> <gray>Você não tem pedidos de teleporte pendentes."
+  already-pending:   "<prefix_error> <gray>Você já tem um pedido pendente com <green><bold><player></bold></green><gray>."
+  blocked:           "<prefix_error> <gray>Você não pode enviar um pedido para <green><bold><player></bold></green><gray>."
+  cancelled-move:    "<prefix_tp> <gray>Teleporte cancelado porque você se moveu."
+  teleporting:       "<prefix_tp> <gray>Teleportando em <green><bold><delay>s</bold></green><gray>. Não se mova."
+
+tpall:
+  teleported: "<prefix_staff> <gray><green><bold><count></bold></green> <gray>jogador(es) teleportado(s) para você."
+  notify:     "<prefix_tp> <gray>Você foi teleportado para <green><bold><sender></bold></green><gray>."
+
+block:
+  blocked:         "<prefix_general> <gray><green><bold><player></bold></green><gray> bloqueado."
+  unblocked:       "<prefix_general> <gray><green><bold><player></bold></green><gray> desbloqueado."
+  already-blocked: "<prefix_error> <gray><green><bold><player></bold></green> <gray>já está bloqueado."
+  not-blocked:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está bloqueado."
+  cannot-self:     "<prefix_error> <gray>Você não pode bloquear a si mesmo."
+
+home:
+  teleported:    "<prefix_home> <gray>Teleportado para o lar <green><bold><home></bold></green><gray>."
+  set:           "<prefix_home> <gray>Lar <green><bold><home></bold></green> <gray>definido."
+  deleted:       "<prefix_home> <gray>Lar <green><bold><home></bold></green> <gray>removido."
+  not-found:     "<prefix_error> <gray>O lar <green><bold><home></bold></green> <gray>não existe."
+  limit-reached: "<prefix_error> <gray>Você atingiu o limite de lares (<green><bold><limit></bold></green><gray>)."
+  list:          "<prefix_home> <gray>Seus lares: <green><bold><homes></bold></green>"
+  no-homes:      "<prefix_home> <gray>Você não tem nenhum lar definido."
+
+spawn:
+  teleported: "<prefix_tp> <gray>Teleportado para o <green><bold>spawn</bold></green><gray>."
+  set:        "<prefix_staff> <gray>Ponto de spawn definido."
+  not-set:    "<prefix_error> <gray>O ponto de spawn ainda não foi definido."
+
+warp:
+  teleported: "<prefix_warp> <gray>Teleportado para <green><bold><warp></bold></green><gray>."
+  set:        "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>criado."
+  deleted:    "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>removido."
+  not-found:  "<prefix_error> <gray>O warp <green><bold><warp></bold></green> <gray>não existe."
+  list:       "<prefix_warp> <gray>Warps: <green><bold><warps></bold></green>"
+  no-warps:   "<prefix_warp> <gray>Nenhum warp foi definido."
+
+time:
+  set:     "<prefix_staff> <gray>Horário definido para <green><bold><time></bold></green><gray>."
+  invalid: "<prefix_error> <gray>Horário inválido: <green><bold><value></bold></green><gray>. Use um número ou: day, night, noon, midnight."
+
+kit:
+  given:      "<prefix_kit> <gray>Você recebeu o kit <green><bold><kit></bold></green><gray>."
+  cooldown:   "<prefix_error> <gray>O kit <green><bold><kit></bold></green> <gray>está em recarga. Disponível em <green><bold><time></bold></green><gray>."
+  one-time:   "<prefix_error> <gray>Você já resgatou o kit <green><bold><kit></bold></green><gray>."
+  not-found:  "<prefix_error> <gray>O kit <green><bold><kit></bold></green> <gray>não existe."
+  no-perm:    "<prefix_error> <gray>Você não tem permissão para usar o kit <green><bold><kit></bold></green><gray>."
+  list:       "<prefix_kit> <gray>Kits disponíveis: <green><bold><kits></bold></green>"
+  no-kits:    "<prefix_kit> <gray>Nenhum kit está disponível para você."
+  no-money:   "<prefix_error> <gray>Você precisa de <green><bold><price></bold></green> <gray>para usar o kit <green><bold><kit></bold></green><gray>."
+  charged:    "<prefix_kit> <gray><green><bold><price></bold></green> <gray>cobrado pelo kit <green><bold><kit></bold></green><gray>."
+  no-economy: "<prefix_error> <gray>A economia não está disponível neste servidor."
+
+broadcast:
+  format: "<prefix_broadcast> <white><message></white>"
+
+chat:
+  paused:                  "<prefix_chat> <gray>O chat foi <green><bold>pausado</bold></green><gray>."
+  paused-timed:            "<prefix_chat> <gray>O chat foi pausado por <green><bold><duration></bold></green><gray>."
+  resumed:                 "<prefix_chat> <gray>O chat foi <green><bold>retomado</bold></green><gray>."
+  blocked-pause:           "<prefix_error> <gray>O chat está pausado no momento."
+  filter-blocked:          "<prefix_error> <gray>Sua mensagem contém conteúdo bloqueado."
+  muted:                   "<prefix_error> <gray>Você está silenciado por <green><bold><time></bold></green><gray>."
+  muted-permanent:         "<prefix_error> <gray>Você está permanentemente silenciado."
+  muted-player:            "<prefix_staff> <gray><green><bold><player></bold></green> <gray>foi silenciado por <green><bold><duration></bold></green><gray>."
+  muted-permanent-player:  "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi permanentemente silenciado."
+  unmuted-player:          "<prefix_staff> <gray>O silêncio de <green><bold><player></bold></green><gray> foi removido."
+  already-muted:           "<prefix_error> <gray><green><bold><player></bold></green> <gray>já está silenciado."
+  not-muted:               "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está silenciado."
+  notify-muted:            "<prefix_staff> <gray>Você foi silenciado por <green><bold><sender></bold></green> <gray>por <green><bold><duration></bold></green><gray>."
+  notify-muted-permanent:  "<prefix_staff> <gray>Você foi permanentemente silenciado por <green><bold><sender></bold></green><gray>."
+  notify-unmuted:          "<prefix_staff> <gray>Seu silêncio foi removido por <green><bold><sender></bold></green><gray>."
+  staff-filter-notify:     "<prefix_staff> <gray>Mensagem de <green><bold><player></bold></green><gray> foi filtrada: <italic><message></italic>"
+
+sudo:
+  executed: "<prefix_staff> <gray>Executado como <green><bold><player></bold></green><gray>: <italic><action></italic>"
+
+kick:
+  kicked:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi expulso."
+  staff-broadcast: "<prefix_staff> <green><bold><player></bold></green> <gray>foi expulso por <green><bold><sender></bold></green><gray> — <italic><reason></italic>"
+  kick-screen:     "<red><bold>Você foi expulso</bold></red>\n<gray>Motivo: <white><reason></white>\n<gray>Expulso por: <green><bold><sender></bold></green>"
+
+ban:
+  banned:           "<prefix_staff> <gray><green><bold><player></bold></green> <gray>foi banido por <green><bold><duration></bold></green><gray>."
+  banned-permanent: "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi banido permanentemente."
+  unbanned:         "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi desbanido."
+  already-banned:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>já está banido."
+  not-banned:       "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está banido."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>foi banido por <green><bold><sender></bold></green> <gray>por <green><bold><duration></bold></green><gray> — <italic><reason></italic>"
+  staff-unban:      "<prefix_staff> <green><bold><player></bold></green><gray> foi desbanido por <green><bold><sender></bold></green><gray>."
+  ban-screen:       "<red><bold>Você foi banido</bold></red>\n<gray>Motivo: <white><reason></white>\n<gray>Duração: <green><bold><duration></bold></green>\n<gray>Banido por: <green><bold><sender></bold></green>"
+
+back:
+  teleported:  "<prefix_tp> <gray>Teleportado para seu último local de morte."
+  no-location: "<prefix_error> <gray>Nenhum local anterior para retornar."
+
+afk:
+  enabled:          "<prefix_general> <gray>Você está agora <green><bold>AFK</bold></green><gray>."
+  disabled:         "<prefix_general> <gray>Você não está mais AFK."
+  broadcast-on:     "<prefix_general> <green><bold><player></bold></green> <gray>está AFK agora."
+  broadcast-off:    "<prefix_general> <green><bold><player></bold></green> <gray>não está mais AFK."
+  broadcast-on-msg: "<prefix_general> <green><bold><player></bold></green> <gray>está AFK agora: <italic><message></italic>"
+  message-reply:    "<prefix_general> <green><bold><player></bold></green> <gray>está AFK: <italic><message></italic>"
+  message-no-msg:   "<prefix_general> <green><bold><player></bold></green> <gray>está AFK no momento."
+
+rename:
+  renamed: "<prefix_staff> <gray>Item renomeado."
+  no-item:  "<prefix_error> <gray>Você precisa estar segurando um item."
+
+lore:
+  added:         "<prefix_staff> <gray>Linha de lore adicionada."
+  removed:       "<prefix_staff> <gray>Linha de lore <green><bold><index></bold></green><gray> removida."
+  cleared:       "<prefix_staff> <gray>Lore apagado."
+  set:           "<prefix_staff> <gray>Linha de lore <green><bold><index></bold></green><gray> definida."
+  inserted:      "<prefix_staff> <gray>Inserido na linha de lore <green><bold><index></bold></green><gray>."
+  invalid-index: "<prefix_error> <gray>Índice de linha inválido <green><bold><index></bold></green><gray>."
+  no-item:       "<prefix_error> <gray>Você precisa estar segurando um item."
+  no-lore:       "<prefix_error> <gray>Este item não possui lore."
+
+effect:
+  applied:      "<prefix_staff> <gray><green><bold><effect> <level></bold></green> <gray>aplicado por <green><bold><duration>s</bold></green> <gray>em <green><bold><player></bold></green><gray>."
+  applied-self: "<prefix_general> <gray><green><bold><effect> <level></bold></green> <gray>aplicado por <green><bold><duration>s</bold></green><gray>."
+  cleared:      "<prefix_staff> <gray>Todos os efeitos de <green><bold><player></bold></green><gray> foram removidos."
+  cleared-self: "<prefix_general> <gray>Todos os seus efeitos foram removidos."
+  invalid:      "<prefix_error> <gray>Efeito desconhecido: <green><bold><effect></bold></green>"
+
+freeze:
+  frozen:          "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi congelado."
+  unfrozen:        "<prefix_staff> <gray><green><bold><player></bold></green><gray> foi descongelado."
+  already-frozen:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>já está congelado."
+  not-frozen:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>não está congelado."
+  notify-frozen:   "<prefix_staff> <gray>Você foi <green><bold>congelado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  notify-unfrozen: "<prefix_staff> <gray>Você foi <green><bold>descongelado</bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  blocked:         "<prefix_error> <gray>Você está congelado e não pode fazer isso."
+  still-frozen:    "<prefix_staff> <gray>Você ainda está <green><bold>congelado</bold></green><gray>."
+
+captcha:
+  given:            "<prefix_general> <gray>Resolva o captcha exibido no seu mapa. Digite o código no chat."
+  issued:           "<prefix_staff> <gray>Um captcha foi enviado para <green><bold><player></bold></green><gray>."
+  solved:           "<prefix_general> <gray>Captcha resolvido! Você foi descongelado."
+  wrong:            "<prefix_error> <gray>Código incorreto. <green><bold><tries></bold></green> <gray>tentativa(s) restante(s)."
+  fail-summary:     "<prefix_staff> <green><bold><player></bold></green> <gray>falhou no captcha. O código era: <green><bold><code></bold></green><gray>. Tentativas falhas: <red><bold><attempts></bold></red>"
+  ban-screen:       "<red><bold>Captcha Falhou</bold></red>\n<gray>Motivo: <white>Verificação de captcha falhou</white>\n<gray>Banido por: <green><bold>NovaEssentials</bold></green>"
+  dodge-ban-screen: "<red><bold>Você foi banido</bold></red>\n<gray>Motivo: <white>Desconectou para evitar o captcha</white>\n<gray>Banido por: <green><bold>NovaEssentials</bold></green>"
+  no-captcha:       "<prefix_error> <gray>Você não tem um captcha ativo."
+  already:          "<prefix_error> <gray><green><bold><player></bold></green> <gray>já tem um captcha ativo."
+  recaptcha-given:  "<prefix_general> <gray>Novo código de captcha emitido. Você tem <green><bold><tries></bold></green> <gray>tentativa(s) restante(s)."
+  recaptcha-none:   "<prefix_error> <gray>Você não tem um captcha ativo para renovar."
+
+repair:
+  repaired:       "<prefix_general> <gray>Seu item foi <green><bold>reparado</bold></green><gray>."
+  repaired-other: "<prefix_staff> <gray>O item em mãos de <green><bold><player></bold></green><gray> foi reparado."
+  all:            "<prefix_general> <gray>Todos os itens do seu inventário foram <green><bold>reparados</bold></green><gray>."
+  all-other:      "<prefix_staff> <gray>Todos os itens do inventário de <green><bold><player></bold></green><gray> foram reparados."
+  no-item:        "<prefix_error> <gray>Você precisa estar segurando um item que pode ser danificado."
+  notify:         "<prefix_general> <gray>Seu item em mãos foi reparado por <green><bold><sender></bold></green><gray>."
+  notify-all:     "<prefix_general> <gray>Seu inventário foi reparado por <green><bold><sender></bold></green><gray>."
+
+novaess:
+  check-enabled:  "<prefix_general> <gray>Verificação automática de atualizações <green><bold>ativada</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Verificação automática de atualizações <green><bold>desativada</bold></green><gray>."
+
+size:
+  tiny:          "<prefix_staff> <gray><green><bold><player></bold></green> <gray>foi reduzido ao tamanho <green><bold><size></bold></green><gray>."
+  giant:         "<prefix_staff> <gray><green><bold><player></bold></green> <gray>foi ampliado ao tamanho <green><bold><size></bold></green><gray>."
+  reset:         "<prefix_staff> <gray>O tamanho de <green><bold><player></bold></green><gray> foi redefinido ao normal."
+  notify:        "<prefix_general> <gray>Seu tamanho foi definido para <green><bold><size></bold></green> <gray>por <green><bold><sender></bold></green><gray>."
+  notify-reset:  "<prefix_general> <gray>Seu tamanho foi redefinido ao normal por <green><bold><sender></bold></green><gray>."
+  not-supported: "<prefix_error> <gray>A modificação de tamanho não é suportada nesta versão do servidor."
+  invalid:       "<prefix_error> <gray>O tamanho deve estar entre <green><bold>0.0625</bold></green> <gray>e <green><bold>16</bold></green><gray>."
+
+# ── Summon ────────────────────────────────────────────────
+summon:
+  summoned:       "<prefix_general> <gray>Invocado: <green><bold><amount>x <entity></bold></green><gray>."
+  invalid-entity: "<prefix_error> <gray>Tipo de entidade desconhecido: <green><bold><entity></bold></green>"
+
+# ── Strike ────────────────────────────────────────────────
+strike:
+  self:   "<prefix_general> <gray>⚡ Você foi atingido por um raio."
+  struck: "<prefix_staff> <gray>⚡ <green><bold><player></bold></green> <gray>atingido por um raio."
+
+# ── IpBan ─────────────────────────────────────────────────
+ipban:
+  banned:            "<prefix_staff> <gray>IP banido: <green><bold><ip></bold></green> <gray>por <green><bold><duration></bold></green><gray>."
+  banned-permanent:  "<prefix_staff> <gray>IP banido permanentemente: <green><bold><ip></bold></green><gray>."
+  player-not-online: "<prefix_error> <gray>O jogador <green><bold><player></bold></green> <gray>precisa estar online para busca de IP."
+
+# ── Book ──────────────────────────────────────────────────
+book:
+  converted:        "<prefix_general> <gray>Livro convertido em livro escrevível."
+  not-written-book: "<prefix_error> <gray>Você precisa estar segurando um livro assinado."
+
+# ── Find ──────────────────────────────────────────────────
+find:
+  location: "<prefix_staff> <gray>Localização de <green><bold><player></bold></green><gray>: <green><bold><x>, <y>, <z></bold></green> <gray>(<world>)"
+
+# ── GiveHead ──────────────────────────────────────────────
+givehead:
+  given: "<prefix_general> <gray>Você recebeu a cabeça de <green><bold><player></bold></green><gray>."
+
+# ── Playtime ──────────────────────────────────────────────
+playtime:
+  display: "<prefix_general> <gray>Seu tempo de jogo: <green><bold><time></bold></green><gray>."
+
+# ── Weather ───────────────────────────────────────────────
+weather:
+  sun:     "<prefix_general> <gray>Clima definido para <green><bold>limpo</bold></green><gray>."
+  rain:    "<prefix_general> <gray>Clima definido para <green><bold>chuva</bold></green><gray>."
+  thunder: "<prefix_general> <gray>Clima definido para <green><bold>tempestade</bold></green><gray>."
+
+# ── Nuke ──────────────────────────────────────────────────
+nuke:
+  launched: "<prefix_general> <gray>💥 Nuke lançado!"
+
+# ── FNuke ─────────────────────────────────────────────────
+fnuke:
+  launched: "<prefix_general> <gray>💥 Nuke silencioso lançado!"
+
+# ── Burn ──────────────────────────────────────────────────
+burn:
+  self:   "<prefix_general> <gray>Você se colocou em chamas por <green><bold><duration></bold></green><gray>."
+  other:  "<prefix_staff> <gray><green><bold><player></bold></green> <gray>colocado em chamas por <green><bold><duration></bold></green><gray>."
+  notify: "<prefix_general> <gray>Você foi colocado em chamas por <green><bold><sender></bold></green> <gray>por <green><bold><duration></bold></green><gray>."
+
+gui:
+  kit-title:    "<dark_gray>Kits"
+  warp-title:   "<dark_gray>Warps"
+  home-title:   "<dark_gray>Meus Lares"
+  invsee-title: "<dark_gray>Inventário de <player>"
+  prev-page:    "<gray>← Anterior"
+  next-page:    "<gray>Próximo →"
+  close:        "<red>✗ Fechar"

@@ -1,0 +1,398 @@
+# ============================================================
+#   NovaEssentials — Czech Messages  (cs.yml)
+#
+#   All values support full MiniMessage formatting.
+#   Tag replacements use <tagname> syntax defined per command.
+#   Language translated with Claude
+#
+#   Prefix tags available in every message:
+#     <prefix_general>  <prefix_msg>    <prefix_staff>
+#     <prefix_home>     <prefix_warp>   <prefix_tp>
+#     <prefix_broadcast><prefix_chat>   <prefix_kit>
+#     <prefix_error>
+# ============================================================
+
+# ── Prefixes ──────────────────────────────────────────────
+prefix:
+  general:   "<dark_gray>[<gold>⚡</gold><dark_gray>]"
+  msg:       "<dark_gray>[<aqua>✉</aqua><dark_gray>]"
+  staff:     "<dark_gray>[<red>🔨</red><dark_gray>]"
+  home:      "<dark_gray>[<green>🏠</green><dark_gray>]"
+  warp:      "<dark_gray>[<light_purple>🌀</light_purple><dark_gray>]"
+  tp:        "<dark_gray>[<yellow>📍</yellow><dark_gray>]"
+  broadcast: "<dark_gray>[<aqua>📢</aqua><dark_gray>]"
+  chat:      "<dark_gray>[<blue>💬</blue><dark_gray>]"
+  kit:       "<dark_gray>[<gold>🎁</gold><dark_gray>]"
+  error:     "<dark_gray>[<red>❌</red><dark_gray>]"
+
+# ── General ───────────────────────────────────────────────
+general:
+  no-permission:    "<prefix_error> <gray>Nemáš oprávnění k provedení tohoto příkazu."
+  player-only:      "<prefix_error> <gray>Tento příkaz mohou používat pouze hráči."
+  console-only:     "<prefix_error> <gray>Tento příkaz lze použít pouze z konzole."
+  player-not-found: "<prefix_error> <gray>Hráč <green><bold><player></bold></green> <gray>nebyl nalezen."
+  invalid-args:     "<prefix_error> <gray>Použití: <green><bold><usage></bold></green>"
+  command-disabled: "<prefix_error> <gray>Tento příkaz je momentálně zakázán."
+  invalid-number:   "<prefix_error> <gray><green><bold><value></bold></green> <gray>není platné číslo."
+  reload-success:   "<prefix_general> <gray>Konfigurace znovu načtena."
+
+# ── Gamemode ──────────────────────────────────────────────
+gamemode:
+  changed-self:  "<prefix_staff> <gray>Tvůj herní režim je nyní <green><bold><mode></bold></green><gray>."
+  changed-other: "<prefix_staff> <gray>Herní režim hráče <green><bold><player></bold></green><gray> byl nastaven na <green><bold><mode></bold></green><gray>."
+  notify:        "<prefix_staff> <gray>Tvůj herní režim byl změněn na <green><bold><mode></bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  invalid-mode:  "<prefix_error> <gray>Neplatný herní režim <green><bold><mode></bold></green><gray>. Platné: <green><bold>survival, creative, adventure, spectator</bold></green>"
+
+# ── Private Messages ──────────────────────────────────────
+msg:
+  sent:           "<prefix_msg> <gray>Ty <dark_gray>→ <green><bold><player></bold></green><gray>: <white><italic><message></italic></white>"
+  received:       "<prefix_msg> <green><bold><player></bold></green> <dark_gray>→ <gray>Tobě<gray>: <white><italic><message></italic></white>"
+  spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
+  player-blocked: "<prefix_error> <gray>Nemůžeš napsat hráči <green><bold><player></bold></green><gray>."
+  blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>nepřijímá zprávy."
+  no-reply:       "<prefix_error> <gray>Nemáš komu odpovědět."
+  player-offline: "<prefix_error> <gray>Tento hráč již není online."
+
+# ── Vanish ────────────────────────────────────────────────
+vanish:
+  enabled:        "<prefix_staff> <gray>Nyní jsi <green><bold>neviditelný</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Již nejsi neviditelný."
+  other-enabled:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl skryt."
+  other-disabled: "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> je opět viditelný."
+  notify-on:      "<prefix_staff> <gray>Byl jsi skryt hráčem <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_staff> <gray>Byl jsi zviditelněn hráčem <green><bold><sender></bold></green><gray>."
+
+# ── Fly ──────────────────────────────────────────────────
+fly:
+  enabled:        "<prefix_general> <gray>Létání <green><bold>povoleno</bold></green><gray>."
+  disabled:       "<prefix_general> <gray>Létání <green><bold>zakázáno</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Létání povoleno hráči <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Létání zakázáno hráči <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Létání bylo <green><bold>povoleno</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Létání bylo <green><bold>zakázáno</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+
+# ── Speed ─────────────────────────────────────────────────
+speed:
+  set-self:   "<prefix_general> <gray>Rychlost nastavena na <green><bold><speed></bold></green><gray>."
+  set-other:  "<prefix_staff> <gray>Rychlost hráče <green><bold><player></bold></green><gray> nastavena na <green><bold><speed></bold></green><gray>."
+  notify:     "<prefix_general> <gray>Tvoje rychlost byla nastavena na <green><bold><speed></bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  invalid:    "<prefix_error> <gray>Rychlost musí být mezi <green><bold>0</bold></green> <gray>a <green><bold>10</bold></green><gray>."
+
+# ── Enchant ───────────────────────────────────────────────
+enchant:
+  success:       "<prefix_staff> <gray>Na tvůj předmět bylo aplikováno <green><bold><enchantment> <level></bold></green><gray>."
+  success-other: "<prefix_staff> <gray>Na předmět hráče <green><bold><player></bold></green><gray> bylo aplikováno <green><bold><enchantment> <level></bold></green><gray>."
+  invalid:       "<prefix_error> <gray>Neznámý enchant: <green><bold><enchantment></bold></green>"
+  no-item:       "<prefix_error> <gray>Musíš držet předmět v ruce."
+  invalid-level: "<prefix_error> <gray>Úroveň musí být alespoň <green><bold>1</bold></green><gray>."
+
+# ── Heal ─────────────────────────────────────────────────
+heal:
+  self:   "<prefix_general> <gray>Byl jsi <green><bold>uzdraven</bold></green><gray>."
+  other:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl uzdraven."
+  notify: "<prefix_general> <gray>Byl jsi uzdraven hráčem <green><bold><sender></bold></green><gray>."
+
+# ── Feed ─────────────────────────────────────────────────
+feed:
+  self:   "<prefix_general> <gray>Byl jsi <green><bold>nakrmen</bold></green><gray>."
+  other:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl nakrmen."
+  notify: "<prefix_general> <gray>Byl jsi nakrmen hráčem <green><bold><sender></bold></green><gray>."
+
+# ── God ──────────────────────────────────────────────────
+god:
+  enabled:        "<prefix_staff> <gray>Boží režim <green><bold>povolen</bold></green><gray>."
+  disabled:       "<prefix_staff> <gray>Boží režim <green><bold>zakázán</bold></green><gray>."
+  other-enabled:  "<prefix_staff> <gray>Boží režim povolen hráči <green><bold><player></bold></green><gray>."
+  other-disabled: "<prefix_staff> <gray>Boží režim zakázán hráči <green><bold><player></bold></green><gray>."
+  notify-on:      "<prefix_general> <gray>Boží režim byl <green><bold>povolen</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  notify-off:     "<prefix_general> <gray>Boží režim byl <green><bold>zakázán</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+
+# ── InvSee ───────────────────────────────────────────────
+invsee:
+  opened: "<prefix_staff> <gray>Prohlížíš inventář hráče <green><bold><player></bold></green><gray>."
+
+# ── EnderChest ───────────────────────────────────────────
+ec:
+  opened-self:  "<prefix_general> <gray>Tvůj ender truhla byla otevřena."
+  opened-other: "<prefix_staff> <gray>Prohlížíš ender truhlu hráče <green><bold><player></bold></green><gray>."
+
+# ── Workbench ─────────────────────────────────────────────
+workbench:
+  opened-self:  "<prefix_general> <gray>Byl otevřen pracovní stůl."
+  opened-other: "<prefix_staff> <gray>Byl otevřen pracovní stůl pro hráče <green><bold><player></bold></green><gray>."
+
+# ── Anvil ─────────────────────────────────────────────────
+anvil:
+  opened-self:  "<prefix_general> <gray>Byla otevřena kovadlina."
+  opened-other: "<prefix_staff> <gray>Byla otevřena kovadlina pro hráče <green><bold><player></bold></green><gray>."
+
+# ── TPA ──────────────────────────────────────────────────
+tpa:
+  sent:              "<prefix_tp> <gray>Žádost o teleportaci odeslána hráči <green><bold><player></bold></green><gray>."
+  received:          "<prefix_tp> <green><bold><player></bold></green> <gray>se chce k tobě teleportovat.\n<prefix_tp> <gray>Použij <green><bold>/tpaccept</bold></green> <gray>nebo <green><bold>/tpdeny</bold></green><gray>."
+  here-sent:         "<prefix_tp> <gray>Hráč <green><bold><player></bold></green> <gray>byl požádán, aby se teleportoval k tobě."
+  here-received:     "<prefix_tp> <green><bold><player></bold></green> <gray>chce, abys se teleportoval k nim.\n<prefix_tp> <gray>Použij <green><bold>/tpaccept</bold></green> <gray>nebo <green><bold>/tpdeny</bold></green><gray>."
+  accepted-sender:   "<prefix_tp> <green><bold><player></bold></green> <gray>přijal tvoji žádost. Teleportace za <green><bold><delay>s</bold></green><gray>."
+  accepted-receiver: "<prefix_tp> <gray>Žádost o teleportaci od hráče <green><bold><player></bold></green><gray> přijata."
+  accepted-instant:  "<prefix_tp> <green><bold><player></bold></green> <gray>přijal tvoji žádost."
+  denied-sender:     "<prefix_tp> <green><bold><player></bold></green> <gray>odmítl tvoji žádost."
+  denied-receiver:   "<prefix_tp> <gray>Žádost o teleportaci od hráče <green><bold><player></bold></green><gray> odmítnuta."
+  expired-sender:    "<prefix_tp> <gray>Tvoje žádost hráči <green><bold><player></bold></green> <gray>vypršela."
+  expired-receiver:  "<prefix_tp> <gray>Žádost od hráče <green><bold><player></bold></green> <gray>vypršela."
+  no-request:        "<prefix_error> <gray>Nemáš žádné čekající žádosti o teleportaci."
+  already-pending:   "<prefix_error> <gray>Již máš čekající žádost u hráče <green><bold><player></bold></green><gray>."
+  blocked:           "<prefix_error> <gray>Nemůžeš odeslat žádost hráči <green><bold><player></bold></green><gray>."
+  cancelled-move:    "<prefix_tp> <gray>Teleportace zrušena, protože ses pohnul."
+  teleporting:       "<prefix_tp> <gray>Teleportace za <green><bold><delay>s</bold></green><gray>. Nepohybuj se."
+
+# ── TpAll ─────────────────────────────────────────────────
+tpall:
+  teleported:       "<prefix_staff> <gray>K tobě bylo teleportováno <green><bold><count></bold></green> <gray>hráčů."
+  notify:           "<prefix_tp> <gray>Byl jsi teleportován k hráči <green><bold><sender></bold></green><gray>."
+
+# ── Block ─────────────────────────────────────────────────
+block:
+  blocked:         "<prefix_general> <gray>Hráč <green><bold><player></bold></green><gray> byl zablokován."
+  unblocked:       "<prefix_general> <gray>Hráč <green><bold><player></bold></green><gray> byl odblokován."
+  already-blocked: "<prefix_error> <gray><green><bold><player></bold></green> <gray>je již zablokován."
+  not-blocked:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>není zablokován."
+  cannot-self:     "<prefix_error> <gray>Nemůžeš zablokovat sám sebe."
+
+# ── Home ─────────────────────────────────────────────────
+home:
+  teleported:    "<prefix_home> <gray>Teleportován do domova <green><bold><home></bold></green><gray>."
+  set:           "<prefix_home> <gray>Domov <green><bold><home></bold></green> <gray>nastaven."
+  deleted:       "<prefix_home> <gray>Domov <green><bold><home></bold></green> <gray>smazán."
+  not-found:     "<prefix_error> <gray>Domov <green><bold><home></bold></green> <gray>neexistuje."
+  limit-reached: "<prefix_error> <gray>Dosáhl jsi limitu domovů (<green><bold><limit></bold></green><gray>)."
+  list:          "<prefix_home> <gray>Tvoje domovy: <green><bold><homes></bold></green>"
+  no-homes:      "<prefix_home> <gray>Nemáš nastaveny žádné domovy."
+
+# ── Spawn ─────────────────────────────────────────────────
+spawn:
+  teleported: "<prefix_tp> <gray>Teleportován na <green><bold>spawn</bold></green><gray>."
+  set:        "<prefix_staff> <gray>Poloha spawnu byla nastavena."
+  not-set:    "<prefix_error> <gray>Poloha spawnu ještě nebyla nastavena."
+
+# ── Warp ─────────────────────────────────────────────────
+warp:
+  teleported: "<prefix_warp> <gray>Teleportován na warp <green><bold><warp></bold></green><gray>."
+  set:        "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>vytvořen."
+  deleted:    "<prefix_warp> <gray>Warp <green><bold><warp></bold></green> <gray>smazán."
+  not-found:  "<prefix_error> <gray>Warp <green><bold><warp></bold></green> <gray>neexistuje."
+  list:       "<prefix_warp> <gray>Warpy: <green><bold><warps></bold></green>"
+  no-warps:   "<prefix_warp> <gray>Nejsou nastaveny žádné warpy."
+
+# ── Time ─────────────────────────────────────────────────
+time:
+  set:         "<prefix_staff> <gray>Čas nastaven na <green><bold><time></bold></green><gray>."
+  invalid:     "<prefix_error> <gray>Neplatný čas: <green><bold><value></bold></green><gray>. Použij číslo nebo: day, night, noon, midnight."
+
+# ── Kit ──────────────────────────────────────────────────
+kit:
+  given:      "<prefix_kit> <gray>Obdržel jsi kit <green><bold><kit></bold></green><gray>."
+  cooldown:   "<prefix_error> <gray>Kit <green><bold><kit></bold></green> <gray>je na cooldownu. Dostupný za <green><bold><time></bold></green><gray>."
+  one-time:   "<prefix_error> <gray>Kit <green><bold><kit></bold></green><gray> jsi již vyzvedl."
+  not-found:  "<prefix_error> <gray>Kit <green><bold><kit></bold></green> <gray>neexistuje."
+  no-perm:    "<prefix_error> <gray>Nemáš oprávnění používat kit <green><bold><kit></bold></green><gray>."
+  list:       "<prefix_kit> <gray>Dostupné kity: <green><bold><kits></bold></green>"
+  no-kits:    "<prefix_kit> <gray>Pro tebe nejsou k dispozici žádné kity."
+  no-money:   "<prefix_error> <gray>Pro kit <green><bold><kit></bold></green><gray> potřebuješ <green><bold><price></bold></green><gray>."
+  charged:    "<prefix_kit> <gray>Za kit <green><bold><kit></bold></green><gray> bylo strženo <green><bold><price></bold></green><gray>."
+  no-economy: "<prefix_error> <gray>Ekonomika není na tomto serveru dostupná."
+
+# ── Broadcast ─────────────────────────────────────────────
+broadcast:
+  format: "<prefix_broadcast> <white><message></white>"
+
+# ── Chat ─────────────────────────────────────────────────
+chat:
+  paused:                  "<prefix_chat> <gray>Chat byl <green><bold>pozastaven</bold></green><gray>."
+  paused-timed:            "<prefix_chat> <gray>Chat byl pozastaven na <green><bold><duration></bold></green><gray>."
+  resumed:                 "<prefix_chat> <gray>Chat byl <green><bold>obnoven</bold></green><gray>."
+  blocked-pause:           "<prefix_error> <gray>Chat je momentálně pozastaven."
+  filter-blocked:          "<prefix_error> <gray>Tvoje zpráva obsahuje zakázaný obsah."
+  muted:                   "<prefix_error> <gray>Jsi umlčen na <green><bold><time></bold></green><gray>."
+  muted-permanent:         "<prefix_error> <gray>Jsi trvale umlčen."
+  muted-player:            "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>byl umlčen na <green><bold><duration></bold></green><gray>."
+  muted-permanent-player:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl trvale umlčen."
+  unmuted-player:          "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl odmlčen."
+  already-muted:           "<prefix_error> <gray><green><bold><player></bold></green> <gray>je již umlčen."
+  not-muted:               "<prefix_error> <gray><green><bold><player></bold></green> <gray>není umlčen."
+  notify-muted:            "<prefix_staff> <gray>Byl jsi umlčen na <green><bold><duration></bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  notify-muted-permanent:  "<prefix_staff> <gray>Byl jsi trvale umlčen hráčem <green><bold><sender></bold></green><gray>."
+  notify-unmuted:          "<prefix_staff> <gray>Bylo ti odebráno umlčení hráčem <green><bold><sender></bold></green><gray>."
+  staff-filter-notify:     "<prefix_staff> <gray>Zpráva hráče <green><bold><player></bold></green><gray> byla filtrována: <italic><message></italic>"
+
+# ── Sudo ─────────────────────────────────────────────────
+sudo:
+  executed: "<prefix_staff> <gray>Vykonáno jako <green><bold><player></bold></green><gray>: <italic><action></italic>"
+
+# ── Kick ─────────────────────────────────────────────────
+kick:
+  kicked:           "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl vykopnut."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>byl vykopnut hráčem <green><bold><sender></bold></green> <gray>— <italic><reason></italic>"
+  kick-screen:      "<red><bold>Byl jsi vykopnut</bold></red>\n<gray>Důvod: <white><reason></white>\n<gray>Vykopnut hráčem: <green><bold><sender></bold></green>"
+
+# ── Ban ───────────────────────────────────────────────────
+ban:
+  banned:           "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>byl zabanován na <green><bold><duration></bold></green><gray>."
+  banned-permanent: "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl trvale zabanován."
+  unbanned:         "<prefix_staff> <gray>Hráči <green><bold><player></bold></green><gray> byl zrušen ban."
+  already-banned:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>je již zabanován."
+  not-banned:       "<prefix_error> <gray><green><bold><player></bold></green> <gray>není zabanován."
+  staff-broadcast:  "<prefix_staff> <green><bold><player></bold></green> <gray>byl zabanován hráčem <green><bold><sender></bold></green> <gray>na <green><bold><duration></bold></green> <gray>— <italic><reason></italic>"
+  staff-unban:      "<prefix_staff> <green><bold><player></bold></green> <gray>byl odbanován hráčem <green><bold><sender></bold></green><gray>."
+  ban-screen:       "<red><bold>Byl jsi zabanován</bold></red>\n<gray>Důvod: <white><reason></white>\n<gray>Délka: <green><bold><duration></bold></green>\n<gray>Zabanoval: <green><bold><sender></bold></green>"
+
+# ── Back ─────────────────────────────────────────────────
+back:
+  teleported:  "<prefix_tp> <gray>Teleportován na poslední místo smrti."
+  no-location: "<prefix_error> <gray>Žádná předchozí poloha pro návrat."
+
+# ── AFK ──────────────────────────────────────────────────
+afk:
+  enabled:         "<prefix_general> <gray>Nyní jsi <green><bold>AFK</bold></green><gray>."
+  disabled:        "<prefix_general> <gray>Již nejsi AFK."
+  broadcast-on:    "<prefix_general> <green><bold><player></bold></green> <gray>je nyní AFK."
+  broadcast-off:   "<prefix_general> <green><bold><player></bold></green> <gray>již není AFK."
+  broadcast-on-msg: "<prefix_general> <green><bold><player></bold></green> <gray>je nyní AFK: <italic><message></italic>"
+  message-reply:   "<prefix_general> <green><bold><player></bold></green> <gray>je AFK: <italic><message></italic>"
+  message-no-msg:  "<prefix_general> <green><bold><player></bold></green> <gray>je momentálně AFK."
+
+# ── Rename ────────────────────────────────────────────────
+rename:
+  renamed: "<prefix_staff> <gray>Předmět byl přejmenován."
+  no-item:  "<prefix_error> <gray>Musíš držet předmět v ruce."
+
+# ── Lore ─────────────────────────────────────────────────
+lore:
+  added:         "<prefix_staff> <gray>Řádek lore přidán."
+  removed:       "<prefix_staff> <gray>Řádek lore <green><bold><index></bold></green><gray> odstraněn."
+  cleared:       "<prefix_staff> <gray>Lore vymazáno."
+  set:           "<prefix_staff> <gray>Řádek lore <green><bold><index></bold></green><gray> nastaven."
+  inserted:      "<prefix_staff> <gray>Vloženo na řádek lore <green><bold><index></bold></green><gray>."
+  invalid-index: "<prefix_error> <gray>Neplatný index řádku <green><bold><index></bold></green><gray>."
+  no-item:       "<prefix_error> <gray>Musíš držet předmět v ruce."
+  no-lore:       "<prefix_error> <gray>Tento předmět nemá žádné lore."
+
+# ── Effect ────────────────────────────────────────────────
+effect:
+  applied:      "<prefix_staff> <gray>Hráči <green><bold><player></bold></green><gray> byl aplikován efekt <green><bold><effect> <level></bold></green> <gray>na <green><bold><duration>s</bold></green><gray>."
+  applied-self: "<prefix_general> <gray>Byl aplikován efekt <green><bold><effect> <level></bold></green> <gray>na <green><bold><duration>s</bold></green><gray>."
+  cleared:      "<prefix_staff> <gray>Všechny efekty hráče <green><bold><player></bold></green><gray> byly odstraněny."
+  cleared-self: "<prefix_general> <gray>Všechny tvoje efekty byly odstraněny."
+  invalid:      "<prefix_error> <gray>Neznámý efekt: <green><bold><effect></bold></green>"
+
+# ── Freeze ────────────────────────────────────────────────
+freeze:
+  frozen:          "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl zmrazen."
+  unfrozen:        "<prefix_staff> <gray>Hráč <green><bold><player></bold></green><gray> byl rozmrazen."
+  already-frozen:  "<prefix_error> <gray><green><bold><player></bold></green> <gray>je již zmrazen."
+  not-frozen:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>není zmrazen."
+  notify-frozen:   "<prefix_staff> <gray>Byl jsi <green><bold>zmrazen</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  notify-unfrozen: "<prefix_staff> <gray>Byl jsi <green><bold>rozmrazen</bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  blocked:         "<prefix_error> <gray>Jsi zmrazen a nemůžeš to udělat."
+  still-frozen:    "<prefix_staff> <gray>Stále jsi <green><bold>zmrazen</bold></green><gray>."
+
+# ── Captcha ───────────────────────────────────────────────
+captcha:
+  given:            "<prefix_general> <gray>Vyřeš captchu zobrazenou na tvé mapě. Napiš kód do chatu."
+  issued:           "<prefix_staff> <gray>Hráči <green><bold><player></bold></green><gray> byla vydána captcha."
+  solved:           "<prefix_general> <gray>Captcha vyřešena! Byl jsi rozmrazen."
+  wrong:            "<prefix_error> <gray>Špatný kód. Zbývá <green><bold><tries></bold></green> <gray>pokus/ů."
+  fail-summary:     "<prefix_staff> <green><bold><player></bold></green> <gray>neprošel captchou. Kód byl: <green><bold><code></bold></green><gray>. Neúspěšných pokusů: <red><bold><attempts></bold></red>"
+  ban-screen:       "<red><bold>Captcha Selhala</bold></red>\n<gray>Důvod: <white>Ověření captchou selhalo</white>\n<gray>Zabanoval: <green><bold>NovaEssentials</bold></green>"
+  dodge-ban-screen: "<red><bold>Byl jsi zabanován</bold></red>\n<gray>Důvod: <white>Odpojení za účelem vyhnutí captše</white>\n<gray>Zabanoval: <green><bold>NovaEssentials</bold></green>"
+  no-captcha:       "<prefix_error> <gray>Nemáš aktivní captchu."
+  already:          "<prefix_error> <gray>Hráč <green><bold><player></bold></green> <gray>již má aktivní captchu."
+  recaptcha-given:  "<prefix_general> <gray>Byl vydán nový kód captchy. Zbývá ti <green><bold><tries></bold></green> <gray>pokus/ů."
+  recaptcha-none:   "<prefix_error> <gray>Nemáš aktivní captchu k obnovení."
+
+# ── Repair ────────────────────────────────────────────────
+repair:
+  repaired:       "<prefix_general> <gray>Tvůj předmět byl <green><bold>opraven</bold></green><gray>."
+  repaired-other: "<prefix_staff> <gray>Předmět v ruce hráče <green><bold><player></bold></green><gray> byl opraven."
+  all:            "<prefix_general> <gray>Všechny předměty v tvém inventáři byly <green><bold>opraveny</bold></green><gray>."
+  all-other:      "<prefix_staff> <gray>Všechny předměty v inventáři hráče <green><bold><player></bold></green><gray> byly opraveny."
+  no-item:        "<prefix_error> <gray>Musíš držet poškozený předmět v ruce."
+  notify:         "<prefix_general> <gray>Tvůj předmět v ruce byl opraven hráčem <green><bold><sender></bold></green><gray>."
+  notify-all:     "<prefix_general> <gray>Tvůj inventář byl opraven hráčem <green><bold><sender></bold></green><gray>."
+
+# ── NovaEssentials Admin ─────────────────────────────────
+novaess:
+  check-enabled:  "<prefix_general> <gray>Automatická kontrola aktualizací <green><bold>povolena</bold></green><gray>."
+  check-disabled: "<prefix_general> <gray>Automatická kontrola aktualizací <green><bold>zakázána</bold></green><gray>."
+
+# ── Size ─────────────────────────────────────────────────
+size:
+  tiny:           "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>byl zmenšen na velikost <green><bold><size></bold></green><gray>."
+  giant:          "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>byl zvětšen na velikost <green><bold><size></bold></green><gray>."
+  reset:          "<prefix_staff> <gray>Velikost hráče <green><bold><player></bold></green><gray> byla obnovena na normální."
+  notify:         "<prefix_general> <gray>Tvoje velikost byla nastavena na <green><bold><size></bold></green> <gray>hráčem <green><bold><sender></bold></green><gray>."
+  notify-reset:   "<prefix_general> <gray>Tvoje velikost byla obnovena na normální hráčem <green><bold><sender></bold></green><gray>."
+  not-supported:  "<prefix_error> <gray>Změna velikosti není podporována v této verzi serveru."
+  invalid:        "<prefix_error> <gray>Velikost musí být mezi <green><bold>0.0625</bold></green> <gray>a <green><bold>16</bold></green><gray>."
+
+# ── Summon ────────────────────────────────────────────────
+summon:
+  summoned:       "<prefix_general> <gray>Přivoláno: <green><bold><amount>x <entity></bold></green><gray>."
+  invalid-entity: "<prefix_error> <gray>Neznámý typ entity: <green><bold><entity></bold></green>"
+
+# ── Strike ────────────────────────────────────────────────
+strike:
+  self:   "<prefix_general> <gray>⚡ Byl jsi zasažen bleskem."
+  struck: "<prefix_staff> <gray>⚡ <green><bold><player></bold></green> <gray>zasažen bleskem."
+
+# ── IpBan ─────────────────────────────────────────────────
+ipban:
+  banned:            "<prefix_staff> <gray>IP zabanována: <green><bold><ip></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+  banned-permanent:  "<prefix_staff> <gray>IP trvale zabanována: <green><bold><ip></bold></green><gray>."
+  player-not-online: "<prefix_error> <gray>Hráč <green><bold><player></bold></green> <gray>musí být online pro zjištění IP."
+
+# ── Book ──────────────────────────────────────────────────
+book:
+  converted:        "<prefix_general> <gray>Kniha převedena na zapisovatelnou."
+  not-written-book: "<prefix_error> <gray>Musíš držet podepsanou knihu."
+
+# ── Find ──────────────────────────────────────────────────
+find:
+  location: "<prefix_staff> <gray>Poloha hráče <green><bold><player></bold></green><gray>: <green><bold><x>, <y>, <z></bold></green> <gray>(<world>)"
+
+# ── GiveHead ──────────────────────────────────────────────
+givehead:
+  given: "<prefix_general> <gray>Obdržel jsi hlavu hráče <green><bold><player></bold></green><gray>."
+
+# ── Playtime ──────────────────────────────────────────────
+playtime:
+  display: "<prefix_general> <gray>Tvůj čas ve hře: <green><bold><time></bold></green><gray>."
+
+# ── Weather ───────────────────────────────────────────────
+weather:
+  sun:     "<prefix_general> <gray>Počasí nastaveno na <green><bold>jasno</bold></green><gray>."
+  rain:    "<prefix_general> <gray>Počasí nastaveno na <green><bold>déšť</bold></green><gray>."
+  thunder: "<prefix_general> <gray>Počasí nastaveno na <green><bold>bouřku</bold></green><gray>."
+
+# ── Nuke ──────────────────────────────────────────────────
+nuke:
+  launched: "<prefix_general> <gray>💥 Nuke odpálen!"
+
+# ── FNuke ─────────────────────────────────────────────────
+fnuke:
+  launched: "<prefix_general> <gray>💥 Tichý nuke odpálen!"
+
+# ── Burn ──────────────────────────────────────────────────
+burn:
+  self:   "<prefix_general> <gray>Zapálil jsi se na <green><bold><duration></bold></green><gray>."
+  other:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>zapálen na <green><bold><duration></bold></green><gray>."
+  notify: "<prefix_general> <gray>Byl jsi zapálen hráčem <green><bold><sender></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+
+# ── GUI ───────────────────────────────────────────────────
+gui:
+  kit-title:    "<dark_gray>Kity"
+  warp-title:   "<dark_gray>Warpy"
+  home-title:   "<dark_gray>Moje Domovy"
+  invsee-title: "<dark_gray>Inventář hráče <player>"
+  prev-page:    "<gray>← Předchozí"
+  next-page:    "<gray>Další →"
+  close:        "<red>✗ Zavřít"

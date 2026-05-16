@@ -1,0 +1,170 @@
+# ============================================================
+#   NovaEssentials Configuration
+#   GitHub: https://github.com/DippyCoder/NovaEssentials
+# ============================================================
+
+general:
+  # Language file to use (matches a file in messages/ folder, e.g. "en" -> messages/en.yml)
+  language: en
+  # Enable debug logging
+  debug: false
+
+# ============================================================
+#   Commands
+# ============================================================
+commands:
+  # List command names to disable (e.g. [fly, heal, feed])
+  disabled: []
+
+# ============================================================
+#   Permission Overrides
+#   Rename any permission node. Leave a key out to use the default.
+#   Default prefix is "novaess." (e.g. novaess.cmd.gm)
+#   Example: cmd.gm: "myplugin.gamemode"
+# ============================================================
+permissions: {}
+#  cmd.gm: "myplugin.gamemode"
+#  cmd.fly: "myplugin.fly"
+
+# ============================================================
+#   Chat
+# ============================================================
+chat:
+  # Enable the custom chat formatter
+  formatter:
+    enabled: true
+    # MiniMessage format. Available tags: <player> <display_name> <world> <message> <prefix> <suffix>
+    # PAPI placeholders are supported if PlaceholderAPI is installed.
+    format: "<dark_gray>[<gray><world></gray><dark_gray>] <green><bold><display_name></bold></green> <dark_gray>» <gray><message>"
+
+  # [item] placeholder in chat — replaced with a clickable item display
+  item-placeholder:
+    enabled: true
+    # MiniMessage format. Available: <name> <material> <amount>
+    format: "<green><bold>[<name>]</bold></green>"
+
+  # SmallCaps — convert message text to unicode small capitals
+  small-caps:
+    enabled: true
+    # If true, only players with novaess.chat.smallcaps can trigger small caps
+    require-permission: false
+
+  # Chat filter — block or replace bad words
+  filter:
+    enabled: true
+    # List of blocked words (case-insensitive)
+    blocked-words:
+      - "badword1"
+      - "badword2"
+    # Replacement string for blocked words
+    replacement: "***"
+    # Notify staff when a message is filtered
+    notify-staff: true
+
+# ============================================================
+#   Teleport
+# ============================================================
+teleport:
+  # Seconds before a TPA request expires
+  tpa-timeout: 60
+  # Delay in seconds before teleporting (0 to disable)
+  teleport-delay: 3
+  # Cancel teleport if player moves during delay
+  cancel-on-move: true
+
+# ============================================================
+#   Homes
+# ============================================================
+homes:
+  # Default max homes for players without a specific permission
+  default-limit: 1
+  # Per-permission home limits. The highest matching permission wins.
+  # -1 = unlimited
+  limits:
+    novaess.homes.2: 2
+    novaess.homes.5: 5
+    novaess.homes.10: 10
+    novaess.homes.unlimited: -1
+  # Default home name when none is specified
+  default-name: home
+
+# ============================================================
+#   Spawn
+# ============================================================
+spawn:
+  # Teleport all players to spawn on join
+  teleport-on-join: false
+  # Teleport player to spawn on death (respawn)
+  teleport-on-death: false
+
+# ============================================================
+#   AFK
+# ============================================================
+afk:
+  # Clear AFK status when the player moves
+  cancel-on-move: true
+
+# ============================================================
+#   Economy  (requires Vault)
+# ============================================================
+economy:
+  # Enable Vault economy integration (for kit prices)
+  enabled: false
+
+# ============================================================
+#   GUI
+# ============================================================
+gui:
+  kits:
+    # Show a clickable GUI instead of a text list for /kit
+    enabled: true
+  warps:
+    # Show a clickable GUI instead of a text list for /warp
+    enabled: true
+  homes:
+    # Show a clickable GUI instead of a text list for /home
+    enabled: true
+
+# ============================================================
+#   Kits
+# ============================================================
+kits:
+  # Example kit — copy this block to create more kits
+  starter:
+    # Display name shown in kit list (MiniMessage)
+    display-name: "<green><bold>Starter Kit</bold></green>"
+    # Cooldown in seconds (0 = no cooldown, -1 = one-time only)
+    cooldown: -1
+    # Price in economy currency (0 = free, requires Vault + economy.enabled: true)
+    price: 0
+    # Permission required to use this kit (leave empty for everyone with novaess.cmd.kit)
+    permission: ""
+    items:
+      - material: STONE_SWORD
+        amount: 1
+        name: "<gray>Stone Sword"
+        lore: []
+        enchantments: {}
+      - material: BREAD
+        amount: 16
+        name: ""
+        lore: []
+        enchantments: {}
+  vip:
+    display-name: "<gold><bold>VIP Kit</bold></gold>"
+    cooldown: 86400
+    permission: "novaess.kit.vip"
+    items:
+      - material: DIAMOND_SWORD
+        amount: 1
+        name: "<lime>Diamond Sword"
+        lore:
+          - "<gray>A fine blade."
+        enchantments:
+          SHARPNESS: 3
+          UNBREAKING: 2
+      - material: GOLDEN_APPLE
+        amount: 8
+        name: ""
+        lore: []
+        enchantments: {}
