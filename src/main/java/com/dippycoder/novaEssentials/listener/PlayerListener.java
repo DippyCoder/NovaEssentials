@@ -16,9 +16,13 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 
+import java.util.List;
+import java.util.Random;
+
 public class PlayerListener implements Listener {
 
     private final NovaEssentials plugin;
+    private final Random random = new Random();
 
     public PlayerListener(NovaEssentials plugin) {
         this.plugin = plugin;
@@ -36,11 +40,12 @@ public class PlayerListener implements Listener {
         plugin.getBlockManager().loadPlayer(player.getUniqueId());
         plugin.getMuteManager().loadPlayer(player.getUniqueId());
         plugin.getKitManager().loadPlayer(player.getUniqueId());
+        plugin.getPlayerSettingsManager().loadPlayer(player.getUniqueId());
+        plugin.getPlayerSettingsManager().applyPermissions(player);
 
         // Apply vanish visibility
         plugin.getVanishManager().applyToNewPlayer(player);
 
-        // Hide vanished player from others who cannot see
         if (plugin.getVanishManager().isVanished(player)) {
             for (Player online : plugin.getServer().getOnlinePlayers()) {
                 if (!plugin.getVanishManager().canSee(online) && !online.equals(player)) {
@@ -49,33 +54,46 @@ public class PlayerListener implements Listener {
             }
         }
 
-        // Re-apply freeze if this player was frozen before the server stopped
         if (plugin.getFreezeManager().isFrozen(player)) {
             plugin.getMessageManager().send(player, "freeze.still-frozen");
         }
 
-        // Spawn on join
         if (plugin.getConfigManager().isSpawnOnJoin()) {
             Location spawn = plugin.getSpawnManager().getSpawn();
             if (spawn != null) player.teleport(spawn);
         }
 
-        // Notify staff about available updates
         if (player.hasPermission("novaess.update-notify")) {
             plugin.getUpdateChecker().notifyPlayer(player);
+        }
+
+        // Custom join message
+        if (plugin.getConfigManager().isJoinMessageEnabled()
+                && !plugin.getVanishManager().isVanished(player)) {
+            Component joinMsg = plugin.getMessageManager().get(player, "join.message",
+                    "player", player.getName());
+            event.joinMessage(joinMsg);
+        } else if (plugin.getVanishManager().isVanished(player)) {
+            event.joinMessage(null);
         }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
+
+        // Save playtime session
         plugin.getPlaytimeManager().onQuit(player.getUniqueId());
 
         plugin.getHomeManager().unloadPlayer(player.getUniqueId());
         plugin.getBlockManager().unloadPlayer(player.getUniqueId());
         plugin.getMuteManager().unloadPlayer(player.getUniqueId());
         plugin.getKitManager().unloadPlayer(player.getUniqueId());
+        plugin.getPlayerSettingsManager().saveSettings(player.getUniqueId());
+        plugin.getPlayerSettingsManager().unloadPlayer(player.getUniqueId());
+        plugin.getPlayerSettingsManager().removeAttachment(player);
         plugin.getTpaManager().cleanup(player);
+        plugin.getTeleportDelayManager().remove(player);
         plugin.getMsgManager().remove(player.getUniqueId());
         plugin.getFlyManager().remove(player);
         plugin.getGodManager().remove(player);
@@ -83,7 +101,6 @@ public class PlayerListener implements Listener {
         plugin.getBackManager().remove(player);
         plugin.getFreezeManager().remove(player);
 
-        // Ban players who disconnect while a captcha is pending
         CaptchaManager.CaptchaData captchaData =
                 plugin.getCaptchaManager().getActiveCaptcha(player);
         if (captchaData != null) {
@@ -100,11 +117,46 @@ public class PlayerListener implements Listener {
         } else {
             plugin.getCaptchaManager().clearCaptcha(player);
         }
+
+        // Custom quit message
+        if (plugin.getConfigManager().isLeaveMessageEnabled()
+                && !plugin.getVanishManager().isVanished(player)) {
+            Component quitMsg = plugin.getMessageManager().get(player, "leave.message",
+                    "player", player.getName());
+            event.quitMessage(quitMsg);
+        } else if (plugin.getVanishManager().isVanished(player)) {
+            event.quitMessage(null);
+        }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onDeath(PlayerDeathEvent event) {
-        plugin.getBackManager().recordDeath(event.getPlayer());
+        Player player = event.getPlayer();
+        plugin.getBackManager().recordDeath(player);
+
+        // Custom death message
+        if (!plugin.getConfigManager().isDeathMessagesEnabled()) return;
+
+        List<String> messages = plugin.getMessageManager().getDeathMessages(player);
+        if (messages.isEmpty()) return;
+
+        String template = messages.get(random.nextInt(messages.size()));
+
+        Player killer = player.getKiller();
+        String killerName = killer != null ? killer.getName() : "Unknown";
+
+        String causeString = "unknown";
+        if (player.getLastDamageCause() != null) {
+            causeString = player.getLastDamageCause().getCause().name()
+                    .toLowerCase().replace('_', ' ');
+        }
+
+        Component deathMsg = plugin.getMessageManager().parse(player, template,
+                "player", player.getName(),
+                "killer", killerName,
+                "cause", causeString);
+
+        event.deathMessage(deathMsg);
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
@@ -135,16 +187,16 @@ public class PlayerListener implements Listener {
 
         if (!blockMoved) return;
 
-        // Cancel pending TPA teleport on move
-        if (plugin.getTpaManager().hasPendingTeleport(player)
+        // Cancel pending delayed teleport on move
+        if (plugin.getTeleportDelayManager().hasPendingTeleport(player)
                 && plugin.getConfigManager().isCancelOnMove()) {
-            Location preTp = plugin.getTpaManager().getPreTeleportLocation(player);
+            Location preTp = plugin.getTeleportDelayManager().getPreTeleportLocation(player);
             if (preTp != null
                     && (preTp.getBlockX() != to.getBlockX()
                     ||  preTp.getBlockY() != to.getBlockY()
                     ||  preTp.getBlockZ() != to.getBlockZ())) {
-                plugin.getTpaManager().cancelTeleport(player);
-                plugin.getMessageManager().send(player, "tpa.cancelled-move");
+                plugin.getTeleportDelayManager().cancelTeleport(player);
+                plugin.getMessageManager().send(player, "tp.cancelled-move");
             }
         }
 
@@ -170,12 +222,9 @@ public class PlayerListener implements Listener {
     public void onGameModeChange(PlayerGameModeChangeEvent event) {
         Player player = event.getPlayer();
         GameMode newMode = event.getNewGameMode();
-        // When entering creative/spectator, ensure flight is set
         if (newMode == GameMode.CREATIVE || newMode == GameMode.SPECTATOR) {
-            // Will be handled by Minecraft itself
             return;
         }
-        // When leaving creative/spectator, remove plugin fly if not active
         if (!plugin.getFlyManager().hasPluginFly(player)) {
             plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                 if (player.isOnline()

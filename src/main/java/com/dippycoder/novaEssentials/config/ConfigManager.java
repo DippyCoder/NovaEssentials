@@ -203,4 +203,90 @@ public class ConfigManager {
         var section = getKitSection(kitName);
         return section == null ? 0.0 : section.getDouble("price", 0.0);
     }
+
+    // ── Teleport cooldowns ────────────────────────────────────
+
+    public int getTpCooldown(String commandKey) {
+        return config.getInt("teleport.cooldowns." + commandKey, 0);
+    }
+
+    // ── Chat ─────────────────────────────────────────────────
+
+    public int getChatClearLines() {
+        return config.getInt("chat.clear-lines", 100);
+    }
+
+    // ── Join / Leave messages ─────────────────────────────────
+
+    public boolean isJoinMessageEnabled() {
+        return config.getBoolean("join-leave.join.enabled", true);
+    }
+
+    public boolean isLeaveMessageEnabled() {
+        return config.getBoolean("join-leave.leave.enabled", true);
+    }
+
+    // ── Death messages ────────────────────────────────────────
+
+    public boolean isDeathMessagesEnabled() {
+        return config.getBoolean("death.enabled", true);
+    }
+
+    // ── Settings permissions ──────────────────────────────────
+
+    public String getPaymentsPermission() {
+        return config.getString("settings.payments-permission", "novaess.receive.payment");
+    }
+
+    public String getBalancePermission() {
+        return config.getString("settings.balance-permission", "novaess.show.balance");
+    }
+
+    // ── Database ──────────────────────────────────────────────
+
+    public String getDatabaseType() {
+        return config.getString("database.type", "sqlite");
+    }
+
+    public String getMysqlHost() {
+        return config.getString("database.mysql.host", "localhost");
+    }
+
+    public int getMysqlPort() {
+        return config.getInt("database.mysql.port", 3306);
+    }
+
+    public String getMysqlDatabase() {
+        return config.getString("database.mysql.database", "novaessentials");
+    }
+
+    public String getMysqlUsername() {
+        return config.getString("database.mysql.username", "root");
+    }
+
+    public String getMysqlPassword() {
+        return config.getString("database.mysql.password", "");
+    }
+
+    public int getMysqlPoolSize() {
+        return config.getInt("database.mysql.pool-size", 10);
+    }
+
+    // ── Redis ─────────────────────────────────────────────────
+
+    public String getRedisHost() {
+        return config.getString("database.redis.host", "localhost");
+    }
+
+    public int getRedisPort() {
+        return config.getInt("database.redis.port", 6379);
+    }
+
+    public String getRedisPassword() {
+        return config.getString("database.redis.password", "");
+    }
+
+    public int getRedisDatabase() {
+        return config.getInt("database.redis.database", 0);
+    }
 }

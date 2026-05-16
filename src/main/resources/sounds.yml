@@ -1,0 +1,51 @@
+# ============================================================
+#   NovaEssentials — Sounds Configuration
+#
+#   Sound names: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+#   Volume: 0.0 – 2.0  (default 0.5)
+#   Pitch:  0.5 – 2.0  (default 1.0)
+#   Set enabled: false to silence a specific sound.
+# ============================================================
+
+gui:
+  # Played when any plugin GUI is opened
+  open:
+    enabled: true
+    sound: BLOCK_CHEST_OPEN
+    volume: 0.5
+    pitch: 1.0
+
+  # Played when any plugin GUI is closed
+  close:
+    enabled: true
+    sound: BLOCK_CHEST_CLOSE
+    volume: 0.5
+    pitch: 1.0
+
+  # Played on generic GUI item clicks (navigation, kits, warps, homes)
+  click:
+    enabled: true
+    sound: UI_BUTTON_CLICK
+    volume: 0.5
+    pitch: 1.0
+
+  # Played in /settings when toggling a setting ON
+  settings-on:
+    enabled: true
+    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    volume: 0.5
+    pitch: 1.2
+
+  # Played in /settings when toggling a setting OFF
+  settings-off:
+    enabled: true
+    sound: BLOCK_NOTE_BLOCK_BASS
+    volume: 0.5
+    pitch: 0.8
+
+  # Played in /settings when cycling the language
+  settings-change:
+    enabled: true
+    sound: ITEM_BOOK_PAGE_TURN
+    volume: 0.5
+    pitch: 1.0

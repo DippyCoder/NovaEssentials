@@ -1,6 +1,7 @@
 package com.dippycoder.novaEssentials.command;
 
 import com.dippycoder.novaEssentials.NovaEssentials;
+import com.dippycoder.novaEssentials.manager.PlayerSettingsManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -42,7 +43,16 @@ public class TpaHereCommand extends BaseCommand {
             return;
         }
 
-        // Send the request, but the SENDER is the destination (target goes to player)
+        // Check if target is accepting tpahere requests
+        PlayerSettingsManager sm = plugin.getPlayerSettingsManager();
+        if (sm != null) {
+            PlayerSettingsManager.PlayerSettings ts = sm.getSettings(target.getUniqueId());
+            if (!ts.allowTpaHere) {
+                msg.send(sender, "tpa.not-accepting-here", "player", target.getName());
+                return;
+            }
+        }
+
         plugin.getTpaManager().sendHereRequest(player, target);
         msg.send(sender, "tpa.here-sent", "player", target.getName());
         msg.send(target, "tpa.here-received", "player", player.getName());

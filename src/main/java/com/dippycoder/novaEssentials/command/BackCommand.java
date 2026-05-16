@@ -25,8 +25,9 @@ public class BackCommand extends BaseCommand {
             msg.send(sender, "back.no-location");
             return;
         }
-        player.teleport(loc);
-        msg.send(sender, "back.teleported");
+        if (plugin.getTeleportDelayManager().startDelayedTeleport(player, loc, "back")) {
+            msg.send(sender, "back.teleported");
+        }
     }
 
     @Override

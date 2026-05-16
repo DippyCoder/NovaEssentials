@@ -225,6 +225,11 @@ commands:
     usage: /repair [all|player] [player]
     aliases: [ fix ]
     permission: novaess.cmd.repair
+  settings:
+    description: Open your personal settings GUI.
+    usage: /settings
+    aliases: [ mysettings, prefs ]
+    permission: novaess.cmd.settings
   summon:
     description: Summon entities at your position or a specific location.
     usage: /summon <entity> [x y z] [amount]
@@ -361,6 +366,7 @@ permissions:
       novaess.cmd.repair: true
       novaess.cmd.repair.other: true
       novaess.cmd.novaess: true
+      novaess.cmd.settings: true
       novaess.cmd.summon: true
       novaess.cmd.strike: true
       novaess.cmd.ipban: true
@@ -572,6 +578,9 @@ permissions:
   novaess.cmd.repair.other:
     description: Repair another player's items
     default: op
+  novaess.cmd.settings:
+    description: Open personal settings GUI
+    default: true
   novaess.cmd.novaess:
     description: Access /novaess management commands
     default: op

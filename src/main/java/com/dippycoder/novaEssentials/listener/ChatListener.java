@@ -94,6 +94,16 @@ public class ChatListener implements Listener {
             event.renderer((source, sourceDisplayName, message, viewer) ->
                     buildFormattedChat(source, sourceDisplayName, finalMsg));
         }
+
+        // ── Hide-chat filter — remove viewers who opted out ────
+        var sm = plugin.getPlayerSettingsManager();
+        if (sm != null) {
+            event.viewers().removeIf(audience -> {
+                if (!(audience instanceof Player viewer)) return false;
+                if (viewer.equals(player)) return false;
+                return sm.getSettings(viewer.getUniqueId()).hideChat;
+            });
+        }
     }
 
     private Component buildMessageComponent(Player player, String rawText) {

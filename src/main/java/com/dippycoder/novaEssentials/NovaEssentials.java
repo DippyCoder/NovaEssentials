@@ -20,60 +20,66 @@ public final class NovaEssentials extends JavaPlugin {
 
     private static NovaEssentials instance;
 
-    private ConfigManager configManager;
-    private DatabaseManager databaseManager;
-    private MessageManager messageManager;
-    private VanishManager vanishManager;
-    private GodManager godManager;
-    private FlyManager flyManager;
-    private TpaManager tpaManager;
-    private MuteManager muteManager;
-    private HomeManager homeManager;
-    private WarpManager warpManager;
-    private BlockManager blockManager;
-    private ChatFilterManager chatFilterManager;
-    private MsgManager msgManager;
-    private SpawnManager spawnManager;
-    private KitManager kitManager;
-    private AfkManager afkManager;
-    private BackManager backManager;
-    private FreezeManager freezeManager;
-    private CaptchaManager captchaManager;
-    private DiscordWebhookManager discordWebhookManager;
-    private UpdateChecker updateChecker;
-    private ChatCommand chatCommandInstance;
-    private PlaytimeManager playtimeManager;
+    private ConfigManager          configManager;
+    private DatabaseManager        databaseManager;
+    private MessageManager         messageManager;
+    private PlayerSettingsManager  playerSettingsManager;
+    private VanishManager          vanishManager;
+    private GodManager             godManager;
+    private FlyManager             flyManager;
+    private TpaManager             tpaManager;
+    private TeleportDelayManager   teleportDelayManager;
+    private MuteManager            muteManager;
+    private HomeManager            homeManager;
+    private WarpManager            warpManager;
+    private BlockManager           blockManager;
+    private ChatFilterManager      chatFilterManager;
+    private MsgManager             msgManager;
+    private SpawnManager           spawnManager;
+    private KitManager             kitManager;
+    private AfkManager             afkManager;
+    private BackManager            backManager;
+    private FreezeManager          freezeManager;
+    private CaptchaManager         captchaManager;
+    private DiscordWebhookManager  discordWebhookManager;
+    private SoundManager           soundManager;
+    private PlaytimeManager        playtimeManager;
+    private UpdateChecker          updateChecker;
+    private ChatCommand            chatCommandInstance;
 
     @Override
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
 
-        configManager    = new ConfigManager(this);
-        messageManager   = new MessageManager(this);
-        databaseManager  = new DatabaseManager(this);
+        configManager         = new ConfigManager(this);
+        messageManager        = new MessageManager(this);
+        databaseManager       = new DatabaseManager(this);
         databaseManager.connect();
 
-        vanishManager    = new VanishManager(this);
-        godManager       = new GodManager();
-        flyManager       = new FlyManager();
-        tpaManager       = new TpaManager(this);
-        muteManager      = new MuteManager(this);
-        homeManager      = new HomeManager(this);
-        warpManager      = new WarpManager(this);
-        blockManager     = new BlockManager(this);
-        chatFilterManager = new ChatFilterManager(this);
-        msgManager       = new MsgManager();
-        spawnManager     = new SpawnManager(this);
-        kitManager       = new KitManager(this);
-        afkManager       = new AfkManager();
-        backManager      = new BackManager();
-        freezeManager          = new FreezeManager(this);
-        captchaManager         = new CaptchaManager(this);
-        discordWebhookManager  = new DiscordWebhookManager(this);
-        updateChecker          = new UpdateChecker(this);
+        playerSettingsManager = new PlayerSettingsManager(this);
+        vanishManager         = new VanishManager(this);
+        godManager            = new GodManager();
+        flyManager            = new FlyManager();
+        teleportDelayManager  = new TeleportDelayManager(this);
+        tpaManager            = new TpaManager(this);
+        muteManager           = new MuteManager(this);
+        homeManager           = new HomeManager(this);
+        warpManager           = new WarpManager(this);
+        blockManager          = new BlockManager(this);
+        chatFilterManager     = new ChatFilterManager(this);
+        msgManager            = new MsgManager();
+        spawnManager          = new SpawnManager(this);
+        kitManager            = new KitManager(this);
+        afkManager            = new AfkManager();
+        backManager           = new BackManager();
+        freezeManager         = new FreezeManager(this);
+        captchaManager        = new CaptchaManager(this);
+        discordWebhookManager = new DiscordWebhookManager(this);
+        soundManager          = new SoundManager(this);
+        playtimeManager       = new PlaytimeManager(this);
+        updateChecker         = new UpdateChecker(this);
         updateChecker.checkAsync();
-        playtimeManager        = new PlaytimeManager(this);
 
         registerCommands();
 
@@ -145,23 +151,24 @@ public final class NovaEssentials extends JavaPlugin {
         register("unfreeze",  new UnfreezeCommand(this));
         register("tiny",      new TinyCommand(this));
         register("giant",     new GiantCommand(this));
-        register("captcha",    new CaptchaCommand(this));
-        register("recaptcha",  new RecaptchaCommand(this));
-        register("repair",     new RepairCommand(this));
-        register("novaess",    new NovaessCommand(this));
-        register("summon",     new SummonCommand(this));
-        register("strike",     new StrikeCommand(this));
-        register("ipban",      new IpBanCommand(this));
-        register("book",       new BookCommand(this));
-        register("find",       new FindCommand(this));
-        register("givehead",   new GiveHeadCommand(this));
-        register("playtime",   new PlaytimeCommand(this));
-        register("sun",        new SunCommand(this));
-        register("rain",       new RainCommand(this));
-        register("thunder",    new ThunderCommand(this));
-        register("nuke",       new NukeCommand(this));
-        register("fnuke",      new FNukeCommand(this));
-        register("burn",       new BurnCommand(this));
+        register("captcha",   new CaptchaCommand(this));
+        register("recaptcha", new RecaptchaCommand(this));
+        register("repair",    new RepairCommand(this));
+        register("settings",  new SettingsCommand(this));
+        register("novaess",   new NovaessCommand(this));
+        register("summon",    new SummonCommand(this));
+        register("strike",    new StrikeCommand(this));
+        register("ipban",     new IpBanCommand(this));
+        register("book",      new BookCommand(this));
+        register("find",      new FindCommand(this));
+        register("givehead",  new GiveHeadCommand(this));
+        register("playtime",  new PlaytimeCommand(this));
+        register("sun",       new SunCommand(this));
+        register("rain",      new RainCommand(this));
+        register("thunder",   new ThunderCommand(this));
+        register("nuke",      new NukeCommand(this));
+        register("fnuke",     new FNukeCommand(this));
+        register("burn",      new BurnCommand(this));
     }
 
     private void register(String name, Object handler) {
@@ -173,28 +180,31 @@ public final class NovaEssentials extends JavaPlugin {
 
     // ── Accessors ─────────────────────────────────────────────
 
-    public static NovaEssentials getInstance()      { return instance; }
-    public ConfigManager getConfigManager()         { return configManager; }
-    public DatabaseManager getDatabaseManager()     { return databaseManager; }
-    public MessageManager getMessageManager()       { return messageManager; }
-    public VanishManager getVanishManager()         { return vanishManager; }
-    public GodManager getGodManager()               { return godManager; }
-    public FlyManager getFlyManager()               { return flyManager; }
-    public TpaManager getTpaManager()               { return tpaManager; }
-    public MuteManager getMuteManager()             { return muteManager; }
-    public HomeManager getHomeManager()             { return homeManager; }
-    public WarpManager getWarpManager()             { return warpManager; }
-    public BlockManager getBlockManager()           { return blockManager; }
-    public ChatFilterManager getChatFilterManager() { return chatFilterManager; }
-    public MsgManager getMsgManager()               { return msgManager; }
-    public SpawnManager getSpawnManager()           { return spawnManager; }
-    public KitManager getKitManager()               { return kitManager; }
-    public AfkManager getAfkManager()               { return afkManager; }
-    public BackManager getBackManager()             { return backManager; }
-    public FreezeManager getFreezeManager()                   { return freezeManager; }
-    public CaptchaManager getCaptchaManager()                 { return captchaManager; }
-    public DiscordWebhookManager getDiscordWebhookManager()   { return discordWebhookManager; }
-    public UpdateChecker getUpdateChecker()                   { return updateChecker; }
-    public ChatCommand getChatCommand()                       { return chatCommandInstance; }
-    public PlaytimeManager getPlaytimeManager()               { return playtimeManager; }
+    public static NovaEssentials getInstance()               { return instance; }
+    public ConfigManager getConfigManager()                  { return configManager; }
+    public DatabaseManager getDatabaseManager()              { return databaseManager; }
+    public MessageManager getMessageManager()                { return messageManager; }
+    public PlayerSettingsManager getPlayerSettingsManager()  { return playerSettingsManager; }
+    public VanishManager getVanishManager()                  { return vanishManager; }
+    public GodManager getGodManager()                        { return godManager; }
+    public FlyManager getFlyManager()                        { return flyManager; }
+    public TpaManager getTpaManager()                        { return tpaManager; }
+    public TeleportDelayManager getTeleportDelayManager()    { return teleportDelayManager; }
+    public MuteManager getMuteManager()                      { return muteManager; }
+    public HomeManager getHomeManager()                      { return homeManager; }
+    public WarpManager getWarpManager()                      { return warpManager; }
+    public BlockManager getBlockManager()                    { return blockManager; }
+    public ChatFilterManager getChatFilterManager()          { return chatFilterManager; }
+    public MsgManager getMsgManager()                        { return msgManager; }
+    public SpawnManager getSpawnManager()                    { return spawnManager; }
+    public KitManager getKitManager()                        { return kitManager; }
+    public AfkManager getAfkManager()                        { return afkManager; }
+    public BackManager getBackManager()                      { return backManager; }
+    public FreezeManager getFreezeManager()                  { return freezeManager; }
+    public CaptchaManager getCaptchaManager()                { return captchaManager; }
+    public DiscordWebhookManager getDiscordWebhookManager()  { return discordWebhookManager; }
+    public SoundManager getSoundManager()                    { return soundManager; }
+    public PlaytimeManager getPlaytimeManager()              { return playtimeManager; }
+    public UpdateChecker getUpdateChecker()                  { return updateChecker; }
+    public ChatCommand getChatCommand()                      { return chatCommandInstance; }
 }

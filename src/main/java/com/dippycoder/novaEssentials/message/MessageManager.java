@@ -66,7 +66,11 @@ public class MessageManager {
             if (files != null) {
                 for (File f : files) {
                     String key = f.getName().replace(".yml", "").toLowerCase();
-                    localeCache.computeIfAbsent(key, k -> YamlConfiguration.loadConfiguration(f));
+                    localeCache.computeIfAbsent(key, k -> {
+                        FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
+                        fc.setDefaults(defaultMessages);
+                        return fc;
+                    });
                 }
             }
         }
@@ -127,6 +131,18 @@ public class MessageManager {
     private FileConfiguration getMessagesFor(CommandSender sender) {
         if (!(sender instanceof Player player)) return defaultMessages;
 
+        // Check player's preferred language setting first
+        var sm = plugin.getPlayerSettingsManager();
+        if (sm != null) {
+            String prefLang = sm.getSettings(player.getUniqueId()).preferredLang;
+            if (prefLang != null && !prefLang.isBlank()) {
+                FileConfiguration fc = localeCache.computeIfAbsent(
+                        prefLang.toLowerCase(), k -> tryLoadLocale(k));
+                if (fc != null) return fc;
+            }
+        }
+
+        // Fall back to Minecraft client locale
         Locale locale = player.locale();
         String lang    = locale.getLanguage().toLowerCase();
         String country = locale.getCountry().toLowerCase();
@@ -144,18 +160,24 @@ public class MessageManager {
     /**
      * Try loading a locale — returns null if no file exists (so computeIfAbsent
      * stores null and we don't re-try on every message).
+     * Loaded configs have defaultMessages set as their defaults so missing keys
+     * fall back to English automatically.
      */
     private FileConfiguration tryLoadLocale(String key) {
+        FileConfiguration fc = null;
         File f = new File(plugin.getDataFolder(), "messages/" + key + ".yml");
-        if (f.exists()) return YamlConfiguration.loadConfiguration(f);
-        // Try jar resource
-        InputStream is = plugin.getResource("messages/" + key + ".yml");
-        if (is != null) {
-            plugin.saveResource("messages/" + key + ".yml", false);
-            return YamlConfiguration.loadConfiguration(
-                    new InputStreamReader(is, StandardCharsets.UTF_8));
+        if (f.exists()) {
+            fc = YamlConfiguration.loadConfiguration(f);
+        } else {
+            InputStream is = plugin.getResource("messages/" + key + ".yml");
+            if (is != null) {
+                plugin.saveResource("messages/" + key + ".yml", false);
+                fc = YamlConfiguration.loadConfiguration(
+                        new InputStreamReader(is, StandardCharsets.UTF_8));
+            }
         }
-        return null;
+        if (fc != null && defaultMessages != null) fc.setDefaults(defaultMessages);
+        return fc;
     }
 
     private FileConfiguration loadLocale(String lang) {
@@ -170,11 +192,23 @@ public class MessageManager {
             plugin.getLogger().warning("No messages file found; using empty config.");
             return new YamlConfiguration();
         }
-        try {
-            plugin.getLogger().info("Locale '" + lang + "' not found, falling back to en.");
-        } catch (Exception ignored) {}
+        plugin.getLogger().info("Locale '" + lang + "' not found, falling back to en.");
         return YamlConfiguration.loadConfiguration(
                 new InputStreamReader(is, StandardCharsets.UTF_8));
+    }
+
+    /** Returns the list of death message templates for the player's locale. */
+    public List<String> getDeathMessages(Player player) {
+        FileConfiguration messages = getMessagesFor(player);
+        return messages.getStringList("death.messages");
+    }
+
+    /** Returns a sorted list of available locale keys (for the settings language picker). */
+    public List<String> getAvailableLocales() {
+        return localeCache.keySet().stream()
+                .filter(k -> localeCache.get(k) != null)
+                .sorted()
+                .toList();
     }
 
     // ── Tag resolver builder ──────────────────────────────────

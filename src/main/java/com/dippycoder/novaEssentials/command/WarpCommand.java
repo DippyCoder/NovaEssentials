@@ -43,8 +43,9 @@ public class WarpCommand extends BaseCommand {
             msg.send(sender, "warp.not-found", "warp", name);
             return;
         }
-        player.teleport(warp);
-        msg.send(sender, "warp.teleported", "warp", name);
+        if (plugin.getTeleportDelayManager().startDelayedTeleport(player, warp, "warp")) {
+            msg.send(sender, "warp.teleported", "warp", name);
+        }
     }
 
     @Override

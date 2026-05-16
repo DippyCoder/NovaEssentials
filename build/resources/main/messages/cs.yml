@@ -50,6 +50,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Nemůžeš napsat hráči <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>nepřijímá zprávy."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>nepřijímá zprávy."
   no-reply:       "<prefix_error> <gray>Nemáš komu odpovědět."
   player-offline: "<prefix_error> <gray>Tento hráč již není online."
 
@@ -144,8 +145,19 @@ tpa:
   blocked:           "<prefix_error> <gray>Nemůžeš odeslat žádost hráči <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Teleportace zrušena, protože ses pohnul."
   teleporting:       "<prefix_tp> <gray>Teleportace za <green><bold><delay>s</bold></green><gray>. Nepohybuj se."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>nepřijímá žádosti o teleportaci."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>nepřijímá žádosti TPA-Here."
+  auto-accepted:      "<prefix_tp> <gray>Tvoje žádost byla automaticky přijata hráčem <green><bold><player></bold></green><gray>."
 
 # ── TpAll ─────────────────────────────────────────────────
+
+# ── Generic teleport ──────────────────────────────────────
+tp:
+  teleporting:    "<prefix_tp> <gray>Teleportace za <green><bold><delay>s</bold></green><gray>. Nepohybuj se."
+  countdown:      "<yellow>Teleportace za <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Musíš počkat <green><bold><time>s</bold></green> <gray>před dalším teleportováním."
+  cancelled-move: "<prefix_tp> <gray>Teleportace zrušena, protože ses pohnul."
+
 tpall:
   teleported:       "<prefix_staff> <gray>K tobě bylo teleportováno <green><bold><count></bold></green> <gray>hráčů."
   notify:           "<prefix_tp> <gray>Byl jsi teleportován k hráči <green><bold><sender></bold></green><gray>."
@@ -203,13 +215,15 @@ kit:
 
 # ── Broadcast ─────────────────────────────────────────────
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 # ── Chat ─────────────────────────────────────────────────
 chat:
   paused:                  "<prefix_chat> <gray>Chat byl <green><bold>pozastaven</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Chat byl pozastaven na <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Chat byl <green><bold>obnoven</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Chat byl <green><bold>vymazán</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Chat je momentálně pozastaven."
   filter-blocked:          "<prefix_error> <gray>Tvoje zpráva obsahuje zakázaný obsah."
   muted:                   "<prefix_error> <gray>Jsi umlčen na <green><bold><time></bold></green><gray>."
@@ -333,6 +347,119 @@ size:
   notify-reset:   "<prefix_general> <gray>Tvoje velikost byla obnovena na normální hráčem <green><bold><sender></bold></green><gray>."
   not-supported:  "<prefix_error> <gray>Změna velikosti není podporována v této verzi serveru."
   invalid:        "<prefix_error> <gray>Velikost musí být mezi <green><bold>0.0625</bold></green> <gray>a <green><bold>16</bold></green><gray>."
+
+# ── Summon ────────────────────────────────────────────────
+summon:
+  summoned:       "<prefix_general> <gray>Přivoláno: <green><bold><amount>x <entity></bold></green><gray>."
+  invalid-entity: "<prefix_error> <gray>Neznámý typ entity: <green><bold><entity></bold></green>"
+
+# ── Strike ────────────────────────────────────────────────
+strike:
+  self:   "<prefix_general> <gray>⚡ Byl jsi zasažen bleskem."
+  struck: "<prefix_staff> <gray>⚡ <green><bold><player></bold></green> <gray>zasažen bleskem."
+
+# ── IpBan ─────────────────────────────────────────────────
+ipban:
+  banned:            "<prefix_staff> <gray>IP zabanována: <green><bold><ip></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+  banned-permanent:  "<prefix_staff> <gray>IP trvale zabanována: <green><bold><ip></bold></green><gray>."
+  player-not-online: "<prefix_error> <gray>Hráč <green><bold><player></bold></green> <gray>musí být online pro zjištění IP."
+
+# ── Book ──────────────────────────────────────────────────
+book:
+  converted:        "<prefix_general> <gray>Kniha převedena na zapisovatelnou."
+  not-written-book: "<prefix_error> <gray>Musíš držet podepsanou knihu."
+
+# ── Find ──────────────────────────────────────────────────
+find:
+  location: "<prefix_staff> <gray>Poloha hráče <green><bold><player></bold></green><gray>: <green><bold><x>, <y>, <z></bold></green> <gray>(<world>)"
+
+# ── GiveHead ──────────────────────────────────────────────
+givehead:
+  given: "<prefix_general> <gray>Obdržel jsi hlavu hráče <green><bold><player></bold></green><gray>."
+
+# ── Playtime ──────────────────────────────────────────────
+playtime:
+  display: "<prefix_general> <gray>Tvůj čas ve hře: <green><bold><time></bold></green><gray>."
+
+# ── Weather ───────────────────────────────────────────────
+weather:
+  sun:     "<prefix_general> <gray>Počasí nastaveno na <green><bold>jasno</bold></green><gray>."
+  rain:    "<prefix_general> <gray>Počasí nastaveno na <green><bold>déšť</bold></green><gray>."
+  thunder: "<prefix_general> <gray>Počasí nastaveno na <green><bold>bouřku</bold></green><gray>."
+
+# ── Nuke ──────────────────────────────────────────────────
+nuke:
+  launched: "<prefix_general> <gray>💥 Nuke odpálen!"
+
+# ── FNuke ─────────────────────────────────────────────────
+fnuke:
+  launched: "<prefix_general> <gray>💥 Tichý nuke odpálen!"
+
+# ── Burn ──────────────────────────────────────────────────
+burn:
+  self:   "<prefix_general> <gray>Zapálil jsi se na <green><bold><duration></bold></green><gray>."
+  other:  "<prefix_staff> <gray>Hráč <green><bold><player></bold></green> <gray>zapálen na <green><bold><duration></bold></green><gray>."
+  notify: "<prefix_general> <gray>Byl jsi zapálen hráčem <green><bold><sender></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+
+
+
+
+# ── Join / Leave ─────────────────────────────────────────
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>se připojil/a na server."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>opustil/a server."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> zemřel/a."
+    - "<gray><bold><player></bold></gray><gray> nalezl/a svůj konec."
+    - "<gray><bold><player></bold></gray><gray> kousal/a do prachu."
+    - "<gray><bold><player></bold></gray><gray> nepřežil/a."
+    - "<gray><bold><player></bold></gray><gray> byl/a poražen/a."
+    - "<gray><bold><player></bold></gray><gray> zahynul/a."
+    - "<gray><bold><player></bold></gray><gray> přestal/a existovat."
+    - "<gray><bold><player></bold></gray><gray> byl/a eliminován/a."
+
+settings:
+  title: "<dark_gray>⚙ Tvoje Nastavení"
+  allow-tpa:
+    name: "<white>TPA Žádosti"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>Hráči ti mohou posílat TP žádosti."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>Hráči ti nemohou posílat TP žádosti."
+  allow-tpahere:
+    name: "<white>TPA-Here Žádosti"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>Hráči tě mohou zavolat přes /tpahere."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>Hráči tě nemohou zavolat přes /tpahere."
+  tpauto:
+    name: "<white>TPA Auto-Přijmout"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>TPA žádosti jsou automaticky přijaty."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>TPA žádosti přijímáš ručně."
+  language:
+    name: "<white>Jazyk"
+    lore:      "<gray>Aktuální: <green><bold><language></bold></green> <dark_gray>— Klikni pro změnu."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Klikni pro změnu."
+  sounds:
+    name: "<white>GUI Zvuky"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>Zvuky se přehrávají v menu."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>Žádné zvuky v menu."
+  hide-chat:
+    name: "<white>Skrýt Chat"
+    lore-on:  "<red>✔ Skryto <dark_gray>— <gray>Zprávy hráčů jsou skryty."
+    lore-off: "<green>✘ Viditelné <dark_gray>— <gray>Zprávy hráčů jsou viditelné."
+  allow-msg:
+    name: "<white>Soukromé Zprávy"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>Hráči ti mohou psát zprávy."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>Hráči ti nemohou psát zprávy."
+  allow-payments:
+    name: "<white>Platby"
+    lore-on:  "<green>✔ Povoleno <dark_gray>— <gray>Hráči ti mohou platit."
+    lore-off: "<red>✘ Zakázáno <dark_gray>— <gray>Hráči ti nemohou platit."
+  allow-balance:
+    name: "<white>Viditelnost Zůstatku"
+    lore-on:  "<green>✔ Viditelný <dark_gray>— <gray>Hráči mohou zkontrolovat tvůj zůstatek."
+    lore-off: "<red>✘ Skrytý <dark_gray>— <gray>Hráči nemohou zkontrolovat tvůj zůstatek."
 
 # ── GUI ───────────────────────────────────────────────────
 gui:

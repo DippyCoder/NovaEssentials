@@ -50,6 +50,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray><green><bold><player></bold></green><gray> adlı oyuncuya mesaj gönderemezsin."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>mesaj kabul etmiyor."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>mesaj kabul etmiyor."
   no-reply:       "<prefix_error> <gray>Yanıtlayacak kimsen yok."
   player-offline: "<prefix_error> <gray>O oyuncu artık çevrimiçi değil."
 
@@ -144,8 +145,19 @@ tpa:
   blocked:           "<prefix_error> <gray><green><bold><player></bold></green><gray> adlı oyuncuya istek gönderemezsin."
   cancelled-move:    "<prefix_tp> <gray>Hareket ettiğin için ışınlanma iptal edildi."
   teleporting:       "<prefix_tp> <gray><green><bold><delay>s</bold></green><gray> içinde ışınlanıyorsun. Hareket etme."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>ışınlanma isteği kabul etmiyor."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>TPA-Buraya isteği kabul etmiyor."
+  auto-accepted:      "<prefix_tp> <gray>İsteğin <green><bold><player></bold></green><gray> tarafından otomatik olarak kabul edildi."
 
 # ── TpAll ─────────────────────────────────────────────────
+
+# ── Generic teleport ──────────────────────────────────────
+tp:
+  teleporting:    "<prefix_tp> <gray><green><bold><delay>s</bold></green><gray> içinde ışınlanıyorsun. Hareket etme."
+  countdown:      "<yellow><bold><seconds>s</bold> içinde ışınlanıyorsun<yellow>..."
+  cooldown:       "<prefix_error> <gray>Tekrar ışınlanmadan önce <green><bold><time>s</bold></green> <gray>beklemelisin."
+  cancelled-move: "<prefix_tp> <gray>Hareket ettiğin için ışınlanma iptal edildi."
+
 tpall:
   teleported:       "<prefix_staff> <gray><green><bold><count></bold></green> <gray>oyuncu sana ışınlandı."
   notify:           "<prefix_tp> <gray><green><bold><sender></bold></green><gray> adlı oyuncuya ışınlandın."
@@ -203,13 +215,15 @@ kit:
 
 # ── Broadcast ─────────────────────────────────────────────
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 # ── Chat ─────────────────────────────────────────────────
 chat:
   paused:                  "<prefix_chat> <gray>Sohbet <green><bold>duraklatıldı</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Sohbet <green><bold><duration></bold></green><gray> süreliğine duraklatıldı."
   resumed:                 "<prefix_chat> <gray>Sohbet <green><bold>devam ettirildi</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Sohbet <green><bold>temizlendi</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Sohbet şu anda duraklatılmış."
   filter-blocked:          "<prefix_error> <gray>Mesajın engellenmiş içerik barındırıyor."
   muted:                   "<prefix_error> <gray><green><bold><time></bold></green><gray> süreliğine susturuldun."
@@ -386,6 +400,66 @@ burn:
   self:   "<prefix_general> <gray>Kendini <green><bold><duration></bold></green><gray> süreliğine ateşe verdin."
   other:  "<prefix_staff> <gray><green><bold><player></bold></green> <gray><green><bold><duration></bold></green><gray> süreliğine ateşe verildi."
   notify: "<prefix_general> <gray><green><bold><sender></bold></green><gray> tarafından <green><bold><duration></bold></green><gray> süreliğine ateşe verildin."
+
+
+
+
+# ── Join / Leave ─────────────────────────────────────────
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>sunucuya katıldı."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>sunucudan ayrıldı."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> öldü."
+    - "<gray><bold><player></bold></gray><gray> sonunu buldu."
+    - "<gray><bold><player></bold></gray><gray> toprağa düştü."
+    - "<gray><bold><player></bold></gray><gray> hayatta kalamadı."
+    - "<gray><bold><player></bold></gray><gray> mağlup edildi."
+    - "<gray><bold><player></bold></gray><gray> yok oldu."
+    - "<gray><bold><player></bold></gray><gray> var olmayı bıraktı."
+    - "<gray><bold><player></bold></gray><gray> elendi."
+
+settings:
+  title: "<dark_gray>⚙ Ayarlarınız"
+  allow-tpa:
+    name: "<white>TPA İstekleri"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>Oyuncular sana TP isteği gönderebilir."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>Oyuncular sana TP isteği gönderemez."
+  allow-tpahere:
+    name: "<white>TPA-Buraya İstekleri"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>Oyuncular seni /tpahere ile çağırabilir."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>Oyuncular seni /tpahere ile çağıramaz."
+  tpauto:
+    name: "<white>TPA Otomatik Kabul"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>TPA istekleri otomatik kabul edilir."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>TPA isteklerini manuel olarak kabul edersin."
+  language:
+    name: "<white>Dil"
+    lore:      "<gray>Mevcut: <green><bold><language></bold></green> <dark_gray>— Değiştirmek için tıkla."
+    lore-auto: "<gray>Otomatik <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Değiştirmek için tıkla."
+  sounds:
+    name: "<white>GUI Sesleri"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>Menülerde sesler çalınır."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>Menülerde ses çalınmaz."
+  hide-chat:
+    name: "<white>Sohbeti Gizle"
+    lore-on:  "<red>✔ Gizli <dark_gray>— <gray>Oyuncu sohbet mesajları gizlenir."
+    lore-off: "<green>✘ Görünür <dark_gray>— <gray>Oyuncu sohbet mesajları görünür."
+  allow-msg:
+    name: "<white>Özel Mesajlar"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>Oyuncular sana mesaj gönderebilir."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>Oyuncular sana mesaj gönderemez."
+  allow-payments:
+    name: "<white>Ödemeler"
+    lore-on:  "<green>✔ Etkin <dark_gray>— <gray>Oyuncular sana ödeme yapabilir."
+    lore-off: "<red>✘ Devre Dışı <dark_gray>— <gray>Oyuncular sana ödeme yapamaz."
+  allow-balance:
+    name: "<white>Bakiye Görünürlüğü"
+    lore-on:  "<green>✔ Görünür <dark_gray>— <gray>Oyuncular bakiyeni kontrol edebilir."
+    lore-off: "<red>✘ Gizli <dark_gray>— <gray>Oyuncular bakiyeni kontrol edemez."
 
 # ── GUI ───────────────────────────────────────────────────
 gui:

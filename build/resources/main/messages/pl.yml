@@ -46,6 +46,7 @@ msg:
   spy:            "<prefix_msg> <dark_gray>[<gray>SPY<dark_gray>] <green><bold><sender></bold></green> <dark_gray>→ <green><bold><receiver></bold></green><gray>: <italic><message></italic>"
   player-blocked: "<prefix_error> <gray>Nie możesz wysłać wiadomości do <green><bold><player></bold></green><gray>."
   blocked-by:     "<prefix_error> <gray><green><bold><player></bold></green> <gray>nie przyjmuje wiadomości."
+  not-accepting:   "<prefix_error> <gray><green><bold><player></bold></green> <gray>nie przyjmuje wiadomości."
   no-reply:       "<prefix_error> <gray>Nie masz nikogo, komu możesz odpowiedzieć."
   player-offline: "<prefix_error> <gray>Ten gracz nie jest już online."
 
@@ -128,6 +129,17 @@ tpa:
   blocked:           "<prefix_error> <gray>Nie możesz wysłać prośby do <green><bold><player></bold></green><gray>."
   cancelled-move:    "<prefix_tp> <gray>Teleportacja anulowana, ponieważ się poruszyłeś."
   teleporting:       "<prefix_tp> <gray>Teleportacja za <green><bold><delay>s</bold></green><gray>. Nie ruszaj się."
+  not-accepting:      "<prefix_error> <gray><green><bold><player></bold></green> <gray>nie przyjmuje próśb o teleportację."
+  not-accepting-here: "<prefix_error> <gray><green><bold><player></bold></green> <gray>nie przyjmuje próśb TPA-Tu."
+  auto-accepted:      "<prefix_tp> <gray>Twoja prośba została automatycznie zaakceptowana przez <green><bold><player></bold></green><gray>."
+
+
+# ── Generic teleport ──────────────────────────────────────
+tp:
+  teleporting:    "<prefix_tp> <gray>Teleportacja za <green><bold><delay>s</bold></green><gray>. Nie ruszaj się."
+  countdown:      "<yellow>Teleportacja za <bold><seconds>s</bold><yellow>..."
+  cooldown:       "<prefix_error> <gray>Musisz poczekać <green><bold><time>s</bold></green> <gray>przed ponownym teleportowaniem."
+  cancelled-move: "<prefix_tp> <gray>Teleportacja anulowana, ponieważ się poruszyłeś."
 
 tpall:
   teleported: "<prefix_staff> <gray>Teleportowano <green><bold><count></bold></green> <gray>gracza/graczy do ciebie."
@@ -179,12 +191,14 @@ kit:
   no-economy: "<prefix_error> <gray>Na tym serwerze nie jest dostępna ekonomia."
 
 broadcast:
-  format: "<prefix_broadcast> <white><message></white>"
+  divider: "<dark_aqua><st>                                                                  </st>"
+  format: "<prefix_broadcast> <white><bold><message></bold></white>"
 
 chat:
   paused:                  "<prefix_chat> <gray>Czat został <green><bold>wstrzymany</bold></green><gray>."
   paused-timed:            "<prefix_chat> <gray>Czat został wstrzymany na <green><bold><duration></bold></green><gray>."
   resumed:                 "<prefix_chat> <gray>Czat został <green><bold>wznowiony</bold></green><gray>."
+  cleared:                 "<prefix_chat> <gray>Czat został <green><bold>wyczyszczony</bold></green><gray>."
   blocked-pause:           "<prefix_error> <gray>Czat jest obecnie wstrzymany."
   filter-blocked:          "<prefix_error> <gray>Twoja wiadomość zawiera zablokowane treści."
   muted:                   "<prefix_error> <gray>Masz wyciszenie przez <green><bold><time></bold></green><gray>."
@@ -295,6 +309,119 @@ size:
   notify-reset:  "<prefix_general> <gray>Twój rozmiar został zresetowany do normalnego przez <green><bold><sender></bold></green><gray>."
   not-supported: "<prefix_error> <gray>Zmiana rozmiaru nie jest obsługiwana na tej wersji serwera."
   invalid:       "<prefix_error> <gray>Rozmiar musi wynosić od <green><bold>0.0625</bold></green> <gray>do <green><bold>16</bold></green><gray>."
+
+# ── Summon ────────────────────────────────────────────────
+summon:
+  summoned:       "<prefix_general> <gray>Przywołano: <green><bold><amount>x <entity></bold></green><gray>."
+  invalid-entity: "<prefix_error> <gray>Nieznany typ jednostki: <green><bold><entity></bold></green>"
+
+# ── Strike ────────────────────────────────────────────────
+strike:
+  self:   "<prefix_general> <gray>⚡ Zostałeś rażony piorunem."
+  struck: "<prefix_staff> <gray>⚡ <green><bold><player></bold></green> <gray>rażony piorunem."
+
+# ── IpBan ─────────────────────────────────────────────────
+ipban:
+  banned:            "<prefix_staff> <gray>Zbanowano IP: <green><bold><ip></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+  banned-permanent:  "<prefix_staff> <gray>Trwale zbanowano IP: <green><bold><ip></bold></green><gray>."
+  player-not-online: "<prefix_error> <gray>Gracz <green><bold><player></bold></green> <gray>musi być online, aby sprawdzić IP."
+
+# ── Book ──────────────────────────────────────────────────
+book:
+  converted:        "<prefix_general> <gray>Książka przekonwertowana na zapisywalną."
+  not-written-book: "<prefix_error> <gray>Musisz trzymać podpisaną książkę."
+
+# ── Find ──────────────────────────────────────────────────
+find:
+  location: "<prefix_staff> <gray>Lokalizacja gracza <green><bold><player></bold></green><gray>: <green><bold><x>, <y>, <z></bold></green> <gray>(<world>)"
+
+# ── GiveHead ──────────────────────────────────────────────
+givehead:
+  given: "<prefix_general> <gray>Otrzymałeś głowę gracza <green><bold><player></bold></green><gray>."
+
+# ── Playtime ──────────────────────────────────────────────
+playtime:
+  display: "<prefix_general> <gray>Twój czas gry: <green><bold><time></bold></green><gray>."
+
+# ── Weather ───────────────────────────────────────────────
+weather:
+  sun:     "<prefix_general> <gray>Pogoda ustawiona na <green><bold>słonecznie</bold></green><gray>."
+  rain:    "<prefix_general> <gray>Pogoda ustawiona na <green><bold>deszcz</bold></green><gray>."
+  thunder: "<prefix_general> <gray>Pogoda ustawiona na <green><bold>burzę</bold></green><gray>."
+
+# ── Nuke ──────────────────────────────────────────────────
+nuke:
+  launched: "<prefix_general> <gray>💥 Nuke wystrzelony!"
+
+# ── FNuke ─────────────────────────────────────────────────
+fnuke:
+  launched: "<prefix_general> <gray>💥 Cichy nuke wystrzelony!"
+
+# ── Burn ──────────────────────────────────────────────────
+burn:
+  self:   "<prefix_general> <gray>Podpaliłeś się na <green><bold><duration></bold></green><gray>."
+  other:  "<prefix_staff> <gray>Podpalono gracza <green><bold><player></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+  notify: "<prefix_general> <gray>Zostałeś podpalony przez <green><bold><sender></bold></green> <gray>na <green><bold><duration></bold></green><gray>."
+
+
+
+
+# ── Join / Leave ─────────────────────────────────────────
+join:
+  message: "<dark_gray>[<green>+</green><dark_gray>] <green><bold><player></bold></green> <gray>dołączył/a do serwera."
+
+leave:
+  message: "<dark_gray>[<red>-</red><dark_gray>] <green><bold><player></bold></green> <gray>opuścił/a serwer."
+
+death:
+  messages:
+    - "<gray><bold><player></bold></gray><gray> zginął/ęła."
+    - "<gray><bold><player></bold></gray><gray> znalazł/a swój koniec."
+    - "<gray><bold><player></bold></gray><gray> ugryzł/a ziemię."
+    - "<gray><bold><player></bold></gray><gray> nie przeżył/ęła."
+    - "<gray><bold><player></bold></gray><gray> został/a pokonany/a."
+    - "<gray><bold><player></bold></gray><gray> zginął/ęła marnie."
+    - "<gray><bold><player></bold></gray><gray> przestał/a istnieć."
+    - "<gray><bold><player></bold></gray><gray> został/a wyeliminowany/a."
+
+settings:
+  title: "<dark_gray>⚙ Twoje Ustawienia"
+  allow-tpa:
+    name: "<white>Prośby TPA"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Gracze mogą wysyłać ci prośby o TP."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Gracze nie mogą wysyłać ci próśb o TP."
+  allow-tpahere:
+    name: "<white>Prośby TPA-Tu"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Gracze mogą cię wzywać przez /tpahere."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Gracze nie mogą cię wzywać przez /tpahere."
+  tpauto:
+    name: "<white>TPA Auto-Akceptacja"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Prośby TPA są automatycznie akceptowane."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Ręcznie akceptujesz prośby TPA."
+  language:
+    name: "<white>Język"
+    lore:      "<gray>Aktualny: <green><bold><language></bold></green> <dark_gray>— Kliknij, aby zmienić."
+    lore-auto: "<gray>Auto <dark_gray>(<gray><language><dark_gray>) <dark_gray>— Kliknij, aby zmienić."
+  sounds:
+    name: "<white>Dźwięki GUI"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Dźwięki grają w menu."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Brak dźwięków w menu."
+  hide-chat:
+    name: "<white>Ukryj Czat"
+    lore-on:  "<red>✔ Ukryty <dark_gray>— <gray>Wiadomości czatu graczy są ukryte."
+    lore-off: "<green>✘ Widoczny <dark_gray>— <gray>Wiadomości czatu graczy są widoczne."
+  allow-msg:
+    name: "<white>Prywatne Wiadomości"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Gracze mogą wysyłać ci wiadomości."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Gracze nie mogą wysyłać ci wiadomości."
+  allow-payments:
+    name: "<white>Płatności"
+    lore-on:  "<green>✔ Włączone <dark_gray>— <gray>Gracze mogą ci płacić."
+    lore-off: "<red>✘ Wyłączone <dark_gray>— <gray>Gracze nie mogą ci płacić."
+  allow-balance:
+    name: "<white>Widoczność Salda"
+    lore-on:  "<green>✔ Widoczne <dark_gray>— <gray>Gracze mogą sprawdzić twoje saldo."
+    lore-off: "<red>✘ Ukryte <dark_gray>— <gray>Gracze nie mogą sprawdzić twojego salda."
 
 gui:
   kit-title:    "<dark_gray>Zestawy"

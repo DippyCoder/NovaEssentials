@@ -20,10 +20,6 @@ public class TpaManager {
     private final NovaEssentials plugin;
     /** Keyed by receiver UUID → pending request */
     private final Map<UUID, TpaRequest> requests = new HashMap<>();
-    /** Keyed by player UUID → pending delayed-teleport task */
-    private final Map<UUID, BukkitTask> pendingTeleports = new HashMap<>();
-    /** Location recorded before a delayed teleport (for cancel-on-move check) */
-    private final Map<UUID, Location> preTeleportLocations = new HashMap<>();
 
     public TpaManager(NovaEssentials plugin) {
         this.plugin = plugin;
@@ -79,39 +75,27 @@ public class TpaManager {
         return req;
     }
 
-    // ── Delayed teleport ──────────────────────────────────────
+    // ── Delayed teleport (delegates to TeleportDelayManager) ─────
 
+    /**
+     * Start the delayed teleport for an accepted TPA request.
+     * sendChatMsg=false because TpAcceptCommand already notified the teleporting player.
+     */
     public void startDelayedTeleport(Player teleporting, Location destination) {
-        int delay = plugin.getConfigManager().getTeleportDelay();
-        if (delay <= 0) {
-            teleporting.teleport(destination);
-            return;
-        }
-        preTeleportLocations.put(teleporting.getUniqueId(), teleporting.getLocation().clone());
-        plugin.getMessageManager().send(teleporting, "tpa.teleporting", "delay", delay);
-
-        BukkitTask task = plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
-            pendingTeleports.remove(teleporting.getUniqueId());
-            preTeleportLocations.remove(teleporting.getUniqueId());
-            teleporting.teleport(destination);
-        }, delay * 20L);
-
-        pendingTeleports.put(teleporting.getUniqueId(), task);
+        plugin.getTeleportDelayManager().startDelayedTeleport(teleporting, destination, "tpa", false);
     }
 
+    // Forwarded convenience methods used by PlayerListener cancel-on-move
     public boolean cancelTeleport(Player player) {
-        BukkitTask task = pendingTeleports.remove(player.getUniqueId());
-        preTeleportLocations.remove(player.getUniqueId());
-        if (task != null) { task.cancel(); return true; }
-        return false;
+        return plugin.getTeleportDelayManager().cancelTeleport(player);
     }
 
     public boolean hasPendingTeleport(Player player) {
-        return pendingTeleports.containsKey(player.getUniqueId());
+        return plugin.getTeleportDelayManager().hasPendingTeleport(player);
     }
 
     public Location getPreTeleportLocation(Player player) {
-        return preTeleportLocations.get(player.getUniqueId());
+        return plugin.getTeleportDelayManager().getPreTeleportLocation(player);
     }
 
     // ── Cleanup ───────────────────────────────────────────────
@@ -126,6 +110,5 @@ public class TpaManager {
             }
             return false;
         });
-        cancelTeleport(player);
     }
 }

@@ -3,6 +3,7 @@ package com.dippycoder.novaEssentials.listener;
 import com.dippycoder.novaEssentials.NovaEssentials;
 import com.dippycoder.novaEssentials.gui.*;
 import com.dippycoder.novaEssentials.manager.KitManager;
+import com.dippycoder.novaEssentials.manager.PlayerSettingsManager;
 import com.dippycoder.novaEssentials.util.DurationUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,13 +22,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GuiListener implements Listener {
 
     private static final int NAV_PREV_SLOT  = 45;
     private static final int NAV_CLOSE_SLOT = 49;
     private static final int NAV_NEXT_SLOT  = 53;
-
-    // InvseeHolder glass pane ranges: armor-row fillers (4-7) + separator row (36-44)
 
     private final NovaEssentials plugin;
 
@@ -43,7 +45,8 @@ public class GuiListener implements Listener {
         if (holder instanceof KitGuiHolder
                 || holder instanceof WarpGuiHolder
                 || holder instanceof HomeGuiHolder
-                || holder instanceof InvseeHolder) {
+                || holder instanceof InvseeHolder
+                || holder instanceof SettingsGuiHolder) {
             event.setCancelled(true);
         }
     }
@@ -64,6 +67,8 @@ public class GuiListener implements Listener {
             handleHomeClick(event, player, homeHolder);
         } else if (holder instanceof InvseeHolder invseeHolder) {
             handleInvseeClick(event, player, invseeHolder);
+        } else if (holder instanceof SettingsGuiHolder) {
+            handleSettingsClick(event, player);
         }
     }
 
@@ -73,27 +78,27 @@ public class GuiListener implements Listener {
         event.setCancelled(true);
 
         int slot = event.getRawSlot();
-        // Only handle clicks inside the custom inventory (top inventory)
         if (slot < 0 || slot >= 54) return;
 
-        // Navigation row
         if (slot >= 45 && slot <= 53) {
             ItemStack clicked = event.getCurrentItem();
             if (clicked == null || clicked.getType().isAir()) return;
 
             if (slot == NAV_PREV_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> KitGui.open(player, plugin, holder.getPage() - 1));
             } else if (slot == NAV_CLOSE_SLOT && clicked.getType() == Material.BARRIER) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin, (Runnable) player::closeInventory);
             } else if (slot == NAV_NEXT_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> KitGui.open(player, plugin, holder.getPage() + 1));
             }
             return;
         }
 
-        // Item area (slots 0-44)
         if (slot >= 0 && slot <= 44) {
             ItemStack clicked = event.getCurrentItem();
             if (clicked == null || clicked.getType().isAir()) return;
@@ -108,14 +113,12 @@ public class GuiListener implements Listener {
 
             KitManager kitManager = plugin.getKitManager();
 
-            // Permission check
             String kitPerm = kitManager.getKitPermission(kitName);
             if (!kitPerm.isEmpty() && !player.hasPermission(kitPerm)) {
                 plugin.getMessageManager().send(player, "kit.no-perm", "kit", kitName);
                 return;
             }
 
-            // Cooldown check
             long remaining = kitManager.getRemainingCooldown(player, kitName);
             if (remaining == -2) {
                 plugin.getMessageManager().send(player, "kit.one-time", "kit", kitName);
@@ -127,17 +130,7 @@ public class GuiListener implements Listener {
                 return;
             }
 
-            // Economy check
-            if (plugin.getConfigManager().isEconomyEnabled()) {
-                double price = plugin.getConfigManager().getKitPrice(kitName);
-                if (price > 0) {
-                    // Economy integration point — for now just check if Vault is available
-                    // If not configured/available, skip the check
-                    // This can be expanded when a VaultManager is added
-                }
-            }
-
-            // Give kit
+            plugin.getSoundManager().playGuiClick(player);
             kitManager.giveKit(player, kitName);
             kitManager.recordUse(player, kitName);
             plugin.getMessageManager().send(player, "kit.given", "kit", kitName);
@@ -159,11 +152,14 @@ public class GuiListener implements Listener {
             if (clicked == null || clicked.getType().isAir()) return;
 
             if (slot == NAV_PREV_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> WarpGui.open(player, plugin, holder.getPage() - 1));
             } else if (slot == NAV_CLOSE_SLOT && clicked.getType() == Material.BARRIER) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin, (Runnable) player::closeInventory);
             } else if (slot == NAV_NEXT_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> WarpGui.open(player, plugin, holder.getPage() + 1));
             }
@@ -188,10 +184,12 @@ public class GuiListener implements Listener {
                 return;
             }
 
+            plugin.getSoundManager().playGuiClick(player);
             plugin.getServer().getScheduler().runTask(plugin, () -> {
                 player.closeInventory();
-                player.teleport(warp);
-                plugin.getMessageManager().send(player, "warp.teleported", "warp", warpName);
+                if (plugin.getTeleportDelayManager().startDelayedTeleport(player, warp, "warp")) {
+                    plugin.getMessageManager().send(player, "warp.teleported", "warp", warpName);
+                }
             });
         }
     }
@@ -209,11 +207,14 @@ public class GuiListener implements Listener {
             if (clicked == null || clicked.getType().isAir()) return;
 
             if (slot == NAV_PREV_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> HomeGui.open(player, plugin, holder.getPage() - 1));
             } else if (slot == NAV_CLOSE_SLOT && clicked.getType() == Material.BARRIER) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin, (Runnable) player::closeInventory);
             } else if (slot == NAV_NEXT_SLOT && clicked.getType() == Material.ARROW) {
+                plugin.getSoundManager().playGuiClick(player);
                 plugin.getServer().getScheduler().runTask(plugin,
                         () -> HomeGui.open(player, plugin, holder.getPage() + 1));
             }
@@ -238,27 +239,124 @@ public class GuiListener implements Listener {
                 return;
             }
 
+            plugin.getSoundManager().playGuiClick(player);
             plugin.getServer().getScheduler().runTask(plugin, () -> {
                 player.closeInventory();
-                player.teleport(home);
-                plugin.getMessageManager().send(player, "home.teleported", "home", homeName);
+                if (plugin.getTeleportDelayManager().startDelayedTeleport(player, home, "home")) {
+                    plugin.getMessageManager().send(player, "home.teleported", "home", homeName);
+                }
             });
         }
+    }
+
+    // ── SettingsGui click ─────────────────────────────────────────
+
+    private void handleSettingsClick(InventoryClickEvent event, Player player) {
+        event.setCancelled(true);
+
+        int slot = event.getRawSlot();
+        if (slot < 0 || slot >= 54) return;
+
+        // Close button
+        if (slot == SettingsGui.SLOT_CLOSE) {
+            plugin.getSoundManager().playGuiClick(player);
+            plugin.getServer().getScheduler().runTask(plugin, (Runnable) player::closeInventory);
+            return;
+        }
+
+        ItemStack clicked = event.getCurrentItem();
+        if (clicked == null || clicked.getType().isAir()
+                || clicked.getType() == Material.GRAY_STAINED_GLASS_PANE) return;
+
+        ItemMeta meta = clicked.getItemMeta();
+        if (meta == null) return;
+
+        NamespacedKey settingKey = new NamespacedKey(plugin, "setting_key");
+        String settingId = meta.getPersistentDataContainer()
+                .get(settingKey, PersistentDataType.STRING);
+        if (settingId == null) return;
+
+        PlayerSettingsManager sm = plugin.getPlayerSettingsManager();
+        PlayerSettingsManager.PlayerSettings settings = sm.getSettings(player.getUniqueId());
+
+        switch (settingId) {
+            case "allow-tpa" -> {
+                settings.allowTpa = !settings.allowTpa;
+                playToggleSound(player, settings.allowTpa);
+            }
+            case "allow-tpahere" -> {
+                settings.allowTpaHere = !settings.allowTpaHere;
+                playToggleSound(player, settings.allowTpaHere);
+            }
+            case "tpauto" -> {
+                settings.tpauto = !settings.tpauto;
+                playToggleSound(player, settings.tpauto);
+            }
+            case "sounds" -> {
+                settings.soundsEnabled = !settings.soundsEnabled;
+                // Play feedback sound before toggling (if currently on)
+                if (!settings.soundsEnabled) {
+                    plugin.getSoundManager().playSettingsOff(player); // plays if was enabled
+                }
+                // (no sound when disabling since it's already off)
+            }
+            case "hide-chat" -> {
+                settings.hideChat = !settings.hideChat;
+                playToggleSound(player, settings.hideChat);
+            }
+            case "allow-msg" -> {
+                settings.allowMsg = !settings.allowMsg;
+                playToggleSound(player, settings.allowMsg);
+            }
+            case "allow-payments" -> {
+                settings.allowPayments = !settings.allowPayments;
+                playToggleSound(player, settings.allowPayments);
+                sm.applyPermissions(player);
+            }
+            case "allow-balance" -> {
+                settings.allowBalance = !settings.allowBalance;
+                playToggleSound(player, settings.allowBalance);
+                sm.applyPermissions(player);
+            }
+            case "language" -> {
+                plugin.getSoundManager().playSettingsChange(player);
+                cycleLanguage(settings, player);
+            }
+            default -> { return; }
+        }
+
+        sm.saveSettings(player.getUniqueId());
+        plugin.getServer().getScheduler().runTask(plugin,
+                () -> SettingsGui.open(player, plugin));
+    }
+
+    private void playToggleSound(Player player, boolean enabled) {
+        if (enabled) plugin.getSoundManager().playSettingsOn(player);
+        else         plugin.getSoundManager().playSettingsOff(player);
+    }
+
+    private void cycleLanguage(PlayerSettingsManager.PlayerSettings settings, Player player) {
+        List<String> available = new ArrayList<>();
+        available.add(null); // "auto" = use Minecraft client locale
+        available.addAll(plugin.getMessageManager().getAvailableLocales());
+
+        String current = settings.preferredLang;
+        int idx = available.indexOf(current);
+        int next = (idx + 1) % available.size();
+        settings.preferredLang = available.get(next);
     }
 
     // ── InvseeGui click ───────────────────────────────────────────
 
     private void handleInvseeClick(InventoryClickEvent event, Player player, InvseeHolder holder) {
         int slot = event.getRawSlot();
-        int invSize = event.getInventory().getSize(); // 54
+        int invSize = event.getInventory().getSize();
 
-        // Clicks on glass pane filler slots — always cancel
         if (isGlassPaneSlot(slot)) {
             event.setCancelled(true);
             return;
         }
 
-        // If viewer cannot modify, cancel everything in the custom inventory
         if (!holder.canModify()) {
             if (slot < invSize) {
                 event.setCancelled(true);
@@ -266,8 +364,6 @@ public class GuiListener implements Listener {
             return;
         }
 
-        // Can modify: allow all interactions within the custom inventory,
-        // but cancel shift-click that would move items to the viewer's own inventory
         if (event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
             event.setCancelled(true);
         }
@@ -283,37 +379,28 @@ public class GuiListener implements Listener {
         if (holder instanceof InvseeHolder invseeHolder && invseeHolder.canModify()) {
             syncInvseeToTarget(event.getInventory(), invseeHolder.getTarget());
         }
+
+        if (holder instanceof KitGuiHolder
+                || holder instanceof WarpGuiHolder
+                || holder instanceof HomeGuiHolder
+                || holder instanceof SettingsGuiHolder) {
+            plugin.getSoundManager().playGuiClose(player);
+        }
     }
 
-    /**
-     * Syncs the contents of the InvseeHolder inventory back to the target player.
-     *
-     * Layout (54 slots):
-     *  Row 1 (slots 0-8):   0=Helmet, 1=Chestplate, 2=Leggings, 3=Boots, 4-7=panes, 8=Offhand
-     *  Rows 2-4 (slots 9-35)  → main inventory slots 9-35
-     *  Row 5 (slots 36-44): separator panes (ignored)
-     *  Row 6 (slots 45-53) → hotbar slots 0-8
-     */
     private void syncInvseeToTarget(Inventory inv, Player target) {
-        // Row 1: armor + offhand
         target.getInventory().setHelmet(inv.getItem(0));
         target.getInventory().setChestplate(inv.getItem(1));
         target.getInventory().setLeggings(inv.getItem(2));
         target.getInventory().setBoots(inv.getItem(3));
         target.getInventory().setItemInOffHand(inv.getItem(8));
-
-        // Rows 2-4 → main inventory 9-35
         for (int i = 0; i <= 26; i++) {
             target.getInventory().setItem(9 + i, inv.getItem(9 + i));
         }
-
-        // Row 6 → hotbar slots 0-8
         for (int i = 0; i < 9; i++) {
             target.getInventory().setItem(i, inv.getItem(45 + i));
         }
     }
-
-    // ── Helpers ───────────────────────────────────────────────────
 
     private boolean isGlassPaneSlot(int slot) {
         return (slot >= 4 && slot <= 7) || (slot >= 36 && slot <= 44);
