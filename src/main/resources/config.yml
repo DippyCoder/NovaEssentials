@@ -3,6 +3,9 @@
 #   GitHub: https://github.com/DippyCoder/NovaEssentials
 # ============================================================
 
+# Config version — DO NOT CHANGE THIS.
+config-version: 1
+
 # ============================================================
 #   Database
 # ============================================================
@@ -164,9 +167,15 @@ join-leave:
   join:
     # Set to false to use the vanilla Minecraft join message
     enabled: true
+    # Controls which language the join message is sent in:
+    #   1 - Send the message in the joining player's language to everyone
+    #   2 - Send each online player the message in their own language (default)
+    language-mode: 2
   leave:
     # Set to false to use the vanilla Minecraft leave message
     enabled: true
+    # Same language-mode options as join above
+    language-mode: 2
 
 # ============================================================
 #   Death Messages
@@ -186,6 +195,26 @@ settings:
   # Permission node granted when "Allow Balance" is enabled.
   balance-permission: ""
   # This feature will soon be available for NovaEconomy! -> https://github.com/DippyCoder/NovaEconomy
+
+# ============================================================
+#   Playtime
+# ============================================================
+playtime:
+  # Enable the playtime tracking system and /playtime command
+  enabled: true
+  format:
+    # Controls what units appear in the smart %novaessentials_playtime% placeholder
+    # and the /playtime command output.
+    #
+    # Below 1 hour  → minutes + seconds (if show-seconds: true)
+    # 1h – 1d       → hours + minutes
+    # 1d or more    → days + hours + minutes
+    #
+    # Set show-seconds-above-hour / show-seconds-above-day to true to also
+    # include seconds in those tiers.
+    show-seconds: true
+    show-seconds-above-hour: false
+    show-seconds-above-day: false
 
 # ============================================================
 #   Kits

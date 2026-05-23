@@ -379,7 +379,9 @@ givehead:
 
 # ── Playtime ──────────────────────────────────────────────
 playtime:
-  display: "<prefix_general> <gray>Jouw speeltijd: <green><bold><time></bold></green><gray>."
+  display:       "<prefix_general> <gray>Jouw speeltijd: <green><bold><time></bold></green><gray>."
+  display-other: "<prefix_general> <gray>Speeltijd van <green><bold><player></bold></green><gray>: <green><bold><time></bold></green><gray>."
+  disabled:      "<prefix_error> <gray>Het speeltijdsysteem is momenteel uitgeschakeld."
 
 # ── Weather ───────────────────────────────────────────────
 weather:

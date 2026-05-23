@@ -379,7 +379,9 @@ givehead:
 
 # ── Playtime ──────────────────────────────────────────────
 playtime:
-  display: "<prefix_general> <gray>Tvůj čas ve hře: <green><bold><time></bold></green><gray>."
+  display:       "<prefix_general> <gray>Tvůj čas ve hře: <green><bold><time></bold></green><gray>."
+  display-other: "<prefix_general> <gray>Čas ve hře hráče <green><bold><player></bold></green><gray>: <green><bold><time></bold></green><gray>."
+  disabled:      "<prefix_error> <gray>Systém času ve hře je momentálně vypnutý."
 
 # ── Weather ───────────────────────────────────────────────
 weather:

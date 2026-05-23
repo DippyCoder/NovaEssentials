@@ -255,8 +255,8 @@ commands:
     usage: /givehead [player]
     permission: novaess.cmd.givehead
   playtime:
-    description: View your total playtime.
-    usage: /playtime
+    description: View your or another player's total playtime.
+    usage: /playtime [player]
     permission: novaess.cmd.playtime
   sun:
     description: Set the weather to clear.
@@ -374,6 +374,7 @@ permissions:
       novaess.cmd.find: true
       novaess.cmd.givehead: true
       novaess.cmd.playtime: true
+      novaess.cmd.playtime.other: true
       novaess.cmd.weather: true
       novaess.cmd.nuke: true
       novaess.cmd.fnuke: true
@@ -603,8 +604,11 @@ permissions:
     description: Give player heads
     default: op
   novaess.cmd.playtime:
-    description: View playtime
+    description: View own playtime
     default: true
+  novaess.cmd.playtime.other:
+    description: View other players' playtime
+    default: op
   novaess.cmd.weather:
     description: Change weather (sun, rain, thunder)
     default: op

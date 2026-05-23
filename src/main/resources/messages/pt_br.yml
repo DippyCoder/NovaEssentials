@@ -341,7 +341,9 @@ givehead:
 
 # ── Playtime ──────────────────────────────────────────────
 playtime:
-  display: "<prefix_general> <gray>Seu tempo de jogo: <green><bold><time></bold></green><gray>."
+  display:       "<prefix_general> <gray>Seu tempo de jogo: <green><bold><time></bold></green><gray>."
+  display-other: "<prefix_general> <gray>Tempo de jogo de <green><bold><player></bold></green><gray>: <green><bold><time></bold></green><gray>."
+  disabled:      "<prefix_error> <gray>O sistema de tempo de jogo está desativado."
 
 # ── Weather ───────────────────────────────────────────────
 weather:

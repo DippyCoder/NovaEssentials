@@ -40,9 +40,26 @@ public class PlaytimeManager {
         long hours = mins / 60;
         long days  = hours / 24;
 
-        if (days > 0)  return days + "d " + (hours % 24) + "h " + (mins % 60) + "m " + (secs % 60) + "s";
-        if (hours > 0) return hours + "h " + (mins % 60) + "m " + (secs % 60) + "s";
-        if (mins > 0)  return mins + "m " + (secs % 60) + "s";
+        boolean showSecs          = plugin.getConfigManager().isPlaytimeShowSeconds();
+        boolean showSecsAboveHour = plugin.getConfigManager().isPlaytimeShowSecondsAboveHour();
+        boolean showSecsAboveDay  = plugin.getConfigManager().isPlaytimeShowSecondsAboveDay();
+
+        if (days > 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(days).append("d ").append(hours % 24).append("h ").append(mins % 60).append("m");
+            if (showSecsAboveDay) sb.append(" ").append(secs % 60).append("s");
+            return sb.toString();
+        }
+        if (hours > 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(hours).append("h ").append(mins % 60).append("m");
+            if (showSecsAboveHour) sb.append(" ").append(secs % 60).append("s");
+            return sb.toString();
+        }
+        if (mins > 0) {
+            if (showSecs) return mins + "m " + (secs % 60) + "s";
+            return mins + "m";
+        }
         return secs + "s";
     }
 }

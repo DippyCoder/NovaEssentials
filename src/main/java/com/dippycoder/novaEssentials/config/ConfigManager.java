@@ -20,6 +20,12 @@ public class ConfigManager {
         config = plugin.getConfig();
     }
 
+    // ── Config version ────────────────────────────────────────
+
+    public int getConfigVersion() {
+        return config.getInt("config-version", -1);
+    }
+
     // ── General ──────────────────────────────────────────────
 
     public String getLanguage() {
@@ -222,8 +228,16 @@ public class ConfigManager {
         return config.getBoolean("join-leave.join.enabled", true);
     }
 
+    public int getJoinLanguageMode() {
+        return config.getInt("join-leave.join.language-mode", 2);
+    }
+
     public boolean isLeaveMessageEnabled() {
         return config.getBoolean("join-leave.leave.enabled", true);
+    }
+
+    public int getLeaveLanguageMode() {
+        return config.getInt("join-leave.leave.language-mode", 2);
     }
 
     // ── Death messages ────────────────────────────────────────
@@ -240,6 +254,24 @@ public class ConfigManager {
 
     public String getBalancePermission() {
         return config.getString("settings.balance-permission", "novaess.show.balance");
+    }
+
+    // ── Playtime ──────────────────────────────────────────────
+
+    public boolean isPlaytimeEnabled() {
+        return config.getBoolean("playtime.enabled", true);
+    }
+
+    public boolean isPlaytimeShowSeconds() {
+        return config.getBoolean("playtime.format.show-seconds", true);
+    }
+
+    public boolean isPlaytimeShowSecondsAboveHour() {
+        return config.getBoolean("playtime.format.show-seconds-above-hour", false);
+    }
+
+    public boolean isPlaytimeShowSecondsAboveDay() {
+        return config.getBoolean("playtime.format.show-seconds-above-day", false);
     }
 
     // ── Database ──────────────────────────────────────────────

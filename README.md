@@ -69,7 +69,7 @@ A modern essentials plugin for **Paper 1.21+** servers, inspired by **[Essential
 | `/find <player>` | Show a player's current world and coordinates | — | `novaess.cmd.find` |
 | `/givehead [player]` | Give yourself a player skull | — | `novaess.cmd.givehead` |
 | `/book` | Convert a signed book to a writable book | — | `novaess.cmd.book` |
-| `/playtime` | View your total playtime on the server | — | `novaess.cmd.playtime` |
+| `/playtime [player]` | View your own or another player's total playtime on the server | — | `novaess.cmd.playtime` / `.playtime.other` |
 | `/sun` | Set the weather to clear | `/sunny` | `novaess.cmd.weather` |
 | `/rain` | Set the weather to rain | `/rainy` | `novaess.cmd.weather` |
 | `/thunder` | Set the weather to thunderstorm | — | `novaess.cmd.weather` |
@@ -188,7 +188,7 @@ Every command has a dedicated permission node under `novaess.cmd.*`. A full perm
 | `novaess.cmd.find` | Find a player's location | op |
 | `novaess.cmd.givehead` | Give player skulls | op |
 | `novaess.cmd.book` | Convert signed books to writable books | op |
-| `novaess.cmd.playtime` | View playtime | true |
+| `novaess.cmd.playtime` / `.playtime.other` | View own / other's playtime | true / op |
 | `novaess.cmd.weather` | Change weather (sun / rain / thunder) | op |
 | `novaess.cmd.novaess` | Plugin management command | op |
 | `novaess.chat.color` / `.minimessage` | Color codes / MiniMessage in chat | op |
@@ -210,6 +210,7 @@ permissions:
 
 Everything is configurable in `config.yml`:
 
+- **`config-version`** — do not change this manually; used by the plugin to detect outdated configs and warn on startup
 - Enable/disable individual commands (`commands.disabled`)
 - Rename any permission node (`permissions.*`)
 - Chat formatter format string, item-placeholder format, SmallCaps toggle, filter word list
@@ -220,6 +221,8 @@ Everything is configurable in `config.yml`:
 - Economy integration toggle (`economy.enabled`)
 - GUI toggle for kits, warps, and homes (`gui.kits.enabled`, `gui.warps.enabled`, `gui.homes.enabled`)
 - Full kit definitions (items, enchantments, cooldowns, price, permissions)
+- **Playtime** — `playtime.enabled` to toggle the system; `playtime.format.show-seconds`, `show-seconds-above-hour`, `show-seconds-above-day` to control which units appear in the smart-formatted output
+- **Join/leave language mode** — `join-leave.join.language-mode` / `leave.language-mode`: `1` sends the message in the joining player's language to everyone; `2` (default) sends each online player the message in their own language
 
 ---
 
@@ -290,6 +293,11 @@ Soft dependency. When PlaceholderAPI is installed, the following placeholders ar
 | `%novaess_home_count%` | Number of homes the requesting player has |
 | `%novaess_home_limit%` | Max homes allowed (∞ if unlimited) |
 | `%novaess_visible_players%` | Count of online players visible to the requesting player |
+| `%novaess_playtime%` | Smart-formatted playtime (e.g. `5m 30s`, `2h 15m`, `3d 1h`) — respects `playtime.format` config |
+| `%novaess_playtime_seconds%` | Total playtime in whole seconds |
+| `%novaess_playtime_minutes%` | Total playtime in whole minutes |
+| `%novaess_playtime_hours%` | Total playtime in whole hours |
+| `%novaess_playtime_days%` | Total playtime in whole days |
 | `%novaess_is_afk_<player>%` | `true` / `false` — named player is AFK |
 | `%novaess_afk_message_<player>%` | AFK message of the named player (empty if none) |
 | `%novaess_blocked_players_<player>%` | Number of players the named player has blocked |
@@ -328,7 +336,7 @@ Data is loaded into memory on player join and flushed on quit for performance.
 - **`/tiny` / `/giant`** — resize players using the `generic.scale` attribute (range 0.0625–16); `reset` restores normal size.
 - **`/book`** — converts a signed book back to a writable book so it can be edited again.
 - **`/givehead [player]`** — gives the sender a skull with the skin of the specified player (or themselves).
-- **`/playtime`** — displays the total time the player has spent on the server, tracked in SQLite.
+- **`/playtime [player]`** — displays the total time a player has spent on the server, tracked in SQLite. Checking another player requires `novaess.cmd.playtime.other`. Works on offline players too.
 
 ---
 

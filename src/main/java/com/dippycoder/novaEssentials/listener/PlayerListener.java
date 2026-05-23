@@ -70,9 +70,15 @@ public class PlayerListener implements Listener {
         // Custom join message
         if (plugin.getConfigManager().isJoinMessageEnabled()
                 && !plugin.getVanishManager().isVanished(player)) {
-            Component joinMsg = plugin.getMessageManager().get(player, "join.message",
-                    "player", player.getName());
-            event.joinMessage(joinMsg);
+            if (plugin.getConfigManager().getJoinLanguageMode() == 2) {
+                event.joinMessage(null);
+                plugin.getMessageManager().broadcastAll("join.message", "player", player.getName());
+                plugin.getMessageManager().send(
+                        plugin.getServer().getConsoleSender(), "join.message", "player", player.getName());
+            } else {
+                event.joinMessage(plugin.getMessageManager().get(player, "join.message",
+                        "player", player.getName()));
+            }
         } else if (plugin.getVanishManager().isVanished(player)) {
             event.joinMessage(null);
         }
@@ -121,9 +127,15 @@ public class PlayerListener implements Listener {
         // Custom quit message
         if (plugin.getConfigManager().isLeaveMessageEnabled()
                 && !plugin.getVanishManager().isVanished(player)) {
-            Component quitMsg = plugin.getMessageManager().get(player, "leave.message",
-                    "player", player.getName());
-            event.quitMessage(quitMsg);
+            if (plugin.getConfigManager().getLeaveLanguageMode() == 2) {
+                event.quitMessage(null);
+                plugin.getMessageManager().broadcastAll("leave.message", "player", player.getName());
+                plugin.getMessageManager().send(
+                        plugin.getServer().getConsoleSender(), "leave.message", "player", player.getName());
+            } else {
+                event.quitMessage(plugin.getMessageManager().get(player, "leave.message",
+                        "player", player.getName()));
+            }
         } else if (plugin.getVanishManager().isVanished(player)) {
             event.quitMessage(null);
         }

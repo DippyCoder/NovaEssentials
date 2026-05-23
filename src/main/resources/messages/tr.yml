@@ -379,7 +379,9 @@ givehead:
 
 # ── Playtime ──────────────────────────────────────────────
 playtime:
-  display: "<prefix_general> <gray>Oynama süren: <green><bold><time></bold></green><gray>."
+  display:       "<prefix_general> <gray>Oynama süren: <green><bold><time></bold></green><gray>."
+  display-other: "<prefix_general> <gray><green><bold><player></bold></green><gray>'nun oynama süresi: <green><bold><time></bold></green><gray>."
+  disabled:      "<prefix_error> <gray>Oynama süresi sistemi şu anda devre dışı."
 
 # ── Weather ───────────────────────────────────────────────
 weather:

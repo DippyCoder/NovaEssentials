@@ -379,7 +379,9 @@ givehead:
 
 # ── Playtime ──────────────────────────────────────────────
 playtime:
-  display: "<prefix_general> <gray>Ваше время в игре: <green><bold><time></bold></green><gray>."
+  display:       "<prefix_general> <gray>Ваше время в игре: <green><bold><time></bold></green><gray>."
+  display-other: "<prefix_general> <gray>Время в игре игрока <green><bold><player></bold></green><gray>: <green><bold><time></bold></green><gray>."
+  disabled:      "<prefix_error> <gray>Система времени в игре в данный момент отключена."
 
 # ── Weather ───────────────────────────────────────────────
 weather:

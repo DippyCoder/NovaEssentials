@@ -47,10 +47,23 @@ public final class NovaEssentials extends JavaPlugin {
     private UpdateChecker          updateChecker;
     private ChatCommand            chatCommandInstance;
 
+    private static final int EXPECTED_CONFIG_VERSION = 1;
+
     @Override
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+
+        // Config version guard — must run before ConfigManager reads values
+        int cfgVersion = getConfig().getInt("config-version", -1);
+        if (cfgVersion == -1) {
+            getLogger().warning("config-version is missing from config.yml."
+                    + " You may be using an outdated config. Please regenerate it.");
+        } else if (cfgVersion != EXPECTED_CONFIG_VERSION) {
+            getLogger().severe("Config version mismatch! Expected v" + EXPECTED_CONFIG_VERSION
+                    + " but config.yml has v" + cfgVersion + "."
+                    + " The plugin may behave incorrectly. Back up and regenerate config.yml.");
+        }
 
         configManager         = new ConfigManager(this);
         messageManager        = new MessageManager(this);
