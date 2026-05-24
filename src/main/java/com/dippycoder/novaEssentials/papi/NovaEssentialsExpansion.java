@@ -108,6 +108,20 @@ public class NovaEssentialsExpansion extends PlaceholderExpansion {
                     : String.valueOf(plugin.getVanishManager().isVanished(target));
         }
 
+        // ── Playtime placeholders ─────────────────────────────
+        if (lp.startsWith("playtime")) {
+            if (!plugin.getConfigManager().isPlaytimeEnabled()) return "";
+            long ms = plugin.getPlaytimeManager().getPlaytime(player.getUniqueId());
+            return switch (lp) {
+                case "playtime"         -> plugin.getPlaytimeManager().format(ms);
+                case "playtime_seconds" -> String.valueOf(ms / 1000);
+                case "playtime_minutes" -> String.valueOf(ms / 60000);
+                case "playtime_hours"   -> String.valueOf(ms / 3600000);
+                case "playtime_days"    -> String.valueOf(ms / 86400000);
+                default                 -> null;
+            };
+        }
+
         return null;
     }
 }
